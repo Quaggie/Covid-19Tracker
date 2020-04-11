@@ -8,6 +8,7 @@
 
 struct Country: Codable {
     let country: String
+    let countryInfo: CountryInfo
     let cases: Int
     let todayCases: Int
     let deaths: Int
@@ -15,4 +16,8 @@ struct Country: Codable {
     let recovered: Int
     let active: Int
     let critical: Int
+
+    var timeline: Timeline {
+        return Timeline(cases: cases, deaths: deaths, recovered: recovered, todayCases: todayCases, todayDeaths: todayDeaths)
+    }
 }

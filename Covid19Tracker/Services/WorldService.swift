@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WorldServiceProtocol {
-    func fetchCases(completion: @escaping (Result<WorldData, WebserviceError>) -> Void)
+    func fetchCases(completion: @escaping (Result<Timeline, WebserviceError>) -> Void)
 }
 
 final class WorldService: WorldServiceProtocol {
@@ -19,14 +19,14 @@ final class WorldService: WorldServiceProtocol {
         self.networkManager = networkManager
     }
 
-    func fetchCases(completion: @escaping (Result<WorldData, WebserviceError>) -> Void) {
-        let urlString = "/all"
+    func fetchCases(completion: @escaping (Result<Timeline, WebserviceError>) -> Void) {
+        let urlString = "/v2/all"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {
             case .success(let data):
                  do {
-                    let decodedObject = try JSONDecoder().decode(WorldData.self, from: data)
+                    let decodedObject = try JSONDecoder().decode(Timeline.self, from: data)
                     completion(.success(decodedObject))
                  } catch {
                     completion(.failure(WebserviceError.unparseable))
@@ -37,4 +37,3 @@ final class WorldService: WorldServiceProtocol {
         }
     }
 }
-

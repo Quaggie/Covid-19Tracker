@@ -1,5 +1,5 @@
 //
-//  WorldDataCell.swift
+//  TotalCasesCell.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 10/04/20.
@@ -9,7 +9,10 @@
 import UIKit
 import Charts
 
-final class WorldDataCell: UICollectionViewCell {
+final class TotalCasesCell: UICollectionViewCell {
+    // MARK: - Static
+    static let height: CGFloat = 319
+
     // MARK: - Properties
     private let circleViewHeight: CGFloat = 264
 
@@ -146,15 +149,12 @@ final class WorldDataCell: UICollectionViewCell {
 
     // MARK: - Public functions
     func setup(timeline: Timeline) {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-
         setupPieChart(timeline: timeline)
-        totalCasesTitleValue.text = formatter.string(from: NSNumber(value: timeline.sum))
+        totalCasesTitleValue.text = timeline.sum.decimalFormat
 
-        activeTitleValueLabel.text = formatter.string(from: NSNumber(value: timeline.cases))
-        recoveredTitleValueLabel.text = formatter.string(from: NSNumber(value: timeline.recovered))
-        fatalTitleValueLabel.text = formatter.string(from: NSNumber(value: timeline.deaths))
+        activeTitleValueLabel.text = timeline.cases.decimalFormat
+        recoveredTitleValueLabel.text = timeline.recovered.decimalFormat
+        fatalTitleValueLabel.text = timeline.deaths.decimalFormat
     }
 
     private func setupPieChart(timeline: Timeline) {
@@ -181,7 +181,7 @@ final class WorldDataCell: UICollectionViewCell {
     }
 }
 
-extension WorldDataCell: CodeView {
+extension TotalCasesCell: CodeView {
     func buildViewHierarchy() {
         contentView.addSubview(circleView)
         circleView.addSubview(pieChartView)

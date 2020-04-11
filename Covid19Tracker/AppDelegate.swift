@@ -16,6 +16,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.tintColor = Color.blueDark
         window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
 

@@ -10,6 +10,8 @@ struct Timeline: Codable {
     let cases: Int
     let deaths: Int
     let recovered: Int
+    let todayCases: Int
+    let todayDeaths: Int
 
     var sum: Int {
         return cases + recovered + deaths

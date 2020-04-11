@@ -5,5 +5,6 @@ target 'Covid19Tracker' do
 
   # Pods for Covid19Tracker
   pod 'Charts'
+  pod 'Kingfisher'
 
 end

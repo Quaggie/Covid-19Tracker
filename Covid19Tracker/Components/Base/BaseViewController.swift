@@ -12,9 +12,19 @@ class BaseViewController: UIViewController {
 
     let gradientLayer = CAGradientLayer()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupGradient()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         gradientLayer.frame = view.bounds
+    }
+
+    private func setupGradient() {
+        gradientLayer.colors = [Color.purpleDark.cgColor, Color.blueLight.cgColor]
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

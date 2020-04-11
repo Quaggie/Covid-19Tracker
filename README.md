@@ -36,5 +36,4 @@ infected and cured, in your country and in the rest of the world.
 * https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
 
 ## Suggestions and Feedback? Please, contact us
-jonathanpbijos@gmail.com (iOS)
-bee.duplo@gmail.com (Android & Designer)
+bee.duplo@gmail.com

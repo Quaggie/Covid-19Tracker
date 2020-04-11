@@ -27,7 +27,9 @@ final class NetworkManager: NetworkManagerProtocol {
             guard let self = self else { return }
             self.requests.removeAll { $0.task?.hashValue == request.task?.hashValue }
 
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
         self.requests.append(request)
     }

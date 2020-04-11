@@ -25,11 +25,10 @@ final class PageSelectorView: UIView {
     private let unselectedColor = Color.white.withAlphaComponent(0.3)
     private let lineHeight: CGFloat = 2
 
-    private var selectedButtonIndex: Int? {
+    var selectedButtonIndex: Int? {
         return buttons.firstIndex(where: { $0.currentTitle == selectedTitle })
     }
     private var selectedButtonWidth: CGFloat {
-//        return selectedTitle.width(withConstrainedHeight: lineHeight, font: font)
         return 104
     }
 

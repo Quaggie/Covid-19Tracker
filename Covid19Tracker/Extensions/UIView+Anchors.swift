@@ -13,11 +13,20 @@ typealias NSLayoutConstraintXAndY = (NSLayoutConstraint?, NSLayoutConstraint?)
 
 // MARK: - Constraints -
 extension UIView {
-    func fillSuperview() {
+    func fillSuperview(insets: UIEdgeInsets = .zero) {
         anchor(top: superview?.topAnchor,
                leading: superview?.leadingAnchor,
                bottom: superview?.bottomAnchor,
-               trailing: superview?.trailingAnchor)
+               trailing: superview?.trailingAnchor,
+               insets: insets)
+    }
+
+    func anchorTo(view: UIView, insets: UIEdgeInsets = .zero) {
+        anchor(top: view.topAnchor,
+               leading: view.leadingAnchor,
+               bottom: view.bottomAnchor,
+               trailing: view.trailingAnchor,
+               insets: insets)
     }
 
     @discardableResult

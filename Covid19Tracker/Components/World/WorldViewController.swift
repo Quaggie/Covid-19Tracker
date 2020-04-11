@@ -15,13 +15,24 @@ final class WorldViewController: BaseViewController {
         case error
     }
 
-    enum DatasourceType {
-        case world(Timeline)
-        case countries([Country])
+    enum OverviewDatasourceType {
+        case totalCases(Timeline)
+        case todayCases(Timeline)
     }
 
+    // MARK: - Services
+    private let worldService = WorldService()
+    private let countriesService = CountriesService()
+
     // MARK: - Properties
-    private var datasource: [DatasourceType] = [.world(Timeline(cases: 1699628, deaths: 102734, recovered: 376325))]
+    private var state: State = .loading {
+        didSet {
+            changeUIFor(state: state)
+        }
+    }
+    private var selectedIndex: Int = 0
+    private var overviewDatasource: [OverviewDatasourceType] = []
+    private var countriesDatasource: [Country] = []
     private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
     private let lineSpacing: CGFloat = 16
 
@@ -43,6 +54,8 @@ final class WorldViewController: BaseViewController {
 
         return cv
     }()
+    private let loadingView = LoadingView()
+    private lazy var errorView = ErrorView(delegate: self)
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -51,47 +64,106 @@ final class WorldViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        collectionView.register(WorldDataCell.self)
+        registerCells()
+        fetchData()
     }
 
-    private func setupGradient() {
-        gradientLayer.colors = [Color.purpleDark.cgColor, Color.blueLight.cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
+    private func registerCells() {
+        collectionView.register(TotalCasesCell.self)
+        collectionView.register(TodayCasesCell.self)
+        collectionView.register(SimpleCountryCasesCell.self)
+    }
+
+    private func fetchData() {
+        self.state = .loading
+
+        let dispatchGroup = DispatchGroup()
+        var hasError = false
+
+        dispatchGroup.enter()
+        worldService.fetchCases { [weak self] (result) in
+            guard let self = self else { return }
+            dispatchGroup.leave()
+
+            switch result {
+            case .success(let timeline):
+                self.overviewDatasource = [.totalCases(timeline), .todayCases(timeline)]
+            case .failure:
+                hasError = true
+            }
+        }
+
+        dispatchGroup.enter()
+        countriesService.fetchCases { [weak self] (result) in
+            guard let self = self else { return }
+            dispatchGroup.leave()
+
+            switch result {
+            case .success(let countries):
+                self.countriesDatasource = countries
+            case .failure:
+                hasError = true
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.state = hasError ? .error : .success
+        }
+    }
+
+    private func changeUIFor(state: State) {
+        switch state {
+        case .loading:
+            show(view: loadingView)
+        case .success:
+            show(view: collectionView)
+            collectionView.reloadData()
+        case .error:
+            show(view: errorView)
+        }
+    }
+
+    private func show(view: UIView) {
+        [collectionView, loadingView, errorView].forEach { (v) in
+            if view == v {
+                v.isHidden = false
+            } else {
+                v.isHidden = true
+            }
+        }
     }
 }
 
 extension WorldViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return datasource.count
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let item = datasource[section]
-
-        switch item {
-        case .world:
-            return 1
-        case .countries(let countries):
-            return countries.count
+        if selectedIndex == 0 {
+            return overviewDatasource.count
+        } else {
+            return countriesDatasource.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = datasource[indexPath.section]
+        if selectedIndex == 0 {
+            let item = overviewDatasource[indexPath.item]
 
-        switch item {
-        case .world(let timeline):
-            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorldDataCell
-            cell.setup(timeline: timeline)
+            switch item {
+            case .totalCases(let timeline):
+                let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TotalCasesCell
+                cell.setup(timeline: timeline)
+                return cell
+            case .todayCases(let timeline):
+                let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TodayCasesCell
+                cell.setup(timeline: timeline)
+                return cell
+            }
+        } else {
+            let item = countriesDatasource[indexPath.item]
+
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SimpleCountryCasesCell
+            cell.setup(country: item)
             return cell
-        case .countries(let countries):
-            return UICollectionViewCell()
         }
-    }
-}
-
-extension WorldViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
     }
 }
 
@@ -99,23 +171,50 @@ extension WorldViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
-        let height: CGFloat = 319
-        return .init(width: width, height: height)
+        if selectedIndex == 0 {
+            let item = overviewDatasource[indexPath.item]
+
+            switch item {
+            case .totalCases:
+                let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+                return .init(width: width, height: TotalCasesCell.height)
+            case .todayCases:
+                let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+                return .init(width: width, height: TodayCasesCell.height)
+            }
+        } else {
+            let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+            return .init(width: width, height: SimpleCountryCasesCell.height)
+        }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return lineSpacing
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInset
     }
 }
 
 extension WorldViewController: PageSelectorViewDelegate {
     func pageSelectorViewDidChange(index: Int) {
-        collectionView.reloadData()
+        if selectedIndex == index {
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        } else {
+            selectedIndex = index
+            collectionView.reloadData()
+        }
+    }
+}
+
+extension WorldViewController: ErrorViewDelegate {
+    func errorViewDidTapTryAgain() {
+        fetchData()
     }
 }
 
@@ -123,7 +222,10 @@ extension WorldViewController: CodeView {
     func buildViewHierarchy() {
         view.addSubview(titleLabel)
         view.addSubview(pageSelectorView)
+
         view.addSubview(collectionView)
+        view.addSubview(loadingView)
+        view.addSubview(errorView)
     }
 
     func setupConstraints() {
@@ -141,10 +243,12 @@ extension WorldViewController: CodeView {
                               leading: view.leadingAnchor,
                               bottom: view.bottomAnchor,
                               trailing: view.trailingAnchor)
+
+        loadingView.fillSuperview()
+        errorView.fillSuperview()
     }
 
     func setupAdditionalConfiguration() {
-        setupGradient()
         pageSelectorView.setup()
     }
 }
