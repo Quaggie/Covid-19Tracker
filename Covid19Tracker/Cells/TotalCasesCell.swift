@@ -150,9 +150,9 @@ final class TotalCasesCell: UICollectionViewCell {
     // MARK: - Public functions
     func setup(timeline: Timeline) {
         setupPieChart(timeline: timeline)
-        totalCasesTitleValue.text = timeline.sum.decimalFormat
+        totalCasesTitleValue.text = timeline.cases.decimalFormat
 
-        activeTitleValueLabel.text = timeline.cases.decimalFormat
+        activeTitleValueLabel.text = timeline.active.decimalFormat
         recoveredTitleValueLabel.text = timeline.recovered.decimalFormat
         fatalTitleValueLabel.text = timeline.deaths.decimalFormat
     }
@@ -160,7 +160,7 @@ final class TotalCasesCell: UICollectionViewCell {
     private func setupPieChart(timeline: Timeline) {
         var entries: [PieChartDataEntry] = []
 
-        let entry1 = PieChartDataEntry(value: Double(timeline.cases))
+        let entry1 = PieChartDataEntry(value: Double(timeline.active))
         entries.append(entry1)
 
         let entry2 = PieChartDataEntry(value: Double(timeline.recovered))
