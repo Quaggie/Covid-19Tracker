@@ -116,4 +116,3 @@ extension TodayCasesCell: CodeView {
         contentView.layer.masksToBounds = true
     }
 }
-

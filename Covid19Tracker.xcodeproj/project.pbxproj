@@ -59,6 +59,8 @@
 		A98FC6DA244249D2004433A6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6D9244249D2004433A6 /* ErrorView.swift */; };
 		A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6DC244252FD004433A6 /* SearchViewController.swift */; };
 		A98FC6E0244257DF004433A6 /* TodayCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6DF244257DF004433A6 /* TodayCasesCell.swift */; };
+		A98FC6E2244260CD004433A6 /* PercentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6E1244260CD004433A6 /* PercentRateCell.swift */; };
+		A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6E3244266DD004433A6 /* Double+DecimalFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		A98FC6D9244249D2004433A6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A98FC6DC244252FD004433A6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A98FC6DF244257DF004433A6 /* TodayCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCasesCell.swift; sourceTree = "<group>"; };
+		A98FC6E1244260CD004433A6 /* PercentRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentRateCell.swift; sourceTree = "<group>"; };
+		A98FC6E3244266DD004433A6 /* Double+DecimalFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+DecimalFormat.swift"; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +232,7 @@
 				A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */,
 				A98FC6BF24421A12004433A6 /* String+Calculations.swift */,
 				A98FC6D32442452D004433A6 /* Int+DecimalFormat.swift */,
+				A98FC6E3244266DD004433A6 /* Double+DecimalFormat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */,
 				A98FC6D12442342E004433A6 /* SimpleCountryCasesCell.swift */,
 				A98FC6DF244257DF004433A6 /* TodayCasesCell.swift */,
+				A98FC6E1244260CD004433A6 /* PercentRateCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				A98FC6D22442342E004433A6 /* SimpleCountryCasesCell.swift in Sources */,
 				A93B3FCA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift in Sources */,
 				A98FC6BC244218F7004433A6 /* CovidPieChartView.swift in Sources */,
+				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
 				A93B3FB024355DCB00AFC97F /* Country.swift in Sources */,
 				A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */,
 				A98FC6D8244249A7004433A6 /* LoadingView.swift in Sources */,
@@ -556,6 +563,7 @@
 				A93B3F8A2432CFD900AFC97F /* Color.swift in Sources */,
 				A98FC6B124412164004433A6 /* UIView+BackgroundColorInit.swift in Sources */,
 				A98FC6CA244228F4004433A6 /* CareViewController.swift in Sources */,
+				A98FC6E2244260CD004433A6 /* PercentRateCell.swift in Sources */,
 				A98FC6D42442452D004433A6 /* Int+DecimalFormat.swift in Sources */,
 				A97100F424411A6D002EDF34 /* WorldService.swift in Sources */,
 				A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */,

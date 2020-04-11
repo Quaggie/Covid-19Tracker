@@ -17,6 +17,7 @@ final class CountryViewController: BaseViewController {
 
     enum DatasourceType {
         case totalCases(Country)
+        case percentRate(type: PercentRateCell.Status, percent: Double)
         case todayCases(Country)
     }
 
@@ -33,6 +34,7 @@ final class CountryViewController: BaseViewController {
     private var datasource: [DatasourceType] = []
     private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
     private let lineSpacing: CGFloat = 16
+    private let interItemSpacing: CGFloat = 16
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Covid-19 in my country", font: Font.regular(size: 24), textColor: Color.white)
@@ -83,6 +85,7 @@ final class CountryViewController: BaseViewController {
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
+        collectionView.register(PercentRateCell.self)
     }
 
     private func fetchData() {
@@ -94,7 +97,12 @@ final class CountryViewController: BaseViewController {
             switch result {
             case .success(let country):
                 self.selectedCountry = country
-                self.datasource = [.totalCases(country), .todayCases(country)]
+                self.datasource = [
+                    .totalCases(country),
+                    .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
+                    .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
+                    .todayCases(country)
+                ]
                 self.state = .success
             case .failure:
                 self.state = .error
@@ -139,6 +147,10 @@ extension CountryViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TotalCasesCell
             cell.setup(timeline: country.timeline)
             return cell
+        case .percentRate(let type, let percent):
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PercentRateCell
+            cell.setup(type: type, percent: percent)
+            return cell
         case .todayCases(let country):
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TodayCasesCell
             cell.setup(timeline: country.timeline)
@@ -157,6 +169,10 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
         case .totalCases:
             let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
             return .init(width: width, height: TotalCasesCell.height)
+        case .percentRate:
+            let sectionWidth: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+            let width = (sectionWidth / 2) - (interItemSpacing / 2)
+            return .init(width: width, height: PercentRateCell.height)
         case .todayCases:
             let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
             return .init(width: width, height: TodayCasesCell.height)
@@ -167,6 +183,12 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return lineSpacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return interItemSpacing
     }
 
     func collectionView(_ collectionView: UICollectionView,
