@@ -17,12 +17,14 @@ final class WorldViewController: BaseViewController {
 
     enum OverviewDatasourceType {
         case totalCases(Timeline)
+        case spreadOverTime([HistoricalTimelineDayInfo])
         case todayCases(Timeline)
     }
 
     // MARK: - Services
     private let worldService = WorldService()
-    private let countriesService = CountriesService()
+    private let countryService = CountryService()
+    private let historicalInfoService = HistoricalInfoService()
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -71,6 +73,7 @@ final class WorldViewController: BaseViewController {
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
+        collectionView.register(SpreadOverTimeCell.self)
         collectionView.register(SimpleCountryCasesCell.self)
     }
 
@@ -83,18 +86,32 @@ final class WorldViewController: BaseViewController {
         dispatchGroup.enter()
         worldService.fetchCases { [weak self] (result) in
             guard let self = self else { return }
-            dispatchGroup.leave()
 
             switch result {
             case .success(let timeline):
-                self.overviewDatasource = [.totalCases(timeline), .todayCases(timeline)]
+                self.historicalInfoService.fetchAll { [weak self] (result) in
+                    guard let self = self else { return }
+                    dispatchGroup.leave()
+
+                    switch result {
+                    case .success(let historicalTimelineList):
+                        self.overviewDatasource = [
+                            .totalCases(timeline),
+                            .spreadOverTime(historicalTimelineList),
+                            .todayCases(timeline)
+                        ]
+                    case .failure:
+                        hasError = true
+                    }
+                }
             case .failure:
+                dispatchGroup.leave()
                 hasError = true
             }
         }
 
         dispatchGroup.enter()
-        countriesService.fetchCases { [weak self] (result) in
+        countryService.fetchAll { [weak self] (result) in
             guard let self = self else { return }
             dispatchGroup.leave()
 
@@ -105,6 +122,7 @@ final class WorldViewController: BaseViewController {
                 hasError = true
             }
         }
+
 
         dispatchGroup.notify(queue: .main) {
             self.state = hasError ? .error : .success
@@ -152,6 +170,10 @@ extension WorldViewController: UICollectionViewDataSource {
                 let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TotalCasesCell
                 cell.setup(timeline: timeline)
                 return cell
+            case .spreadOverTime(let historicalTimelineList):
+                let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SpreadOverTimeCell
+                cell.setup(historicalTimelineList: historicalTimelineList)
+                return cell
             case .todayCases(let timeline):
                 let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TodayCasesCell
                 cell.setup(timeline: timeline)
@@ -178,6 +200,9 @@ extension WorldViewController: UICollectionViewDelegateFlowLayout {
             case .totalCases:
                 let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
                 return .init(width: width, height: TotalCasesCell.height)
+            case .spreadOverTime:
+                let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+                return .init(width: width, height: SpreadOverTimeCell.height)
             case .todayCases:
                 let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
                 return .init(width: width, height: TodayCasesCell.height)

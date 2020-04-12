@@ -10,6 +10,7 @@ import Foundation
 
 protocol CountryServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<Country, WebserviceError>) -> Void)
+    func fetchAll(completion: @escaping (Result<[Country], WebserviceError>) -> Void)
 }
 
 final class CountryService: CountryServiceProtocol {
@@ -27,6 +28,24 @@ final class CountryService: CountryServiceProtocol {
             case .success(let data):
                  do {
                     let decodedObject = try JSONDecoder().decode(Country.self, from: data)
+                    completion(.success(decodedObject))
+                 } catch {
+                    completion(.failure(WebserviceError.unparseable))
+                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchAll(completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
+        let urlString = "/v2/countries?sort=cases"
+
+        networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
+            switch result {
+            case .success(let data):
+                 do {
+                    let decodedObject = try JSONDecoder().decode([Country].self, from: data)
                     completion(.success(decodedObject))
                  } catch {
                     completion(.failure(WebserviceError.unparseable))

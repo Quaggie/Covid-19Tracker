@@ -18,11 +18,13 @@ final class CountryViewController: BaseViewController {
     enum DatasourceType {
         case totalCases(Country)
         case percentRate(type: PercentRateCell.Status, percent: Double)
+        case spreadOverTime([HistoricalTimelineDayInfo])
         case todayCases(Country)
     }
 
     // MARK: - Services
-    private let service = CountryService()
+    private let countryService = CountryService()
+    private let historicalInfoService = HistoricalInfoService()
 
     // MARK: - Properties
     private var selectedCountry: Country?
@@ -85,25 +87,36 @@ final class CountryViewController: BaseViewController {
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
+        collectionView.register(SpreadOverTimeCell.self)
         collectionView.register(PercentRateCell.self)
     }
 
     private func fetchData() {
         self.state = .loading
 
-        service.fetch(country: selectedCountry?.country ?? "Brazil") { [weak self] (result) in
+        countryService.fetch(country: selectedCountry?.country ?? "Brazil") { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
             case .success(let country):
-                self.selectedCountry = country
-                self.datasource = [
-                    .totalCases(country),
-                    .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
-                    .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
-                    .todayCases(country)
-                ]
-                self.state = .success
+                self.historicalInfoService.fetch(country: country.country) { [weak self] (result) in
+                    guard let self = self else { return }
+
+                    switch result {
+                    case .success(let historicalInfo):
+                        self.selectedCountry = country
+                        self.datasource = [
+                            .totalCases(country),
+                            .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
+                            .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
+                            .spreadOverTime(historicalInfo.timeline),
+                            .todayCases(country)
+                        ]
+                        self.state = .success
+                    case .failure:
+                        self.state = .error
+                    }
+                }
             case .failure:
                 self.state = .error
             }
@@ -151,6 +164,10 @@ extension CountryViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PercentRateCell
             cell.setup(type: type, percent: percent)
             return cell
+        case .spreadOverTime(let historicalTimelineList):
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SpreadOverTimeCell
+            cell.setup(historicalTimelineList: historicalTimelineList)
+            return cell
         case .todayCases(let country):
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TodayCasesCell
             cell.setup(timeline: country.timeline)
@@ -173,6 +190,9 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
             let sectionWidth: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
             let width = (sectionWidth / 2) - (interItemSpacing / 2)
             return .init(width: width, height: PercentRateCell.height)
+        case .spreadOverTime:
+            let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+            return .init(width: width, height: SpreadOverTimeCell.height)
         case .todayCases:
             let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
             return .init(width: width, height: TodayCasesCell.height)
