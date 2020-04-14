@@ -10,7 +10,7 @@ import Foundation
 
 protocol CountryServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<Country, WebserviceError>) -> Void)
-    func fetchAll(completion: @escaping (Result<[Country], WebserviceError>) -> Void)
+    func fetchAll(sort: Bool, completion: @escaping (Result<[Country], WebserviceError>) -> Void)
 }
 
 final class CountryService: CountryServiceProtocol {
@@ -21,7 +21,11 @@ final class CountryService: CountryServiceProtocol {
     }
 
     func fetch(country: String, completion: @escaping (Result<Country, WebserviceError>) -> Void) {
-        let urlString = "/v2/countries/\(country)"
+        guard let encodedCountry = country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            completion(.failure(.unparseable))
+            return
+        }
+        let urlString = "/v2/countries/\(encodedCountry)"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {
@@ -38,8 +42,11 @@ final class CountryService: CountryServiceProtocol {
         }
     }
 
-    func fetchAll(completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
-        let urlString = "/v2/countries?sort=cases"
+    func fetchAll(sort: Bool = true, completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
+        var urlString = "/v2/countries"
+        if sort {
+            urlString += "?sort=cases"
+        }
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {

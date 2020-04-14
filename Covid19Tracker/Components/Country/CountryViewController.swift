@@ -27,7 +27,11 @@ final class CountryViewController: BaseViewController {
     private let historicalInfoService = HistoricalInfoService()
 
     // MARK: - Properties
-    private var selectedCountry: Country?
+    private var selectedCountry: Country? {
+        didSet {
+            selectedCountryButton.setTitle(selectedCountry?.country, for: .normal)
+        }
+    }
     private var state: State = .loading {
         didSet {
             changeUIFor(state: state)
@@ -40,7 +44,7 @@ final class CountryViewController: BaseViewController {
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Covid-19 in my country", font: Font.regular(size: 24), textColor: Color.white)
-    private let selectedCountryButton: UIButton = {
+    private lazy var selectedCountryButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.tintColor = Color.white
         btn.semanticContentAttribute = .forceRightToLeft
@@ -52,6 +56,8 @@ final class CountryViewController: BaseViewController {
 
         btn.setImage(UIImage(named: "pencil_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.imageEdgeInsets = .init(top: 0, left: 19, bottom: 0, right: 0)
+
+        btn.addTarget(self, action: #selector(goToSearch), for: .touchUpInside)
 
         return btn
     }()
@@ -77,11 +83,24 @@ final class CountryViewController: BaseViewController {
         return .lightContent
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         registerCells()
         fetchData()
+
+        NotificationCenter.default.addObserver(forName: .onSearchCountry, object: nil, queue: .main) { (notification) in
+            guard let country = notification.userInfo?["country"] as? Country else {
+                return
+            }
+            self.tabBarController?.selectedIndex = 0
+            self.selectedCountry = country
+            self.fetchData()
+        }
     }
 
     private func registerCells() {
@@ -129,7 +148,6 @@ final class CountryViewController: BaseViewController {
             show(view: loadingView)
         case .success:
             show(view: collectionView)
-            selectedCountryButton.setTitle(selectedCountry?.country, for: .normal)
             collectionView.reloadData()
         case .error:
             show(view: errorView)
@@ -144,6 +162,11 @@ final class CountryViewController: BaseViewController {
                 v.isHidden = true
             }
         }
+    }
+
+    @objc private func goToSearch() {
+        let controller = SearchViewController()
+        present(controller, animated: true)
     }
 }
 

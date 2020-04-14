@@ -21,7 +21,11 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
     }
 
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
-        let urlString = "/v2/historical/\(country)?lastdays=7"
+        guard let encodedCountry = country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            completion(.failure(.unparseable))
+            return
+        }
+        let urlString = "/v2/historical/\(encodedCountry)?lastdays=7"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {

@@ -13,6 +13,7 @@ final class TabBarViewController: UITabBarController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         tabBar.isOpaque = true
         tabBar.backgroundColor = Color.white
+        delegate = self
 
         let countryViewController = CountryViewController()
         countryViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
@@ -20,17 +21,34 @@ final class TabBarViewController: UITabBarController {
         let worldViewController = WorldViewController()
         worldViewController.tabBarItem = UITabBarItem(title: "World", image: UIImage(named: "tabbar_world"), tag: 1)
 
+        let searchViewController = SearchViewController()
+        searchViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search_icon"), tag: 2)
+
         let newsViewController = NewsViewController()
-        newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 2)
+        newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 3)
 
         let careViewController = CareViewController()
-        careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 3)
+        careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
-        viewControllers = [countryViewController, worldViewController, newsViewController, careViewController]
+        viewControllers = [countryViewController, worldViewController, searchViewController, newsViewController, careViewController]
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+
+}
+
+extension TabBarViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is SearchViewController {
+            let controller = SearchViewController()
+            present(controller, animated: true)
+            return false
+        }
+
+        return true
     }
 }

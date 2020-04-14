@@ -150,6 +150,19 @@ final class WorldViewController: BaseViewController {
             }
         }
     }
+
+    private func goToCountryDetail(country: Country) {
+        NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
+    }
+}
+
+extension WorldViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedIndex == 1 {
+            let country = countriesDatasource[indexPath.item]
+            goToCountryDetail(country: country)
+        }
+    }
 }
 
 extension WorldViewController: UICollectionViewDataSource {

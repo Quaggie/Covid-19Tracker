@@ -48,6 +48,16 @@ final class SimpleCountryCasesCell: UICollectionViewCell {
     }
 
     // MARK: - Lifecycle
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.15, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: { [weak self] in
+                guard let self = self else { return }
+                let scale: CGFloat = 0.95
+                self.transform = self.isHighlighted ? CGAffineTransform(scaleX: scale, y: scale) : .identity
+            })
+        }
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
