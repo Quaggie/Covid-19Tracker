@@ -754,8 +754,8 @@
 			baseConfigurationReference = 2B903A744364DAF7F48BC799 /* Pods-Covid19Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -764,7 +764,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker;
 				PRODUCT_NAME = "Covid19 Tracker";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Macbook Bijos Covid19Tracker Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -775,8 +775,8 @@
 			baseConfigurationReference = F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -785,7 +785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker;
 				PRODUCT_NAME = "Covid19 Tracker";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Macbook Bijos Covid19Tracker AppStore";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
