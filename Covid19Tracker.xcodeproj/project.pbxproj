@@ -66,8 +66,6 @@
 		A98FC6EF2445300E004433A6 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6EE2445300E004433A6 /* SearchCell.swift */; };
 		A98FC6F1244537A9004433A6 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F0244537A9004433A6 /* Notification+Extension.swift */; };
 		A98FC6F424455226004433A6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F324455226004433A6 /* Keyboard.swift */; };
-		A98FC6F62445523D004433A6 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F52445523D004433A6 /* KeyboardManager.swift */; };
-		A98FC6F8244552BE004433A6 /* Array+PreviousNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F7244552BE004433A6 /* Array+PreviousNext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,8 +130,6 @@
 		A98FC6EE2445300E004433A6 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		A98FC6F0244537A9004433A6 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		A98FC6F324455226004433A6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		A98FC6F52445523D004433A6 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		A98FC6F7244552BE004433A6 /* Array+PreviousNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PreviousNext.swift"; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,7 +244,6 @@
 				A98FC6D32442452D004433A6 /* Int+DecimalFormat.swift */,
 				A98FC6E3244266DD004433A6 /* Double+DecimalFormat.swift */,
 				A98FC6F0244537A9004433A6 /* Notification+Extension.swift */,
-				A98FC6F7244552BE004433A6 /* Array+PreviousNext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -441,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				A98FC6F324455226004433A6 /* Keyboard.swift */,
-				A98FC6F52445523D004433A6 /* KeyboardManager.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -588,7 +582,6 @@
 				A93B3FA424355B8200AFC97F /* UIView+Gradient.swift in Sources */,
 				A98FC6CC24422C3D004433A6 /* CountryService.swift in Sources */,
 				A93B3F992432D70A00AFC97F /* UIView+Anchors.swift in Sources */,
-				A98FC6F62445523D004433A6 /* KeyboardManager.swift in Sources */,
 				A98FC6BE24421966004433A6 /* PageSelectorView.swift in Sources */,
 				A98FC6B62441224C004433A6 /* SpaceView.swift in Sources */,
 				A98FC6F424455226004433A6 /* Keyboard.swift in Sources */,
@@ -613,7 +606,6 @@
 				A93B3FD324355FCD00AFC97F /* WebserviceError.swift in Sources */,
 				A98FC6DA244249D2004433A6 /* ErrorView.swift in Sources */,
 				A93B3FB324355EAE00AFC97F /* HistoricalCountryInfo.swift in Sources */,
-				A98FC6F8244552BE004433A6 /* Array+PreviousNext.swift in Sources */,
 				A93B3FC824355F5700AFC97F /* DefaultDataRequest.swift in Sources */,
 				A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */,
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,

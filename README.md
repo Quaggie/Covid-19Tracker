@@ -5,17 +5,32 @@
 <br>
 <br>
 
+<p float="left">
+    <img src="Screenshots/image1.png" width="200"/>
+    <img src="Screenshots/image2.png" width="200"/>
+    <img src="Screenshots/image3.png" width="200"/>
+    <img src="Screenshots/image4.png" width="200"/>
+</p>
+<br>
+<p float="left">
+<img src="Screenshots/image5.png" width="200"/>
+    <img src="Screenshots/image6.png" width="200"/>
+    <img src="Screenshots/image7.png" width="200"/>
+    <img src="Screenshots/image8.png" width="200"/>
+</p>
+
+
 ## Description
 
 With Covid-19 Tracker you'll be aware of the pandemic situation in real time. See the number of
 infected and cured, in your country and in the rest of the world.
 
-## Product feature (WORK IN PROGRESS)
+## Product feature
 - Your country's cases
 - World's cases
 - Global Search for cases
 - News(Available Soon)
-- Prevention and Symptoms tips
+- Prevention and Symptoms tips(Available soon)
 
 
 ## 3rd party libraries used

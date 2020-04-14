@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol SearchViewControllerDelegate: AnyObject {
-    func searchViewControllerDidSearchFor(country: Country)
-}
-
 final class SearchViewController: BaseViewController {
     enum State {
         case loading
@@ -21,6 +17,13 @@ final class SearchViewController: BaseViewController {
 
     // MARK: - Services
     private let countryService = CountryService()
+
+    // MARK: - Notifications
+    private var keyboardWillShowNoticationToken: Notification.Token!
+    private var keyboardWillHideNoticationToken: Notification.Token!
+
+    // MARK: - Constraints
+    private var tableViewBottomConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
     private var countries: [Country] = []
@@ -83,6 +86,9 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         setupViews()
         fetchData()
+
+        keyboardWillHideNoticationToken = NotificationCenter.default.addObserver(using: keyboardWillBeHidden)
+        keyboardWillShowNoticationToken = NotificationCenter.default.addObserver(using: keyboardWillBeShown)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -144,6 +150,38 @@ final class SearchViewController: BaseViewController {
                 v.isHidden = true
             }
         }
+    }
+}
+
+// MARK: - Keyboard
+extension SearchViewController {
+    func keyboardWillBeShown(notification: Keyboard.Notification.WillShow) {
+        let info = notification.info
+        let keyBoardHeight = info.frameEnd.height
+
+        tableViewBottomConstraint.constant = -(keyBoardHeight + 16)
+
+        UIView.animate(
+            withDuration: info.duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: UInt(info.animationCurve.rawValue) << 16),
+            animations: {
+                self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    func keyboardWillBeHidden(notification: Keyboard.Notification.WillHide) {
+        let info = notification.info
+
+        tableViewBottomConstraint.constant = -16
+
+        UIView.animate(
+            withDuration: info.duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: UInt(info.animationCurve.rawValue) << 16),
+            animations: {
+                self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 
@@ -246,7 +284,8 @@ extension SearchViewController: CodeView {
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
                          insets: .init(top: 16, left: 16, bottom: 0, right: 16))
-        tableView.anchor(height: 325)
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        tableViewBottomConstraint?.isActive = true
 
         loadingView.fillSuperview()
         errorView.fillSuperview()
