@@ -70,6 +70,11 @@ final class WorldViewController: BaseViewController {
         fetchData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tracker.screenView(name: "Overview")
+    }
+
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
@@ -244,6 +249,11 @@ extension WorldViewController: PageSelectorViewDelegate {
         if selectedIndex == index {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {
+            if index == 0 {
+                tracker.screenView(name: "Overview")
+            } else {
+                tracker.screenView(name: "Countries")
+            }
             selectedIndex = index
             collectionView.reloadData()
         }

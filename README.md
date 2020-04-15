@@ -30,17 +30,21 @@ infected and cured, in your country and in the rest of the world.
 - World's cases
 - Global Search for cases
 - News(Available Soon)
-- Prevention and Symptoms tips(Available soon)
+- Prevention and Symptoms tips
 
 
 ## 3rd party libraries used
-- TODO
+- Charts
+- Kingfisher
 
 ## Credits
 - [@quaggie - iOS Developer](https://www.linkedin.com/in/jonathanbijos/)
 - [@obrunovieira - Android Developer](https://www.linkedin.com/in/obrunovieira/)
 - [@brabsblue - Designer](https://www.linkedin.com/in/barbara-schoen/)
 - [Novel Covid - Open Source API](https://github.com/NovelCOVID/API)
+
+## Follow our Android Project
+- [Covid 19 Tracker - Android](https://github.com/OBrunoVieira/Covid-19-Android)
 
 ## Sources
 * [Worldometers](https://www.worldometers.info/coronavirus/)

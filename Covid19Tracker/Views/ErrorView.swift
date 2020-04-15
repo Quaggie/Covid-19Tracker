@@ -35,7 +35,8 @@ final class ErrorView: UIView {
     private let titleLabel = UILabel(text: "Something went wrong",
                                      font: Font.bold(size: 24),
                                      textColor: Color.white,
-                                     textAlignment: .center)
+                                     textAlignment: .center,
+                                     numberOfLines: 0)
     private lazy var button: UIButton = {
         let btn = UIButton(type: .system)
         btn.tintColor = Color.white

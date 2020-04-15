@@ -66,6 +66,7 @@ final class SearchViewController: BaseViewController {
 
     private lazy var tableView: UITableView = {
         let tv = UITableView()
+        tv.backgroundColor = Color.white
         tv.separatorColor = Color.grayLight
         tv.separatorInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         tv.separatorStyle = .singleLine
@@ -84,6 +85,7 @@ final class SearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tracker.screenView(name: "Search")
         setupViews()
         fetchData()
 

@@ -39,6 +39,11 @@ final class NewsViewController: BaseViewController {
         super.viewDidLoad()
         setupViews()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tracker.screenView(name: "News")
+    }
 }
 
 extension NewsViewController: CodeView {
@@ -50,7 +55,7 @@ extension NewsViewController: CodeView {
         stackView.anchor(leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
                          insets: .init(top: 0, left: 40, bottom: 0, right: 40))
-        stackView.anchor(heightAnchor: view.heightAnchor, heightMultiplier: 0.5)
+        stackView.anchor(heightAnchor: view.heightAnchor, heightMultiplier: 0.6)
         stackView.anchorCenterYToSuperview()
         coneImageView.anchor(height: 117)
     }

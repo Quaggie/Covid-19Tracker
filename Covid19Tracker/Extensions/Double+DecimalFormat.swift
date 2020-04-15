@@ -16,22 +16,37 @@ extension Double {
         return formatter.string(from: NSNumber(value: self))
     }
 
+    func truncate(places: Int) -> Double {
+
+        let multiplier = pow(10, Double(places))
+        let newDecimal = multiplier * self // move the decimal right
+        let truncated = Double(Int(newDecimal)) // drop the fraction
+        let originalDecimal = truncated / multiplier // move the decimal back
+        return originalDecimal
+
+    }
+
     var shortened: String {
-        switch self {
-        case 1_000_000_000_000...:
-            guard let formatted = (self / 1_000_000_000_000).decimalFormat else { return "--" }
-            return "\(formatted)T"
+        let num = abs(self)
+        let sign = (self < 0) ? "-" : ""
+
+        switch num {
         case 1_000_000_000...:
-            guard let formatted = (self / 1_000_000_000).decimalFormat else { return "--" }
-            return "\(formatted)B"
+            var formatted = num / 1_000_000_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)B"
         case 1_000_000...:
-            guard let formatted = (self / 1_000_000).decimalFormat else { return "--" }
-            return "\(formatted)M"
+            var formatted = num / 1_000_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)M"
         case 1_000...:
-            guard let formatted = (self / 1_000).decimalFormat else { return "--" }
-            return "\(formatted)K"
-        default:
+            var formatted = num / 1_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)K"
+        case 0...:
             return "\(Int(self))"
+        default:
+            return "\(sign)\(Int(self))"
         }
     }
 }

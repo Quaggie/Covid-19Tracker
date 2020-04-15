@@ -1,4 +1,4 @@
-platform :ios, '13.0'
+platform :ios, '12.0'
 
 target 'Covid19Tracker' do
   use_frameworks!
@@ -6,5 +6,6 @@ target 'Covid19Tracker' do
   # Pods for Covid19Tracker
   pod 'Charts'
   pod 'Kingfisher'
+  pod 'Firebase/Analytics'
 
 end

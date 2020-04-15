@@ -48,7 +48,6 @@ final class CountryViewController: BaseViewController {
         let btn = UIButton(type: .system)
         btn.tintColor = Color.white
         btn.semanticContentAttribute = .forceRightToLeft
-        btn.contentEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 16)
 
         btn.setTitle("Brazil", for: .normal)
         btn.setTitleColor(Color.white, for: .normal)
@@ -103,6 +102,11 @@ final class CountryViewController: BaseViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tracker.screenView(name: "Home")
+    }
+
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
@@ -111,7 +115,7 @@ final class CountryViewController: BaseViewController {
     }
 
     private func fetchData() {
-        self.state = .loading
+        state = .loading
 
         countryService.fetch(country: selectedCountry?.country ?? "Brazil") { [weak self] (result) in
             guard let self = self else { return }
@@ -266,6 +270,7 @@ extension CountryViewController: CodeView {
         selectedCountryButton.anchor(top: titleLabel.bottomAnchor,
                                      leading: view.leadingAnchor,
                                      insets: .init(top: 10, left: sectionInset.left, bottom: 0, right: sectionInset.right))
+        selectedCountryButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16).isActive = true
 
         collectionView.anchor(top: selectedCountryButton.bottomAnchor,
                               leading: view.leadingAnchor,

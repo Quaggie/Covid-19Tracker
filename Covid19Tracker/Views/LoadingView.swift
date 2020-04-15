@@ -14,7 +14,12 @@ final class LoadingView: UIView {
 
     // MARK: - Views
     private let activityIndicatorView: UIActivityIndicatorView = {
-        let iv = UIActivityIndicatorView(style: .large)
+        let iv: UIActivityIndicatorView
+        if #available(iOS 13.0, *) {
+            iv = UIActivityIndicatorView(style: .large)
+        } else {
+            iv = UIActivityIndicatorView(style: .whiteLarge)
+        }
         iv.color = Color.white
         iv.startAnimating()
         iv.hidesWhenStopped = true

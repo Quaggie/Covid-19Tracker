@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = Color.blueDark
         window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
+
+        FirebaseApp.configure()
 
         return true
     }

@@ -21,7 +21,7 @@ final class PercentRateCell: UICollectionViewCell {
     private let titleLabel = UILabel(text: "rate", font: Font.semiBold(size: 18), textColor: Color.black, textAlignment: .center)
     private let separatorView: UIView = {
         let v = UIView()
-        v.layer.cornerRadius = 4
+        v.layer.cornerRadius = 2
         return v
     }()
     private let percentLabel = UILabel(text: "--%", font: Font.semiBold(size: 18), textColor: Color.black, textAlignment: .center)

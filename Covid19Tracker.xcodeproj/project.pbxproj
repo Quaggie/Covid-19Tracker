@@ -66,6 +66,11 @@
 		A98FC6EF2445300E004433A6 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6EE2445300E004433A6 /* SearchCell.swift */; };
 		A98FC6F1244537A9004433A6 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F0244537A9004433A6 /* Notification+Extension.swift */; };
 		A98FC6F424455226004433A6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F324455226004433A6 /* Keyboard.swift */; };
+		A99B73EE2446746800383D30 /* CareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73ED2446746800383D30 /* CareModel.swift */; };
+		A99B73F0244679CE00383D30 /* CareCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73EF244679CE00383D30 /* CareCardCell.swift */; };
+		A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99B73F12446901300383D30 /* GoogleService-Info.plist */; };
+		A99B73F5244690F600383D30 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F4244690F600383D30 /* Tracker.swift */; };
+		A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F8244696A700383D30 /* CareSourceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +135,11 @@
 		A98FC6EE2445300E004433A6 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		A98FC6F0244537A9004433A6 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		A98FC6F324455226004433A6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		A99B73ED2446746800383D30 /* CareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareModel.swift; sourceTree = "<group>"; };
+		A99B73EF244679CE00383D30 /* CareCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCardCell.swift; sourceTree = "<group>"; };
+		A99B73F12446901300383D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A99B73F4244690F600383D30 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
+		A99B73F8244696A700383D30 /* CareSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareSourceCell.swift; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +200,7 @@
 				A93B3F5E2432CBB300AFC97F /* Assets.xcassets */,
 				A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */,
 				A93B3F632432CBB300AFC97F /* Info.plist */,
+				A99B73F12446901300383D30 /* GoogleService-Info.plist */,
 			);
 			path = Covid19Tracker;
 			sourceTree = "<group>";
@@ -259,6 +270,7 @@
 		A93B3F932432D47C00AFC97F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A99B73F3244690EB00383D30 /* Tracker */,
 				A98FC6F22445521E004433A6 /* Keyboard */,
 				A93B3F942432D48400AFC97F /* CodeView.swift */,
 			);
@@ -280,6 +292,7 @@
 				A93B3FB224355EAE00AFC97F /* HistoricalCountryInfo.swift */,
 				A98FC6AE24411F25004433A6 /* Timeline.swift */,
 				A98FC6D524424608004433A6 /* CountryInfo.swift */,
+				A99B73ED2446746800383D30 /* CareModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,6 +422,7 @@
 		A98FC6C8244228E6004433A6 /* Care */ = {
 			isa = PBXGroup;
 			children = (
+				A99B73F72446969000383D30 /* Cells */,
 				A98FC6C9244228F4004433A6 /* CareViewController.swift */,
 			);
 			path = Care;
@@ -438,6 +452,23 @@
 				A98FC6F324455226004433A6 /* Keyboard.swift */,
 			);
 			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		A99B73F3244690EB00383D30 /* Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				A99B73F4244690F600383D30 /* Tracker.swift */,
+			);
+			path = Tracker;
+			sourceTree = "<group>";
+		};
+		A99B73F72446969000383D30 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A99B73EF244679CE00383D30 /* CareCardCell.swift */,
+				A99B73F8244696A700383D30 /* CareSourceCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F148B3CD0040E95CDBA0E984 /* Frameworks */ = {
@@ -514,6 +545,7 @@
 				A93B3F7E2432CE6600AFC97F /* Nunito-Bold.ttf in Resources */,
 				A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */,
 				A93B3F7C2432CE6600AFC97F /* Nunito-Regular.ttf in Resources */,
+				A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,13 +615,17 @@
 				A98FC6CC24422C3D004433A6 /* CountryService.swift in Sources */,
 				A93B3F992432D70A00AFC97F /* UIView+Anchors.swift in Sources */,
 				A98FC6BE24421966004433A6 /* PageSelectorView.swift in Sources */,
+				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
 				A98FC6B62441224C004433A6 /* SpaceView.swift in Sources */,
 				A98FC6F424455226004433A6 /* Keyboard.swift in Sources */,
 				A93B3FCC24355F5700AFC97F /* HTTPMethod.swift in Sources */,
+				A99B73F0244679CE00383D30 /* CareCardCell.swift in Sources */,
 				A93B3FC924355F5700AFC97F /* DataRequest.swift in Sources */,
 				A98FC6E0244257DF004433A6 /* TodayCasesCell.swift in Sources */,
 				A98FC6D624424608004433A6 /* CountryInfo.swift in Sources */,
 				A98FC6AF24411F25004433A6 /* Timeline.swift in Sources */,
+				A99B73EE2446746800383D30 /* CareModel.swift in Sources */,
+				A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */,
 				A98FC6C3244221FF004433A6 /* CountryViewController.swift in Sources */,
 				A93B3FA724355BFF00AFC97F /* WorldViewController.swift in Sources */,
 				A93B3FA924355C5600AFC97F /* UIView+Shadow.swift in Sources */,
@@ -685,7 +721,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -739,7 +775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -756,6 +792,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -777,6 +814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
