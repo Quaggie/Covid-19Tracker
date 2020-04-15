@@ -34,8 +34,9 @@ infected and cured, in your country and in the rest of the world.
 
 
 ## 3rd party libraries used
-- Charts
-- Kingfisher
+- [Charts](https://github.com/danielgindi/Charts)
+- [Kingfisher](https://github.com/onevcat/Kingfisher)
+- [Firebase Analytics](https://firebase.google.com/docs/analytics/get-started?&platform=ios)
 
 ## Credits
 - [@quaggie - iOS Developer](https://www.linkedin.com/in/jonathanbijos/)
