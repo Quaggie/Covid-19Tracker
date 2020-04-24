@@ -29,6 +29,7 @@ final class WorldViewController: BaseViewController {
     // MARK: - Properties
     private var state: State = .loading {
         didSet {
+            pageSelectorView.isUserInteractionEnabled = state == .success
             changeUIFor(state: state)
         }
     }
@@ -157,7 +158,8 @@ final class WorldViewController: BaseViewController {
     }
 
     private func goToCountryDetail(country: Country) {
-        NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
+        let controller = CountryViewController(countryName: country.country)
+        present(controller, animated: true)
     }
 }
 
@@ -268,12 +270,12 @@ extension WorldViewController: ErrorViewDelegate {
 
 extension WorldViewController: CodeView {
     func buildViewHierarchy() {
-        view.addSubview(titleLabel)
-        view.addSubview(pageSelectorView)
-
         view.addSubview(collectionView)
         view.addSubview(loadingView)
         view.addSubview(errorView)
+
+        view.addSubview(titleLabel)
+        view.addSubview(pageSelectorView)
     }
 
     func setupConstraints() {
@@ -292,8 +294,14 @@ extension WorldViewController: CodeView {
                               bottom: view.bottomAnchor,
                               trailing: view.trailingAnchor)
 
-        loadingView.fillSuperview()
-        errorView.fillSuperview()
+        loadingView.anchor(top: pageSelectorView.bottomAnchor,
+                           leading: view.leadingAnchor,
+                           bottom: view.bottomAnchor,
+                           trailing: view.trailingAnchor)
+        errorView.anchor(top: pageSelectorView.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.bottomAnchor,
+                         trailing: view.trailingAnchor)
     }
 
     func setupAdditionalConfiguration() {

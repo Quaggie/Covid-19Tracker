@@ -62,19 +62,7 @@ final class ErrorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Lifecycle
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        gradientLayer.frame = bounds
-    }
-
     // MARK: - Private functions
-    private func setupGradient() {
-        gradientLayer.colors = [Color.purpleDark.cgColor, Color.blueLight.cgColor]
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-
     @objc private func didTapButton() {
         delegate.errorViewDidTapTryAgain()
     }
@@ -99,7 +87,6 @@ extension ErrorView: CodeView {
     }
 
     func setupAdditionalConfiguration() {
-        setupGradient()
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.5
     }

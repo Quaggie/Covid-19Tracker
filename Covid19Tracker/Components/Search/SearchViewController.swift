@@ -26,10 +26,12 @@ final class SearchViewController: BaseViewController {
     private var tableViewBottomConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
+    private let cameFromHome: Bool
     private var countries: [Country] = []
     private var filteredCountries: [Country] = []
     private var state: State = .loading {
         didSet {
+            textField.isEnabled = state == .success
             changeUIFor(state: state)
         }
     }
@@ -83,6 +85,15 @@ final class SearchViewController: BaseViewController {
         return .lightContent
     }
 
+    init(cameFromHome: Bool) {
+        self.cameFromHome = cameFromHome
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tracker.screenView(name: "Search")
@@ -105,8 +116,13 @@ final class SearchViewController: BaseViewController {
     }
 
     private func select(country: Country) {
-        NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
-        closeModal()
+        if cameFromHome {
+            NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
+            closeModal()
+        } else {
+            let controller = CountryViewController(countryName: country.country)
+            present(controller, animated: true)
+        }
     }
 
     private func selectFirstMatch() {
@@ -255,13 +271,13 @@ extension SearchViewController: ErrorViewDelegate {
 
 extension SearchViewController: CodeView {
     func buildViewHierarchy() {
-        view.addSubview(backButton)
-        view.addSubview(textField)
-        textField.addSubview(textFieldSeparatorView)
-
         view.addSubview(tableView)
         view.addSubview(loadingView)
         view.addSubview(errorView)
+
+        view.addSubview(backButton)
+        view.addSubview(textField)
+        textField.addSubview(textFieldSeparatorView)
     }
 
     func setupConstraints() {
@@ -289,8 +305,14 @@ extension SearchViewController: CodeView {
         tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         tableViewBottomConstraint?.isActive = true
 
-        loadingView.fillSuperview()
-        errorView.fillSuperview()
+        loadingView.anchor(top: textField.bottomAnchor,
+                           leading: view.leadingAnchor,
+                           bottom: view.bottomAnchor,
+                           trailing: view.trailingAnchor)
+        errorView.anchor(top: textField.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.bottomAnchor,
+                         trailing: view.trailingAnchor)
     }
 
     func setupAdditionalConfiguration() {

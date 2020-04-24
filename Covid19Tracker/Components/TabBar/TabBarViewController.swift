@@ -21,7 +21,7 @@ final class TabBarViewController: UITabBarController {
         let worldViewController = WorldViewController()
         worldViewController.tabBarItem = UITabBarItem(title: "World", image: UIImage(named: "tabbar_world"), tag: 1)
 
-        let searchViewController = SearchViewController()
+        let searchViewController = SearchViewController(cameFromHome: false)
         searchViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search_icon"), tag: 2)
 
         let newsViewController = NewsViewController()
@@ -44,7 +44,7 @@ final class TabBarViewController: UITabBarController {
 extension TabBarViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is SearchViewController {
-            let controller = SearchViewController()
+            let controller = SearchViewController(cameFromHome: false)
             present(controller, animated: true)
             return false
         }

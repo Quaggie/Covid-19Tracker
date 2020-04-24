@@ -34,6 +34,7 @@ final class HomeViewController: BaseViewController {
     }
     private var state: State = .loading {
         didSet {
+            selectedCountryButton.isEnabled = state == .success
             changeUIFor(state: state)
         }
     }
@@ -169,7 +170,7 @@ final class HomeViewController: BaseViewController {
     }
 
     @objc private func goToSearch() {
-        let controller = SearchViewController()
+        let controller = SearchViewController(cameFromHome: true)
         present(controller, animated: true)
     }
 }
@@ -253,12 +254,12 @@ extension HomeViewController: ErrorViewDelegate {
 
 extension HomeViewController: CodeView {
     func buildViewHierarchy() {
-        view.addSubview(titleLabel)
-        view.addSubview(selectedCountryButton)
-
         view.addSubview(collectionView)
         view.addSubview(loadingView)
         view.addSubview(errorView)
+
+        view.addSubview(titleLabel)
+        view.addSubview(selectedCountryButton)
     }
 
     func setupConstraints() {
@@ -277,8 +278,14 @@ extension HomeViewController: CodeView {
                               bottom: view.bottomAnchor,
                               trailing: view.trailingAnchor)
 
-        loadingView.fillSuperview()
-        errorView.fillSuperview()
+        loadingView.anchor(top: titleLabel.bottomAnchor,
+                           leading: view.leadingAnchor,
+                           bottom: view.bottomAnchor,
+                           trailing: view.trailingAnchor)
+        errorView.anchor(top: titleLabel.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.bottomAnchor,
+                         trailing: view.trailingAnchor)
     }
 
     func setupAdditionalConfiguration() {

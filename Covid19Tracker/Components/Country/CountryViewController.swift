@@ -27,11 +27,7 @@ final class CountryViewController: BaseViewController {
     private let historicalInfoService = HistoricalInfoService()
 
     // MARK: - Properties
-    private var selectedCountry: Country? {
-        didSet {
-            selectedCountryButton.setTitle(selectedCountry?.country, for: .normal)
-        }
-    }
+    private let countryName: String
     private var state: State = .loading {
         didSet {
             changeUIFor(state: state)
@@ -43,23 +39,15 @@ final class CountryViewController: BaseViewController {
     private let interItemSpacing: CGFloat = 16
 
     // MARK: - Views
-    private let titleLabel = UILabel(text: "Covid-19 in my country", font: Font.regular(size: 24), textColor: Color.white)
-    private lazy var selectedCountryButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "back_icon"), for: .normal)
         btn.tintColor = Color.white
-        btn.semanticContentAttribute = .forceRightToLeft
-
-        btn.setTitle("Brazil", for: .normal)
-        btn.setTitleColor(Color.white, for: .normal)
-        btn.titleLabel?.font = Font.bold(size: 32)
-
-        btn.setImage(UIImage(named: "pencil_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        btn.imageEdgeInsets = .init(top: 0, left: 19, bottom: 0, right: 0)
-
-        btn.addTarget(self, action: #selector(goToSearch), for: .touchUpInside)
-
+        btn.imageView?.contentMode = .scaleAspectFit
+        btn.addTarget(self, action: #selector(closeModal), for: .touchUpInside)
         return btn
     }()
+    private let titleLabel = UILabel(text: "", font: Font.regular(size: 24), textColor: Color.white)
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -82,24 +70,28 @@ final class CountryViewController: BaseViewController {
         return .lightContent
     }
 
+    // MARK: - Init
+    init(countryName: String) {
+        self.countryName = countryName
+        super.init(nibName: nil, bundle: nil)
+
+        self.titleLabel.text = countryName
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         registerCells()
         fetchData()
-
-        NotificationCenter.default.addObserver(forName: .onSearchCountry, object: nil, queue: .main) { (notification) in
-            guard let country = notification.userInfo?["country"] as? Country else {
-                return
-            }
-            self.tabBarController?.selectedIndex = 0
-            self.selectedCountry = country
-            self.fetchData()
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +99,7 @@ final class CountryViewController: BaseViewController {
         tracker.screenView(name: "Country Details")
     }
 
+    // MARK: - Private functions
     private func registerCells() {
         collectionView.register(TotalCasesCell.self)
         collectionView.register(TodayCasesCell.self)
@@ -117,7 +110,7 @@ final class CountryViewController: BaseViewController {
     private func fetchData() {
         state = .loading
 
-        countryService.fetch(country: selectedCountry?.country ?? "Brazil") { [weak self] (result) in
+        countryService.fetch(country: countryName) { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
@@ -127,7 +120,6 @@ final class CountryViewController: BaseViewController {
 
                     switch result {
                     case .success(let historicalInfo):
-                        self.selectedCountry = country
                         self.datasource = [
                             .totalCases(country),
                             .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
@@ -168,9 +160,8 @@ final class CountryViewController: BaseViewController {
         }
     }
 
-    @objc private func goToSearch() {
-        let controller = SearchViewController()
-        present(controller, animated: true)
+    @objc private func closeModal() {
+        dismiss(animated: true)
     }
 }
 
@@ -253,32 +244,39 @@ extension CountryViewController: ErrorViewDelegate {
 
 extension CountryViewController: CodeView {
     func buildViewHierarchy() {
-        view.addSubview(titleLabel)
-        view.addSubview(selectedCountryButton)
-
         view.addSubview(collectionView)
         view.addSubview(loadingView)
         view.addSubview(errorView)
+
+        view.addSubview(backButton)
+        view.addSubview(titleLabel)
     }
 
     func setupConstraints() {
-        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                           leading: view.leadingAnchor,
+                          insets: .init(top: 24, left: sectionInset.left, bottom: 0, right: 0))
+        backButton.anchor(height: 40, width: 40)
+
+        titleLabel.anchor(top: backButton.topAnchor,
+                          leading: backButton.trailingAnchor,
+                          bottom: backButton.bottomAnchor,
                           trailing: view.trailingAnchor,
-                          insets: .init(top: 36, left: sectionInset.left, bottom: 0, right: sectionInset.right))
+                          insets: .init(top: 0, left: 20, bottom: 0, right: sectionInset.right))
 
-        selectedCountryButton.anchor(top: titleLabel.bottomAnchor,
-                                     leading: view.leadingAnchor,
-                                     insets: .init(top: 10, left: sectionInset.left, bottom: 0, right: sectionInset.right))
-        selectedCountryButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16).isActive = true
-
-        collectionView.anchor(top: selectedCountryButton.bottomAnchor,
+        collectionView.anchor(top: titleLabel.bottomAnchor,
                               leading: view.leadingAnchor,
                               bottom: view.bottomAnchor,
                               trailing: view.trailingAnchor)
 
-        loadingView.fillSuperview()
-        errorView.fillSuperview()
+        loadingView.anchor(top: titleLabel.bottomAnchor,
+                           leading: view.leadingAnchor,
+                           bottom: view.bottomAnchor,
+                           trailing: view.trailingAnchor)
+        errorView.anchor(top: titleLabel.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.bottomAnchor,
+                         trailing: view.trailingAnchor)
     }
 
     func setupAdditionalConfiguration() {

@@ -35,19 +35,6 @@ final class LoadingView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Lifecycle
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        gradientLayer.frame = bounds
-    }
-
-    // MARK: - Private functions
-    private func setupGradient() {
-        gradientLayer.colors = [Color.purpleDark.cgColor, Color.blueLight.cgColor]
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
 }
 
 // MARK: - CodeView
@@ -61,7 +48,7 @@ extension LoadingView: CodeView {
     }
 
     func setupAdditionalConfiguration() {
-        setupGradient()
+
     }
 }
 
