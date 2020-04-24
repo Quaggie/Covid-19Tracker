@@ -1,14 +1,14 @@
 //
-//  CountryViewController.swift
+//  HomeViewController.swift
 //  Covid19Tracker
 //
-//  Created by Jonathan Bijos on 11/04/20.
+//  Created by Jonathan Bijos on 24/04/20.
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
 import UIKit
 
-final class CountryViewController: BaseViewController {
+final class HomeViewController: BaseViewController {
     enum State {
         case loading
         case success
@@ -104,7 +104,7 @@ final class CountryViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tracker.screenView(name: "Country Details")
+        tracker.screenView(name: "Home")
     }
 
     private func registerCells() {
@@ -174,7 +174,7 @@ final class CountryViewController: BaseViewController {
     }
 }
 
-extension CountryViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datasource.count
     }
@@ -203,7 +203,7 @@ extension CountryViewController: UICollectionViewDataSource {
     }
 }
 
-extension CountryViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -245,13 +245,13 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CountryViewController: ErrorViewDelegate {
+extension HomeViewController: ErrorViewDelegate {
     func errorViewDidTapTryAgain() {
         fetchData()
     }
 }
 
-extension CountryViewController: CodeView {
+extension HomeViewController: CodeView {
     func buildViewHierarchy() {
         view.addSubview(titleLabel)
         view.addSubview(selectedCountryButton)
@@ -282,6 +282,6 @@ extension CountryViewController: CodeView {
     }
 
     func setupAdditionalConfiguration() {
-        
+
     }
 }

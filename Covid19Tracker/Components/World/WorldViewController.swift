@@ -201,7 +201,7 @@ extension WorldViewController: UICollectionViewDataSource {
             let item = countriesDatasource[indexPath.item]
 
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SimpleCountryCasesCell
-            cell.setup(country: item)
+            cell.setup(country: item, index: indexPath.item)
             return cell
         }
     }

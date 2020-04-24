@@ -100,5 +100,7 @@ extension ErrorView: CodeView {
 
     func setupAdditionalConfiguration() {
         setupGradient()
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
     }
 }

@@ -15,8 +15,8 @@ final class TabBarViewController: UITabBarController {
         tabBar.backgroundColor = Color.white
         delegate = self
 
-        let countryViewController = CountryViewController()
-        countryViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
+        let homeViewController = HomeViewController()
+        homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
 
         let worldViewController = WorldViewController()
         worldViewController.tabBarItem = UITabBarItem(title: "World", image: UIImage(named: "tabbar_world"), tag: 1)
@@ -30,7 +30,7 @@ final class TabBarViewController: UITabBarController {
         let careViewController = CareViewController()
         careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
-        viewControllers = [countryViewController, worldViewController, searchViewController, newsViewController, careViewController]
+        viewControllers = [homeViewController, worldViewController, searchViewController, newsViewController, careViewController]
     }
 
     @available(*, unavailable)

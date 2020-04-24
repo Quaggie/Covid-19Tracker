@@ -36,6 +36,7 @@
 		A93B3FCC24355F5700AFC97F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */; };
 		A93B3FCE24355F5700AFC97F /* WebserviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FC124355F5700AFC97F /* WebserviceRequest.swift */; };
 		A93B3FD324355FCD00AFC97F /* WebserviceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FD224355FCD00AFC97F /* WebserviceError.swift */; };
+		A950703D24531819007DC98F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A950703C24531819007DC98F /* HomeViewController.swift */; };
 		A97100F424411A6D002EDF34 /* WorldService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97100F324411A6D002EDF34 /* WorldService.swift */; };
 		A98FC6A924411D51004433A6 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */; };
 		A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */; };
@@ -105,6 +106,7 @@
 		A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A93B3FC124355F5700AFC97F /* WebserviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebserviceRequest.swift; sourceTree = "<group>"; };
 		A93B3FD224355FCD00AFC97F /* WebserviceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceError.swift; sourceTree = "<group>"; };
+		A950703C24531819007DC98F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A97100F324411A6D002EDF34 /* WorldService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldService.swift; sourceTree = "<group>"; };
 		A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCasesCell.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				A98FC6B72441618B004433A6 /* Base */,
 				A93B3F902432D2CD00AFC97F /* TabBar */,
+				A950703E24531820007DC98F /* Home */,
 				A98FC6C1244221F2004433A6 /* Country */,
 				A93B3FA524355BEF00AFC97F /* World */,
 				A98FC6DB244252EE004433A6 /* Search */,
@@ -368,6 +371,14 @@
 				A93B3FC124355F5700AFC97F /* WebserviceRequest.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A950703E24531820007DC98F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A950703C24531819007DC98F /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A98FC6B2244121AA004433A6 /* Views */ = {
@@ -600,6 +611,7 @@
 			files = (
 				A98FC6D22442342E004433A6 /* SimpleCountryCasesCell.swift in Sources */,
 				A93B3FCA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift in Sources */,
+				A950703D24531819007DC98F /* HomeViewController.swift in Sources */,
 				A98FC6BC244218F7004433A6 /* CovidPieChartView.swift in Sources */,
 				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
 				A93B3FB024355DCB00AFC97F /* Country.swift in Sources */,
@@ -792,7 +804,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -814,7 +826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

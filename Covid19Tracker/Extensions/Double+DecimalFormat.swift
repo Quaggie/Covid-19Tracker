@@ -16,6 +16,14 @@ extension Double {
         return formatter.string(from: NSNumber(value: self))
     }
 
+    var decimalFormat2Digits: String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: self))
+    }
+
     func truncate(places: Int) -> Double {
 
         let multiplier = pow(10, Double(places))

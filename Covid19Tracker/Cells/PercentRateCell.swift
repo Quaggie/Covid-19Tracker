@@ -51,15 +51,15 @@ final class PercentRateCell: UICollectionViewCell {
     func setup(type: Status, percent: Double) {
         switch type {
         case .recovery:
-            titleLabel.text = "Recovery"
+            titleLabel.text = "Recovery rate"
             separatorView.backgroundColor = Color.greenDark
         case .fatality:
-            titleLabel.text = "Fatality"
+            titleLabel.text = "Fatality rate"
             separatorView.backgroundColor = Color.black
         }
 
         let formattedPercent = percent * 100
-        percentLabel.text = "\(formattedPercent.decimalFormat ?? "--")%"
+        percentLabel.text = "\(formattedPercent.decimalFormat2Digits ?? "--")%"
     }
 }
 
