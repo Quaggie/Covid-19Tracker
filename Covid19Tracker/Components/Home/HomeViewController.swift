@@ -34,7 +34,7 @@ final class HomeViewController: BaseViewController {
     }
     private var state: State = .loading {
         didSet {
-            selectedCountryButton.isEnabled = state == .success
+            selectedCountryButton.isEnabled = state != .loading
             changeUIFor(state: state)
         }
     }
@@ -278,11 +278,11 @@ extension HomeViewController: CodeView {
                               bottom: view.bottomAnchor,
                               trailing: view.trailingAnchor)
 
-        loadingView.anchor(top: titleLabel.bottomAnchor,
+        loadingView.anchor(top: selectedCountryButton.bottomAnchor,
                            leading: view.leadingAnchor,
                            bottom: view.bottomAnchor,
                            trailing: view.trailingAnchor)
-        errorView.anchor(top: titleLabel.bottomAnchor,
+        errorView.anchor(top: selectedCountryButton.bottomAnchor,
                          leading: view.leadingAnchor,
                          bottom: view.bottomAnchor,
                          trailing: view.trailingAnchor)

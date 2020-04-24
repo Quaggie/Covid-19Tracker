@@ -78,7 +78,7 @@ extension ErrorView: CodeView {
         stackView.anchor(leading: leadingAnchor,
                          trailing: trailingAnchor,
                          insets: .init(top: 0, left: 40, bottom: 0, right: 40))
-        stackView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.55)
+        stackView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.8)
         stackView.anchorCenterYToSuperview()
 
         imageView.anchor(height: 117)
