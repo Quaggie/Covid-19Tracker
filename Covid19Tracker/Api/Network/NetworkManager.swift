@@ -10,9 +10,30 @@
 import UIKit
 
 final class NetworkManager: NetworkManagerProtocol {
-    private var requests: [WebserviceRequest] = []
-    private let baseUrl: String = "https://corona.lmao.ninja"
+    // MARK: - Enum
+    enum Source {
+        case covid
+        case google
+    }
 
+    // MARK: - Properties
+    private let source: Source
+    private var requests: [WebserviceRequest] = []
+    private var baseUrl: String {
+        switch source {
+        case .covid:
+            return "https://corona.lmao.ninja"
+        case .google:
+            return "http://newsapi.org/v2"
+        }
+    }
+
+    // MARK: - Init
+    init(source: Source = .covid) {
+        self.source = source
+    }
+
+    // MARK: - Protocol
     func fetch(urlString: String,
                method: HTTPMethod,
                parameters: [String: Any],
@@ -34,6 +55,7 @@ final class NetworkManager: NetworkManagerProtocol {
         self.requests.append(request)
     }
 
+    // MARK: - Deinit
     deinit {
       print("DEINIT NetworkManager")
       requests.forEach { $0.cancel() }

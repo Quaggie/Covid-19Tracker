@@ -40,11 +40,6 @@ extension SearchCell: CodeView {
     }
 
     func setupConstraints() {
-//        label.anchor(top: contentView.topAnchor,
-//                     leading: contentView.leadingAnchor,
-//                     bottom: contentView.bottomAnchor,
-//                     trailing: contentView.trailingAnchor,
-//                     insets: .init(top: 16, left: 16, bottom: 16, right: 16))
         label.fillSuperview(insets: .init(top: 16, left: 16, bottom: 16, right: 16))
     }
 
