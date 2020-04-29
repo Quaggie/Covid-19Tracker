@@ -10,6 +10,6 @@
 import Foundation
 
 protocol DataRequest {
-    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String])
+    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String], cache: Bool)
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
 }

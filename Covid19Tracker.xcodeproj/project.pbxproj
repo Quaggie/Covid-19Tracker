@@ -76,6 +76,8 @@
 		A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99B73F12446901300383D30 /* GoogleService-Info.plist */; };
 		A99B73F5244690F600383D30 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F4244690F600383D30 /* Tracker.swift */; };
 		A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F8244696A700383D30 /* CareSourceCell.swift */; };
+		A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2D05B2459157D00BB6509 /* Reachability.swift */; };
+		A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +152,8 @@
 		A99B73F12446901300383D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A99B73F4244690F600383D30 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		A99B73F8244696A700383D30 /* CareSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareSourceCell.swift; sourceTree = "<group>"; };
+		A9A2D05B2459157D00BB6509 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A9A2D05D2459198F00BB6509 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +215,7 @@
 				A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */,
 				A93B3F632432CBB300AFC97F /* Info.plist */,
 				A99B73F12446901300383D30 /* GoogleService-Info.plist */,
+				A9A2D05D2459198F00BB6509 /* Keys.plist */,
 			);
 			path = Covid19Tracker;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 		A93B3F932432D47C00AFC97F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9A2D05A2459156E00BB6509 /* Reachability */,
 				A99B73F3244690EB00383D30 /* Tracker */,
 				A98FC6F22445521E004433A6 /* Keyboard */,
 				A93B3F942432D48400AFC97F /* CodeView.swift */,
@@ -494,6 +500,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A9A2D05A2459156E00BB6509 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2D05B2459157D00BB6509 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		F148B3CD0040E95CDBA0E984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +576,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */,
 				A93B3F7D2432CE6600AFC97F /* Nunito-SemiBold.ttf in Resources */,
 				A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */,
 				A93B3F7B2432CE6600AFC97F /* Nunito-Light.ttf in Resources */,
@@ -639,6 +654,7 @@
 				A98FC6CC24422C3D004433A6 /* CountryService.swift in Sources */,
 				A93B3F992432D70A00AFC97F /* UIView+Anchors.swift in Sources */,
 				A98FC6BE24421966004433A6 /* PageSelectorView.swift in Sources */,
+				A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */,
 				A9232E88245797EE00CF1654 /* News.swift in Sources */,
 				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
 				A98FC6B62441224C004433A6 /* SpaceView.swift in Sources */,
@@ -820,7 +836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -842,7 +858,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZPEUGUU6JH;
 				INFOPLIST_FILE = Covid19Tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -20,9 +20,15 @@ final class NewsService: NewsServiceProtocol {
     }
 
     func fetch(completion: @escaping (Result<[News], WebserviceError>) -> Void) {
-        let urlString = "/top-headlines?category=health&q=covid"
+        let q = "covid"
+        let category = "health"
+        let page = 1
+        let pageSize = 10
+        let country = "br"
+        let urlString = "/top-headlines?category=\(category)&q=\(q)&page=\(page)&pageSize=\(pageSize)&country=\(country)"
 
-        networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
+        let headers: [String: String] = ["x-api-key" : Keys.newsApi]
+        networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: headers) { result in
             switch result {
             case .success(let data):
                  do {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class NewsViewController: BaseViewController {
     enum State {
@@ -73,122 +74,19 @@ final class NewsViewController: BaseViewController {
     }
 
     private func fetchData() {
-        //        state = .loading
-        //
-        //        countryService.fetch(country: countryName) { [weak self] (result) in
-        //            guard let self = self else { return }
-        //
-        //            switch result {
-        //            case .success(let country):
-        //                self.historicalInfoService.fetch(country: country.country) { [weak self] (result) in
-        //                    guard let self = self else { return }
-        //
-        //                    switch result {
-        //                    case .success(let historicalInfo):
-        //                        self.datasource = [
-        //                            .totalCases(country),
-        //                            .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
-        //                            .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
-        //                            .spreadOverTime(historicalInfo.timeline),
-        //                            .todayCases(country)
-        //                        ]
-        //                        self.state = .success
-        //                    case .failure:
-        //                        self.state = .error
-        //                    }
-        //                }
-        //            case .failure:
-        //                self.state = .error
-        //            }
-        //        }
+        state = .loading
 
-        datasource = [
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-                 author: "Jonathan Bijos",
-                 title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-                 description: "",
-                 url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-                 urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-                 content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-            News(source: News.Source(id: "0", name: "The Washington Post"),
-            author: "Jonathan Bijos",
-            title: "Coronavirus Claims at Least 6,900 Nursing Home Deaths in U.S.",
-            description: "",
-            url: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659",
-            urlToImage: "https://www.engeplus.com.br/cache/noticia/0145/0145283/santa-catarina-tem-1-235-casos-de-covid-19-confirmados.jpg?t=20200425144659", publishedAt: "03/04/2020",
-            content: "asdfasdfasdfa sdf asdf a sdf as d as dfasdfasd fasdf asdfasdfa sdf a sdf asdf asdfasdfasd fa sdf as dfa sdfasdfasdfasdf as dfasdfasd fa sdfa s fda sd fa sdfasdfasdfasdfkas dfkas dfasdfjasndfjsndf aksjndfkajsndf kajsndfkjasndfkjanskfj askjdfnaskjdn akjsndfkajs fdkjansdjnaskjdfaksjdfnakjsdnf kasjndfa sjfnaks nfkasdnfajsndk ajsndkansfajsnd "),
-        ]
-        state = .success
+        newsService.fetch { [weak self] (result) in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let news):
+                self.datasource = news
+                self.state = .success
+            case .failure:
+                self.state = .error
+            }
+        }
     }
 
     private func changeUIFor(state: State) {
@@ -212,6 +110,21 @@ final class NewsViewController: BaseViewController {
             }
         }
     }
+
+    @objc private func closeModal() {
+        dismiss(animated: true)
+    }
+}
+
+extension NewsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = datasource[indexPath.item]
+        let urlString = model.url
+        guard let url = URL(string: urlString) else { return }
+
+        let controller = SFSafariViewController(url: url)
+        present(controller, animated: true)
+    }
 }
 
 extension NewsViewController: UICollectionViewDataSource {
@@ -233,7 +146,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
-        return .init(width: width, height: NewsCell.height)
+        return NewsCell.size(width: width)
     }
 
     func collectionView(_ collectionView: UICollectionView,

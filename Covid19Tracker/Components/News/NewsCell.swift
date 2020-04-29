@@ -11,7 +11,10 @@ import Kingfisher
 
 final class NewsCell: UICollectionViewCell {
     // MARK: - Static
-    static let height: CGFloat = 245
+    static func size(width: CGFloat) -> CGSize {
+        let height: CGFloat = width * 0.71
+        return CGSize(width: width, height: height)
+    }
 
     // MARK: - Views
     private lazy var postImageView: UIImageView = {
@@ -83,7 +86,16 @@ final class NewsCell: UICollectionViewCell {
         titleLabel.text = model.title
         separatorView.backgroundColor = model.color(forIndex: index)
         sourceLabel.text = model.source.name
-        dateLabel.text = model.publishedAt
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        if let date = dateFormatter.date(from: model.publishedAt) {
+            dateFormatter.dateFormat = "dd/MM/yyy"
+            let formattedDate = dateFormatter.string(from: date)
+            dateLabel.text = formattedDate
+        } else {
+            dateLabel.text = "--/--/----"
+        }
     }
 }
 
@@ -101,7 +113,7 @@ extension NewsCell: CodeView {
         postImageView.anchor(top: contentView.topAnchor,
                              leading: contentView.leadingAnchor,
                              trailing: contentView.trailingAnchor)
-        postImageView.anchor(height: 136)
+        postImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.55).isActive = true
 
         titleLabel.anchor(top: postImageView.bottomAnchor,
                           leading: contentView.leadingAnchor,

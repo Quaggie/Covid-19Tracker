@@ -24,7 +24,7 @@ final class NetworkManager: NetworkManagerProtocol {
         case .covid:
             return "https://corona.lmao.ninja"
         case .google:
-            return "http://newsapi.org/v2"
+            return "https://newsapi.org/v2"
         }
     }
 
@@ -43,7 +43,8 @@ final class NetworkManager: NetworkManagerProtocol {
             completion(.failure(WebserviceError.malformedURL))
             return
         }
-        let request = DefaultDataRequest(url: url, method: method, parameters: parameters, headers: headers)
+        let request = DefaultDataRequest(url: url, method: method, parameters: parameters, headers: headers, cache: source == .google)
+
         request.responseData { [weak self] result in
             guard let self = self else { return }
             self.requests.removeAll { $0.task?.hashValue == request.task?.hashValue }

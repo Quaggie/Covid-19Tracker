@@ -15,16 +15,17 @@ final class DefaultDataRequest: DataRequest {
     private let parameters: [String: Any]
     private let headers: [String: String]
     private let session: URLSession
+    private let cache: Bool
 
     var task: URLSessionTask?
 
     // MARK: - Init
-    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String]) {
+    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String], cache: Bool = false) {
         self.url = url
         self.method = method
         self.parameters = parameters
         self.headers = headers
-
+        self.cache = cache
         self.session = URLSession(configuration: .default)
     }
 
@@ -34,7 +35,24 @@ final class DefaultDataRequest: DataRequest {
     }
 
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void) {
-        task = session.dataTask(with: url) { data, response, error in
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = 30
+        urlRequest.httpMethod = method.rawValue
+
+        for header in headers {
+            urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
+        }
+
+        if Reachability().isConnectedToNetwork() {
+            if cache {
+                session.configuration.httpAdditionalHeaders?.removeValue(forKey: "Pragma")
+                session.configuration.httpAdditionalHeaders?.removeValue(forKey: "Cache-Control")
+                let twoHours = 7200
+                urlRequest.setValue("Cache-Control", forHTTPHeaderField: "max-age=\(twoHours)")
+            }
+        }
+
+        task = session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 completion(.failure(WebserviceError.internalServerError))
                 return
