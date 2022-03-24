@@ -1,0 +1,6 @@
+framework module Pods_Covid19Tracker_Covid19Tracker_unit_tests {
+  umbrella header "Pods-Covid19Tracker-Covid19Tracker_unit_tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
