@@ -13,17 +13,47 @@ import Firebase
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions
-        launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.tintColor = Color.blueDark
-        window?.rootViewController = TabBarViewController()
-        window?.makeKeyAndVisible()
+        guard !AppDelegate.isRunningTests else {
+            let window = UIWindow(frame: UIScreen.main.bounds)
+            self.window = window
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .white
+            window.rootViewController = viewController
+            setupAppearance()
+            window.makeKeyAndVisible()
+            return true
+        }
 
-        FirebaseApp.configure()
+        setupWindow()
+        setupAppearance()
 
         return true
     }
+
+    private func setupAppearance() {
+        window?.tintColor = Color.blueDark
+    }
+
+    private func setupWindow() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = TabBarViewController()
+        window?.makeKeyAndVisible()
+    }
+
+    private func setupFirebase() {
+        FirebaseApp.configure()
+    }
 }
 
+extension AppDelegate {
+    static var isRunningTests: Bool {
+        return NSClassFromString("XCTest") != nil
+        || ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+        || NSClassFromString("XCUIApplication") != nil
+    }
+}
