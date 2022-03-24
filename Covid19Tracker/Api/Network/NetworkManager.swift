@@ -22,7 +22,7 @@ final class NetworkManager: NetworkManagerProtocol {
     private var baseUrl: String {
         switch source {
         case .covid:
-            return "https://corona.lmao.ninja"
+            return "https://disease.sh/v3/covid-19"
         case .google:
             return "https://newsapi.org/v2"
         }

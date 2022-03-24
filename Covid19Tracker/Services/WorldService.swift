@@ -20,7 +20,7 @@ final class WorldService: WorldServiceProtocol {
     }
 
     func fetchCases(completion: @escaping (Result<Timeline, WebserviceError>) -> Void) {
-        let urlString = "/v2/all"
+        let urlString = "/all"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {

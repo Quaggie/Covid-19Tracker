@@ -25,7 +25,7 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
             completion(.failure(.unparseable))
             return
         }
-        let urlString = "/v2/historical/\(encodedCountry)?lastdays=7"
+        let urlString = "/historical/\(encodedCountry)?lastdays=7"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {
@@ -46,7 +46,7 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
     }
 
     func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
-        let urlString = "/v2/historical/all?lastdays=7"
+        let urlString = "/historical/all?lastdays=7"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {

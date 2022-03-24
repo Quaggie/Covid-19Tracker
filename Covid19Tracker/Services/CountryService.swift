@@ -25,7 +25,7 @@ final class CountryService: CountryServiceProtocol {
             completion(.failure(.unparseable))
             return
         }
-        let urlString = "/v2/countries/\(encodedCountry)"
+        let urlString = "/countries/\(encodedCountry)"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {
@@ -43,7 +43,7 @@ final class CountryService: CountryServiceProtocol {
     }
 
     func fetchAll(sort: Bool = true, completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
-        var urlString = "/v2/countries"
+        var urlString = "/countries"
         if sort {
             urlString += "?sort=cases"
         }
