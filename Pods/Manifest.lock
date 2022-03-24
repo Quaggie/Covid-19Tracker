@@ -73,9 +73,9 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
-  - Charts
-  - Firebase/Analytics
-  - Kingfisher
+  - Charts (= 3.4.0)
+  - Firebase/Analytics (= 6.21.0)
+  - Kingfisher (= 5.13.3)
 
 SPEC REPOS:
   trunk:
@@ -110,6 +110,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 55b56e129d11aee0d0cca6fc301d31449ecdb862
+PODFILE CHECKSUM: 45fc39dd2001a89eff00cb72fd01964bde52377b
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.11.3
