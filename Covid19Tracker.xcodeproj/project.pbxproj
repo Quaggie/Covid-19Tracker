@@ -80,6 +80,7 @@
 		A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2D05B2459157D00BB6509 /* Reachability.swift */; };
 		A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
 		A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */; };
+		A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		A9A2D05D2459198F00BB6509 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A9B2AE3827ED152D00BA750B /* Covid19Tracker_unit_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Covid19Tracker_unit_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerTests.swift; sourceTree = "<group>"; };
+		A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerTests.swift; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA592B42C5FBFD43F32AFF9F /* Pods-Covid19Tracker Unit Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker Unit Tests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker Unit Tests/Pods-Covid19Tracker Unit Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		A9B2AE4127ED1ADE00BA750B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A9B2AE4327ED436C00BA750B /* Base */,
 				A9B2AE4227ED1AE900BA750B /* TabBar */,
 			);
 			path = Components;
@@ -567,6 +570,14 @@
 				A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A9B2AE4327ED436C00BA750B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		F148B3CD0040E95CDBA0E984 /* Frameworks */ = {
@@ -839,6 +850,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */,
+				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
