@@ -14,11 +14,6 @@ final class CareViewController: BaseViewController {
         case source
     }
 
-    // MARK: - Services
-    private let worldService = WorldService()
-    private let countryService = CountryService()
-    private let historicalInfoService = HistoricalInfoService()
-
     // MARK: - Properties
     private var selectedIndex: Int = 0
     private var preventionDatasource: [DatasourceType] = []
