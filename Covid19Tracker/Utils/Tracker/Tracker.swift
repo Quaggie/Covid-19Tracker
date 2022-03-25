@@ -6,18 +6,17 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-import UIKit
 import Firebase
 
 protocol TrackerProtocol {
-    var source: UIViewController { get }
+    var source: String { get }
     func screenView(name: String)
 }
 
 struct Tracker: TrackerProtocol {
-    let source: UIViewController
+    let source: String
 
     func screenView(name: String) {
-        Analytics.setScreenName(name, screenClass: String(describing: source))
+        Analytics.setScreenName(name, screenClass: source)
     }
 }

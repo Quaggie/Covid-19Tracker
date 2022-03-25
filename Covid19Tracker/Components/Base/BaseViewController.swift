@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    lazy var tracker: TrackerProtocol = Tracker(source: self)
+    lazy var tracker: TrackerProtocol = Tracker(source: String(describing: self))
     let gradientLayer = CAGradientLayer()
 
     override func viewDidLoad() {
