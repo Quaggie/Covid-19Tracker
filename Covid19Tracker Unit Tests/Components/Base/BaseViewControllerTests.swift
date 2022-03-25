@@ -16,4 +16,16 @@ class BaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.view.layer.sublayers!.count, 1)
         XCTAssertTrue(sut.view.layer.sublayers![0] is CAGradientLayer)
     }
+
+    func test_viewDidLayoutSubviews_shouldUpdateGradientLayerFrame() {
+        let sut = BaseViewController()
+
+        XCTAssertEqual(sut.view.layer.sublayers![0].frame, .zero)
+
+        let frame = CGRect(x: 2, y: 2, width: 10, height: 10)
+        sut.view.bounds = frame
+        sut.viewDidLayoutSubviews()
+
+        XCTAssertEqual(sut.view.layer.sublayers![0].frame, frame)
+    }
 }
