@@ -11,14 +11,14 @@ import XCTest
 
 class BaseViewControllerTests: XCTestCase {
     func test_viewDidLoad_shouldSetupGradient() {
-        let sut = BaseViewController()
+        let sut = makeSut()
 
         XCTAssertEqual(sut.view.layer.sublayers!.count, 1)
         XCTAssertTrue(sut.view.layer.sublayers![0] is CAGradientLayer)
     }
 
     func test_viewDidLayoutSubviews_shouldUpdateGradientLayerFrame() {
-        let sut = BaseViewController()
+        let sut = makeSut()
 
         XCTAssertEqual(sut.view.layer.sublayers![0].frame, .zero)
 
@@ -27,5 +27,13 @@ class BaseViewControllerTests: XCTestCase {
         sut.viewDidLayoutSubviews()
 
         XCTAssertEqual(sut.view.layer.sublayers![0].frame, frame)
+    }
+}
+
+extension BaseViewControllerTests {
+    private func makeSut(file: StaticString = #filePath, line: UInt = #line) -> BaseViewController {
+        let sut = BaseViewController()
+        checkMemoryLeak(for: sut, file: file, line: line)
+        return sut
     }
 }

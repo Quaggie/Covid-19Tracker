@@ -11,7 +11,7 @@ import XCTest
 
 class TabBarViewControllerTests: XCTestCase {
     func test_init_configureViewControllers() {
-        let sut = TabBarViewController()
+        let sut = makeSut()
 
         XCTAssertEqual(sut.viewControllers?.count, 5)
         XCTAssertTrue(sut.tabBar.isOpaque)
@@ -20,7 +20,7 @@ class TabBarViewControllerTests: XCTestCase {
     }
 
     func test_tabViewControllerShouldViewController_shouldSelectOnlyIfMiddleViewControllerIsGiven() {
-        let sut = TabBarViewController()
+        let sut = makeSut()
 
         let shouldSelect = { (viewController: UIViewController) -> Bool in
             return sut.tabBarController(sut, shouldSelect: viewController)
@@ -30,5 +30,13 @@ class TabBarViewControllerTests: XCTestCase {
         XCTAssertFalse(shouldSelect(sut.viewControllers![2]))
         XCTAssertTrue(shouldSelect(sut.viewControllers![3]))
         XCTAssertTrue(shouldSelect(sut.viewControllers![4]))
+    }
+}
+
+extension TabBarViewControllerTests {
+    private func makeSut(file: StaticString = #filePath, line: UInt = #line) -> TabBarViewController {
+        let sut = TabBarViewController()
+        checkMemoryLeak(for: sut, file: file, line: line)
+        return sut
     }
 }
