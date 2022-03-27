@@ -6,7 +6,7 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-struct Timeline: Codable {
+struct Timeline: Codable, Equatable {
     let cases: Int
     let active: Int
     let deaths: Int
