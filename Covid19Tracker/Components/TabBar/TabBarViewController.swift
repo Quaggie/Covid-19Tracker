@@ -9,8 +9,8 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
         tabBar.isOpaque = true
         tabBar.backgroundColor = Color.white
         delegate = self
@@ -31,11 +31,6 @@ final class TabBarViewController: UITabBarController {
         careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
         viewControllers = [homeViewController, worldViewController, searchViewController, newsViewController, careViewController]
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
