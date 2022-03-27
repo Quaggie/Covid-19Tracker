@@ -70,9 +70,3 @@ class WorldServiceTests: XCTestCase {
         XCTAssertEqual(expectedResult, receivedResult)
     }
 }
-
-extension XCTestCase {
-    func anyJSONObject() -> [String: Any] {
-        [:]
-    }
-}
