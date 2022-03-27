@@ -30,6 +30,45 @@ class WorldServiceTests: XCTestCase {
 
         XCTAssertEqual(expectedResult, receivedResult)
     }
+
+    func test_fetchCases_returnsUnparseableErrorForWrongJSON() throws {
+        let networkManager = NetworkManagerSpy()
+        let sut = WorldService(networkManager: networkManager)
+        checkMemoryLeak(for: networkManager)
+        checkMemoryLeak(for: sut)
+
+        let data = try JSONSerialization.data(withJSONObject: anyJSONObject())
+        let exp = expectation(description: #function)
+        var receivedResult: Result<Timeline, WebserviceError>?
+        let expectedResult: Result<Timeline, WebserviceError> = .failure(.unparseable)
+        sut.fetchCases { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        networkManager.complete(with: .success(data))
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(expectedResult, receivedResult)
+    }
+
+    func test_fetchCases_returnsCorrectErrorForFailure() throws {
+        let networkManager = NetworkManagerSpy()
+        let sut = WorldService(networkManager: networkManager)
+        checkMemoryLeak(for: networkManager)
+        checkMemoryLeak(for: sut)
+
+        let exp = expectation(description: #function)
+        var receivedResult: Result<Timeline, WebserviceError>?
+        let expectedResult: Result<Timeline, WebserviceError> = .failure(.internalServerError)
+        sut.fetchCases { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        networkManager.complete(with: .failure(.internalServerError))
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(expectedResult, receivedResult)
+    }
 }
 
 final class NetworkManagerSpy: NetworkManagerProtocol {
@@ -41,5 +80,11 @@ final class NetworkManagerSpy: NetworkManagerProtocol {
 
     func complete(with result: Result<Data, WebserviceError>, at index: Int = 0) {
         fetchCompletionMessages[index](result)
+    }
+}
+
+extension XCTestCase {
+    func anyJSONObject() -> [String: Any] {
+        [:]
     }
 }
