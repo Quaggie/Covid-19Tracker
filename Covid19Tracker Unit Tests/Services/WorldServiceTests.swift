@@ -10,55 +10,31 @@ import XCTest
 @testable import Covid19_Tracker
 
 class WorldServiceTests: XCTestCase {
-    func test_fetchCases_returnsTimelineOnSuccess() throws {
+    func test_fetchCases_returnsTimelineOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
         let timeline = Timeline(cases: 0, active: 0, deaths: 0, recovered: 0, todayCases: 0, todayDeaths: 0)
-        let data = try JSONEncoder().encode(timeline)
-        let exp = expectation(description: #function)
-        var receivedResult: Result<Timeline, WebserviceError>?
-        let expectedResult: Result<Timeline, WebserviceError> = .success(timeline)
-        sut.fetchCases { result in
-            receivedResult = result
-            exp.fulfill()
+        expect(sut: sut, with: .success(timeline)) {
+            let data = try! JSONEncoder().encode(timeline)
+            networkManager.complete(with: .success(data))
         }
-        networkManager.complete(with: .success(data))
-        wait(for: [exp], timeout: 1)
-
-        XCTAssertEqual(expectedResult, receivedResult)
     }
 
-    func test_fetchCases_returnsUnparseableErrorForWrongJSON() throws {
+    func test_fetchCases_returnsUnparseableErrorForWrongJSON() {
         let (sut, networkManager) = makeSUT()
 
-        let data = try JSONSerialization.data(withJSONObject: anyJSONObject())
-        let exp = expectation(description: #function)
-        var receivedResult: Result<Timeline, WebserviceError>?
-        let expectedResult: Result<Timeline, WebserviceError> = .failure(.unparseable)
-        sut.fetchCases { result in
-            receivedResult = result
-            exp.fulfill()
+        expect(sut: sut, with: .failure(.unparseable)) {
+            let data = try! JSONSerialization.data(withJSONObject: anyJSONObject())
+            networkManager.complete(with: .success(data))
         }
-        networkManager.complete(with: .success(data))
-        wait(for: [exp], timeout: 1)
-
-        XCTAssertEqual(expectedResult, receivedResult)
     }
 
-    func test_fetchCases_returnsCorrectErrorForFailure() throws {
+    func test_fetchCases_returnsCorrectErrorForFailure() {
         let (sut, networkManager) = makeSUT()
 
-        let exp = expectation(description: #function)
-        var receivedResult: Result<Timeline, WebserviceError>?
-        let expectedResult: Result<Timeline, WebserviceError> = .failure(.internalServerError)
-        sut.fetchCases { result in
-            receivedResult = result
-            exp.fulfill()
+        expect(sut: sut, with: .failure(.internalServerError)) {
+            networkManager.complete(with: .failure(.internalServerError))
         }
-        networkManager.complete(with: .failure(.internalServerError))
-        wait(for: [exp], timeout: 1)
-
-        XCTAssertEqual(expectedResult, receivedResult)
     }
 }
 
@@ -66,10 +42,28 @@ extension WorldServiceTests {
     func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (WorldService, NetworkManagerSpy) {
         let networkManager = NetworkManagerSpy()
         let service = WorldService(networkManager: networkManager)
-
         checkMemoryLeak(for: networkManager, file: file, line: line)
         checkMemoryLeak(for: service, file: file, line: line)
-
         return (service, networkManager)
+    }
+
+    func expect(sut: WorldService, with expectedResult: Result<Timeline, WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: #function)
+        var receivedResult: Result<Timeline, WebserviceError>?
+        sut.fetchCases { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        action()
+        wait(for: [exp], timeout: 1)
+
+        switch (receivedResult, expectedResult) {
+        case (.success(let receivedData), .success(let expectedData)):
+            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+        case (.failure(let receivedError), .failure(let expectedError)):
+            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        default:
+            XCTFail("Should've completed with \(expectedResult) instead got \(String(describing: receivedResult))", file: file, line: line)
+        }
     }
 }
