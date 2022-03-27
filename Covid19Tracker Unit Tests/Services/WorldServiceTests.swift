@@ -71,18 +71,6 @@ class WorldServiceTests: XCTestCase {
     }
 }
 
-final class NetworkManagerSpy: NetworkManagerProtocol {
-    var fetchCompletionMessages: [(Result<Data, WebserviceError>) -> Void] = []
-
-    func fetch(urlString: String, method: HTTPMethod, parameters: [String : Any], headers: [String : String], completion: @escaping (Result<Data, WebserviceError>) -> Void) {
-        fetchCompletionMessages.append(completion)
-    }
-
-    func complete(with result: Result<Data, WebserviceError>, at index: Int = 0) {
-        fetchCompletionMessages[index](result)
-    }
-}
-
 extension XCTestCase {
     func anyJSONObject() -> [String: Any] {
         [:]

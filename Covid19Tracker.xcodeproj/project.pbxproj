@@ -44,6 +44,7 @@
 		A950703D24531819007DC98F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A950703C24531819007DC98F /* HomeViewController.swift */; };
 		A95AEC8127F0D3300092C93E /* WorldServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8027F0D3300092C93E /* WorldServiceTests.swift */; };
 		A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8327F0D38B0092C93E /* XCTestCase+MemoryLeak.swift */; };
+		A95AEC8727F0F85F0092C93E /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */; };
 		A97100F424411A6D002EDF34 /* WorldService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97100F324411A6D002EDF34 /* WorldService.swift */; };
 		A98FC6A924411D51004433A6 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */; };
 		A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */; };
@@ -140,6 +141,7 @@
 		A950703C24531819007DC98F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A95AEC8027F0D3300092C93E /* WorldServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldServiceTests.swift; sourceTree = "<group>"; };
 		A95AEC8327F0D38B0092C93E /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
+		A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerSpy.swift; sourceTree = "<group>"; };
 		A97100F324411A6D002EDF34 /* WorldService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldService.swift; sourceTree = "<group>"; };
 		A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCasesCell.swift; sourceTree = "<group>"; };
@@ -457,6 +459,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A95AEC8527F0F8520092C93E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A98FC6B2244121AA004433A6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +580,7 @@
 		A9B2AE3927ED152D00BA750B /* Covid19Tracker Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A95AEC8527F0F8520092C93E /* Helpers */,
 				A95AEC8227F0D36D0092C93E /* Extensions */,
 				A95AEC7F27F0D31D0092C93E /* Services */,
 				A9B2AE4127ED1ADE00BA750B /* Components */,
@@ -872,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95AEC8127F0D3300092C93E /* WorldServiceTests.swift in Sources */,
+				A95AEC8727F0F85F0092C93E /* NetworkManagerSpy.swift in Sources */,
 				A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */,
 				A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
