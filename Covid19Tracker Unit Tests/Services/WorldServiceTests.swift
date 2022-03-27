@@ -10,6 +10,14 @@ import XCTest
 @testable import Covid19_Tracker
 
 class WorldServiceTests: XCTestCase {
+    func test_fetchCases_callsServiceOncePerExecution() {
+        let (sut, networkManager) = makeSUT()
+
+        sut.fetchCases { _ in }
+
+        XCTAssertEqual(networkManager.messagesCount, 1)
+    }
+
     func test_fetchCases_returnsTimelineOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
