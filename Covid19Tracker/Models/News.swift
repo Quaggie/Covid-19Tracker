@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct News: Codable {
-    struct Source: Codable {
+struct News: Codable, Equatable {
+    struct Source: Codable, Equatable {
         let name: String
     }
 
