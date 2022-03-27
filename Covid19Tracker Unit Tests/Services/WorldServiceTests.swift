@@ -11,10 +11,7 @@ import XCTest
 
 class WorldServiceTests: XCTestCase {
     func test_fetchCases_returnsTimelineOnSuccess() throws {
-        let networkManager = NetworkManagerSpy()
-        let sut = WorldService(networkManager: networkManager)
-        checkMemoryLeak(for: networkManager)
-        checkMemoryLeak(for: sut)
+        let (sut, networkManager) = makeSUT()
 
         let timeline = Timeline(cases: 0, active: 0, deaths: 0, recovered: 0, todayCases: 0, todayDeaths: 0)
         let data = try JSONEncoder().encode(timeline)
@@ -32,10 +29,7 @@ class WorldServiceTests: XCTestCase {
     }
 
     func test_fetchCases_returnsUnparseableErrorForWrongJSON() throws {
-        let networkManager = NetworkManagerSpy()
-        let sut = WorldService(networkManager: networkManager)
-        checkMemoryLeak(for: networkManager)
-        checkMemoryLeak(for: sut)
+        let (sut, networkManager) = makeSUT()
 
         let data = try JSONSerialization.data(withJSONObject: anyJSONObject())
         let exp = expectation(description: #function)
@@ -52,10 +46,7 @@ class WorldServiceTests: XCTestCase {
     }
 
     func test_fetchCases_returnsCorrectErrorForFailure() throws {
-        let networkManager = NetworkManagerSpy()
-        let sut = WorldService(networkManager: networkManager)
-        checkMemoryLeak(for: networkManager)
-        checkMemoryLeak(for: sut)
+        let (sut, networkManager) = makeSUT()
 
         let exp = expectation(description: #function)
         var receivedResult: Result<Timeline, WebserviceError>?
@@ -68,5 +59,17 @@ class WorldServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
 
         XCTAssertEqual(expectedResult, receivedResult)
+    }
+}
+
+extension WorldServiceTests {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (WorldService, NetworkManagerSpy) {
+        let networkManager = NetworkManagerSpy()
+        let service = WorldService(networkManager: networkManager)
+
+        checkMemoryLeak(for: networkManager, file: file, line: line)
+        checkMemoryLeak(for: service, file: file, line: line)
+
+        return (service, networkManager)
     }
 }
