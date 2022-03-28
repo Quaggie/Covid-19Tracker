@@ -27,8 +27,8 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func test_fetch_requestsWithCorrectURLForPostMethod() {
-        testRequest(source: .covid, urlPath: Self.validURLPath, for: .post, with: anyDictionary())
-        testRequest(source: .google, urlPath: Self.validURLPath, for: .post, with: anyDictionary())
+        testRequest(source: .covid, urlPath: Self.validURLPath, for: .post, with: anyDictionary(), and: anyHeader())
+        testRequest(source: .google, urlPath: Self.validURLPath, for: .post, with: anyDictionary(), and: anyHeader())
     }
 
     func test_fetch_failsWhenRequestCompletesWithAllErrorCases() {
@@ -82,7 +82,7 @@ extension NetworkManagerTests {
         return networkManager
     }
 
-    func testRequest(source: NetworkManager.Source, urlPath: String, for method: HTTPMethod, with parameters: [String: Any] = [:], file: StaticString = #filePath, line: UInt = #line) {
+    func testRequest(source: NetworkManager.Source, urlPath: String, for method: HTTPMethod, with parameters: [String: Any] = [:], and headers: [String: String] = [:], file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT(source: source)
         var receivedRequest: URLRequest?
         let expectation = expectation(description: #function)
@@ -112,9 +112,9 @@ extension NetworkManagerTests {
 
         switch (expectedResult, receivedResult) {
         case (.success(let expectedData), .success(let receivedData)):
-            XCTAssertEqual(receivedData, expectedData)
+            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
         case (.failure(let expectedError), .failure(let receivedError)):
-            XCTAssertEqual(expectedError, receivedError)
+            XCTAssertEqual(expectedError, receivedError, file: file, line: line)
         default:
             switch (expectedResult, receivedResult) {
             case (.success(let expectedData), .success(let receivedData)):
@@ -125,6 +125,10 @@ extension NetworkManagerTests {
                 XCTFail("Expected \(expectedResult) got \(String(describing: receivedResult)) instead")
             }
         }
+    }
+
+    func anyHeader() -> [String: String] {
+        ["Test": "123"]
     }
 
     func anyURLResponse() -> URLResponse {
