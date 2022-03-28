@@ -22,6 +22,14 @@ extension XCTestCase {
     }
 
     func anyNSError() -> NSError {
-        return NSError(domain: "Test", code: 100, userInfo: nil)
+        NSError(domain: "Test", code: 100, userInfo: nil)
+    }
+
+    func anyData() -> Data {
+        "Test Data".data(using: .utf8)!
+    }
+
+    func anyURL() -> URL {
+        URL(string: "https://test.com")!
     }
 }
