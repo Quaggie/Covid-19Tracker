@@ -10,6 +10,9 @@ import XCTest
 @testable import Covid19_Tracker
 
 class NetworkManagerTests: XCTestCase {
+    static let validURLPath = "/test"
+    static let invalidURLPath = "\\test"
+
     override func setUp() {
         URLProtocolStub.startIntercepting()
     }
@@ -19,40 +22,53 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func test_fetch_requestsWithCorrectURLForGetMethod() {
-        testRequest(source: .covid, urlPath: anyURLPath(), for: .get)
-        testRequest(source: .google, urlPath: anyURLPath(), for: .get)
+        testRequest(source: .covid, urlPath: Self.validURLPath, for: .get)
+        testRequest(source: .google, urlPath: Self.validURLPath, for: .get)
     }
 
     func test_fetch_requestsWithCorrectURLForPostMethod() {
-        testRequest(source: .covid, urlPath: anyURLPath(), for: .post, with: anyDictionary())
-        testRequest(source: .google, urlPath: anyURLPath(), for: .post, with: anyDictionary())
+        testRequest(source: .covid, urlPath: Self.validURLPath, for: .post, with: anyDictionary())
+        testRequest(source: .google, urlPath: Self.validURLPath, for: .post, with: anyDictionary())
     }
 
     func test_fetch_failsWhenRequestCompletesWithAllErrorCases() {
-        expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: anyNSError()), for: anyURLPath())
-        expect(.failure(.malformedURL), when: .init(data: nil, response: nil, error: anyNSError()), for: "\\wrongPath")
+        expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: anyNSError()), for: Self.validURLPath)
+        expect(.failure(.malformedURL), when: .init(data: nil, response: nil, error: anyNSError()), for: Self.invalidURLPath)
     }
 
     func test_fetch_shouldFailWithAllInvalidCases() {
-        expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: nil), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: anyData(), response: nil, error: nil), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: nil, response: anyURLResponse(), error: nil), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: nil, response: anyHTTPURLResponse(), error: nil), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: nil, response: anyHTTPURLResponse(), error: anyNSError()), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: anyData(), response: nil, error: anyNSError()), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyURLResponse(), error: nil), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyHTTPURLResponse(), error: anyNSError()), for: anyURLPath())
-        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()), for: anyURLPath())
+        expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: nil))
+        expect(.failure(.unexpected), when: .init(data: anyData(), response: nil, error: nil))
+        expect(.failure(.unexpected), when: .init(data: nil, response: anyURLResponse(), error: nil))
+        expect(.failure(.unexpected), when: .init(data: nil, response: anyHTTPURLResponse(), error: nil))
+        expect(.failure(.unexpected), when: .init(data: nil, response: anyHTTPURLResponse(), error: anyNSError()))
+        expect(.failure(.unexpected), when: .init(data: anyData(), response: nil, error: anyNSError()))
+        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyURLResponse(), error: nil))
+        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyHTTPURLResponse(), error: anyNSError()))
+        expect(.failure(.unexpected), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()))
+    }
+
+    func test_fetch_FailsIfRequestCompletesWithNon200Status() {
+        let data = anyData()
+        expect(.failure(.internalServerError), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 500), error: nil))
+        expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 400), error: nil))
+        expect(.failure(.unauthorized), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 401), error: nil))
+        expect(.failure(.forbidden), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 403), error: nil))
+        expect(.failure(.notFound), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 404), error: nil))
+        expect(.failure(.preconditionFailed), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 412), error: nil))
+        expect(.failure(.conflict), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 409), error: nil))
+        expect(.failure(.unexpected), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 499), error: nil))
+        expect(.failure(.unexpected), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 600), error: nil))
     }
 
     func test_fetch_succeedsWithValidResponseAndData() {
         let data = anyData()
-        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil), for: anyURLPath())
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 
     func test_fetch_succeedsWithEmptyData() {
         let data = Data()
-        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil), for: anyURLPath())
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 }
 
@@ -81,7 +97,7 @@ extension NetworkManagerTests {
         XCTAssertEqual(receivedRequest!.httpMethod, method.rawValue)
     }
 
-    func expect(_ expectedResult: Result<Data, WebserviceError>, when stub: Stub, for urlPath: String, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ expectedResult: Result<Data, WebserviceError>, when stub: Stub, for urlPath: String = NetworkManagerTests.validURLPath, file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT()
         var receivedResult: Result<Data, WebserviceError>?
 

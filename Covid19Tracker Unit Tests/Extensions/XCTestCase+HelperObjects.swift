@@ -13,10 +13,6 @@ extension XCTestCase {
         [:]
     }
 
-    func anyURLPath() -> String {
-        "/test"
-    }
-
     func anyDictionary() -> [String: Any] {
         ["Test Value": 1]
     }

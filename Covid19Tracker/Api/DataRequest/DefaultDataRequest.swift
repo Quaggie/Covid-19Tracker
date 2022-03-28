@@ -78,17 +78,24 @@ final class DefaultDataRequest: DataRequest {
 
         task = session.dataTask(with: urlRequest) { data, response, error in
             guard let response = response as? HTTPURLResponse, let data = data else {
-                return completion(.failure(.unexpected))
-            }
-            if error != nil {
-                return completion(.failure(WebserviceError.internalServerError))
+                completion(.failure(.unexpected))
+                return
             }
 
-            guard (200 ..< 300) ~= response.statusCode, error == nil else {
-                return completion(.failure(WebserviceError.unexpected))
-            }
+            do {
+                guard (200 ..< 300) ~= response.statusCode, error == nil else {
+                    // Data was nil, validation failed or an error occurred.
+                    throw error ?? WebserviceError.unexpected
+                }
+                completion(.success(data))
+            } catch {
+                if let urlError = error as? URLError {
+                    completion(.failure(WebserviceError.from(urlError: urlError)))
+                    return
+                }
 
-            completion(.success(data))
+                completion(.failure(WebserviceError.from(statusCode: response.statusCode)))
+            }
         }
         task?.resume()
     }
