@@ -25,6 +25,30 @@ class NetworkManagerTests: XCTestCase {
     func test_fetch_requestsWithCorrectURLForPostMethod() {
         testRequest(url: anyURL(), for: .post, with: anyDictionary())
     }
+
+    func test_fetch_failsWhenRequestCompletesWithError() {
+        let sut = makeSUT()
+        var receivedResult: Result<Data, WebserviceError>?
+
+        let expectedResult = Result<Data, WebserviceError>.failure(.internalServerError)
+        let expectation = expectation(description: "Waiting for request")
+        URLProtocolStub.stub(.init(data: nil, response: nil, error: anyNSError()))
+        sut.fetch(urlString: anyURL().absoluteString, method: .get, parameters: [:], headers: [:]) { result in
+            receivedResult = result
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 5)
+
+        switch (expectedResult, receivedResult) {
+        case (.success(let expectedData), .success(let receivedData)):
+            XCTAssertEqual(receivedData, expectedData)
+        case (.failure(let expectedError), .failure(let receivedError)):
+            XCTAssertEqual(expectedError, receivedError)
+        default:
+            XCTFail("Expected \(expectedResult) result got \(String(describing: receivedResult)) instead")
+        }
+    }
 }
 
 extension NetworkManagerTests {

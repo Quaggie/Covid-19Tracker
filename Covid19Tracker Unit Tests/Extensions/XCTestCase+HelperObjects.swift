@@ -20,4 +20,8 @@ extension XCTestCase {
     func anyDictionary() -> [String: Any] {
         ["Test Value": 1]
     }
+
+    func anyNSError() -> NSError {
+        return NSError(domain: "Test", code: 100, userInfo: nil)
+    }
 }
