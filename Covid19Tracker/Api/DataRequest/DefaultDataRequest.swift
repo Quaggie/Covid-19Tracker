@@ -45,11 +45,6 @@ final class DefaultDataRequest: DataRequest {
 
         if Reachability().isConnectedToNetwork() {
             if cache {
-//                session.configuration.httpAdditionalHeaders?.removeValue(forKey: "Pragma")
-//                session.configuration.httpAdditionalHeaders?.removeValue(forKey: "Cache-Control")
-//                let twoHours = 7200
-//                session.configuration.httpAdditionalHeaders?.updateValue("max-age=\(twoHours)", forKey: "Cache-Control")
-
                 urlRequest.setValue(nil, forHTTPHeaderField: "Pragma")
                 urlRequest.setValue(nil, forHTTPHeaderField: "Cache-Control")
 
