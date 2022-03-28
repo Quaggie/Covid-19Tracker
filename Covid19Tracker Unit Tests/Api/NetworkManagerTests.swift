@@ -19,14 +19,9 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func test_fetch_requestsWithCorrectURLForGetMethod() {
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [URLProtocolStub.self]
-
-        let sut = NetworkManager(sessionConfiguration: configuration)
-        checkMemoryLeak(for: sut)
+        let sut = makeSUT()
 
         var receivedRequest: URLRequest?
-
         let expectation = expectation(description: #function)
         URLProtocolStub.observeRequest { receivedRequest = $0 }
         sut.fetch(urlString: anyURL().absoluteString, method: .get, parameters: [:], headers: [:]) { _ in
@@ -40,14 +35,9 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func test_fetch_requestsWithCorrectURLForPostMethod() {
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [URLProtocolStub.self]
-
-        let sut = NetworkManager(sessionConfiguration: configuration)
-        checkMemoryLeak(for: sut)
+        let sut = makeSUT()
 
         var receivedRequest: URLRequest?
-
         let expectation = expectation(description: #function)
         URLProtocolStub.observeRequest { receivedRequest = $0 }
         sut.fetch(urlString: anyURL().absoluteString, method: .post, parameters: anyDictionary(), headers: [:]) { _ in
@@ -58,5 +48,16 @@ class NetworkManagerTests: XCTestCase {
 
         XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(anyURL().absoluteString))
         XCTAssertEqual(receivedRequest!.httpMethod, HTTPMethod.post.rawValue)
+    }
+}
+
+extension NetworkManagerTests {
+    func makeSUT() -> NetworkManager {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [URLProtocolStub.self]
+
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        checkMemoryLeak(for: networkManager)
+        return networkManager
     }
 }
