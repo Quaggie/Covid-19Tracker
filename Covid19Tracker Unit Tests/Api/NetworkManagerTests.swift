@@ -19,11 +19,11 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func test_fetch_requestsWithCorrectURLForGetMethod() {
-        testRequest(url: anyURL(), for: .get)
+        testRequest(urlPath: anyURLPath(), for: .get)
     }
 
     func test_fetch_requestsWithCorrectURLForPostMethod() {
-        testRequest(url: anyURL(), for: .post, with: anyDictionary())
+        testRequest(urlPath: anyURLPath(), for: .post, with: anyDictionary())
     }
 
     func test_fetch_failsWhenRequestCompletesWithError() {
@@ -33,7 +33,7 @@ class NetworkManagerTests: XCTestCase {
         let expectedResult = Result<Data, WebserviceError>.failure(.internalServerError)
         let expectation = expectation(description: "Waiting for request")
         URLProtocolStub.stub(.init(data: nil, response: nil, error: anyNSError()))
-        sut.fetch(urlString: anyURL().absoluteString, method: .get, parameters: [:], headers: [:]) { result in
+        sut.fetch(urlString: anyURLPath(), method: .get, parameters: [:], headers: [:]) { result in
             receivedResult = result
             expectation.fulfill()
         }
@@ -61,18 +61,18 @@ extension NetworkManagerTests {
         return networkManager
     }
 
-    func testRequest(url: URL, for method: HTTPMethod, with parameters: [String: Any] = [:], file: StaticString = #filePath, line: UInt = #line) {
+    func testRequest(urlPath: String, for method: HTTPMethod, with parameters: [String: Any] = [:], file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT()
         var receivedRequest: URLRequest?
         let expectation = expectation(description: #function)
         URLProtocolStub.observeRequest { receivedRequest = $0 }
-        sut.fetch(urlString: url.absoluteString, method: method, parameters: parameters, headers: [:]) { _ in
+        sut.fetch(urlString: urlPath, method: method, parameters: parameters, headers: [:]) { _ in
             expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 1)
 
-        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(url.absoluteString))
+        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(urlPath))
         XCTAssertEqual(receivedRequest!.httpMethod, method.rawValue)
     }
 }

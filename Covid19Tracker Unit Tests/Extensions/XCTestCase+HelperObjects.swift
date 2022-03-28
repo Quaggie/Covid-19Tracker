@@ -13,8 +13,8 @@ extension XCTestCase {
         [:]
     }
 
-    func anyURL() -> URL {
-        URL(string: "https://test.com/")!
+    func anyURLPath() -> String {
+        "/test"
     }
 
     func anyDictionary() -> [String: Any] {
