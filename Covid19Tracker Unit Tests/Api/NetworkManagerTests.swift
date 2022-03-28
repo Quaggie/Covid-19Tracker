@@ -44,6 +44,16 @@ class NetworkManagerTests: XCTestCase {
         expect(.failure(.unexpected), when: .init(data: anyData(), response: anyHTTPURLResponse(), error: anyNSError()), for: anyURLPath())
         expect(.failure(.unexpected), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()), for: anyURLPath())
     }
+
+    func test_fetch_succeedsWithValidResponseAndData() {
+        let data = anyData()
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil), for: anyURLPath())
+    }
+
+    func test_fetch_succeedsWithEmptyData() {
+        let data = Data()
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil), for: anyURLPath())
+    }
 }
 
 extension NetworkManagerTests {
