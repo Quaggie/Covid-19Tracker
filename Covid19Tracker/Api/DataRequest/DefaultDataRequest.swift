@@ -15,6 +15,7 @@ protocol DataRequest {
         parameters: [String: Any],
         headers: [String: String],
         cache: Bool,
+        sessionConfiguration: URLSessionConfiguration,
         reachability: ReachabilityProtocol
     )
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
@@ -39,6 +40,7 @@ final class DefaultDataRequest: DataRequest {
         parameters: [String: Any],
         headers: [String: String],
         cache: Bool = false,
+        sessionConfiguration: URLSessionConfiguration,
         reachability: ReachabilityProtocol = Reachability()
     ) {
         self.url = url
@@ -46,7 +48,7 @@ final class DefaultDataRequest: DataRequest {
         self.parameters = parameters
         self.headers = headers
         self.cache = cache
-        self.session = URLSession(configuration: .default)
+        self.session = URLSession(configuration: sessionConfiguration)
         self.reachability = reachability
     }
 

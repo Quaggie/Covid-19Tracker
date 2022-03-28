@@ -28,6 +28,7 @@ final class NetworkManager: NetworkManagerProtocol {
 
     // MARK: - Properties
     private let source: Source
+    private let sessionConfiguration: URLSessionConfiguration
     private var requests: [WebserviceRequest] = []
     private var baseUrl: String {
         switch source {
@@ -39,21 +40,30 @@ final class NetworkManager: NetworkManagerProtocol {
     }
 
     // MARK: - Init
-    init(source: Source = .covid) {
+    init(source: Source = .covid, sessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.source = source
+        self.sessionConfiguration = sessionConfiguration
     }
 
     // MARK: - Protocol
-    func fetch(urlString: String,
-               method: HTTPMethod,
-               parameters: [String: Any],
-               headers: [String: String],
-               completion: @escaping (Result<Data, WebserviceError>) -> Void) {
+    func fetch(
+        urlString: String,
+        method: HTTPMethod,
+        parameters: [String: Any],
+        headers: [String: String],
+        completion: @escaping (Result<Data, WebserviceError>) -> Void
+    ) {
         guard let url = URL(string: "\(baseUrl)\(urlString)") else {
             completion(.failure(WebserviceError.malformedURL))
             return
         }
-        let request = DefaultDataRequest(url: url, method: method, parameters: parameters, headers: headers, cache: source == .google)
+        let request = DefaultDataRequest(
+            url: url, method: method,
+            parameters: parameters,
+            headers: headers,
+            cache: source == .google,
+            sessionConfiguration: sessionConfiguration
+        )
 
         request.responseData { [weak self] result in
             guard let self = self else { return }
