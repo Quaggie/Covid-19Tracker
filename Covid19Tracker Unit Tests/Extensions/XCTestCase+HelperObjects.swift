@@ -12,4 +12,12 @@ extension XCTestCase {
     func anyJSONObject() -> [String: Any] {
         [:]
     }
+
+    func anyURL() -> URL {
+        URL(string: "https://test.com/")!
+    }
+
+    func anyDictionary() -> [String: Any] {
+        ["Test Value": 1]
+    }
 }

@@ -29,14 +29,35 @@ class NetworkManagerTests: XCTestCase {
 
         let expectation = expectation(description: #function)
         URLProtocolStub.observeRequest { receivedRequest = $0 }
-        sut.fetch(urlString: "www.google.com", method: .get, parameters: [:], headers: [:]) { _ in
+        sut.fetch(urlString: anyURL().absoluteString, method: .get, parameters: [:], headers: [:]) { _ in
             expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 1)
 
-        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains("www.google.com"))
-        XCTAssertEqual(receivedRequest?.httpMethod, HTTPMethod.get.rawValue)
+        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(anyURL().absoluteString))
+        XCTAssertEqual(receivedRequest!.httpMethod, HTTPMethod.get.rawValue)
+    }
+
+    func test_fetch_requestsWithCorrectURLForPostMethod() {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [URLProtocolStub.self]
+
+        let sut = NetworkManager(sessionConfiguration: configuration)
+        checkMemoryLeak(for: sut)
+
+        var receivedRequest: URLRequest?
+
+        let expectation = expectation(description: #function)
+        URLProtocolStub.observeRequest { receivedRequest = $0 }
+        sut.fetch(urlString: anyURL().absoluteString, method: .post, parameters: anyDictionary(), headers: [:]) { _ in
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1)
+
+        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(anyURL().absoluteString))
+        XCTAssertEqual(receivedRequest!.httpMethod, HTTPMethod.post.rawValue)
     }
 }
 
