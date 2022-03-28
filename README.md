@@ -29,7 +29,7 @@ infected and cured, in your country and in the rest of the world.
 - Your country's cases
 - World's cases
 - Global Search for cases
-- News (Currently not working)
+- News
 - Prevention and Symptoms tips
 
 
