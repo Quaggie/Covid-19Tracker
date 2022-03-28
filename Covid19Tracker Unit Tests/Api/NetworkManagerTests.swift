@@ -132,10 +132,10 @@ extension NetworkManagerTests {
     }
 
     func anyURLResponse() -> URLResponse {
-        return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 1, textEncodingName: "")
+        URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 1, textEncodingName: "")
     }
 
     func anyHTTPURLResponse(statusCode: Int = 0) -> HTTPURLResponse {
-        return HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: "", headerFields: nil)!
+        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: "", headerFields: nil)!
     }
 }
