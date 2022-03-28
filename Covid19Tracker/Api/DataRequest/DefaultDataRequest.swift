@@ -8,6 +8,18 @@
 
 import Foundation
 
+protocol DataRequest {
+    init(
+        url: URL,
+        method: HTTPMethod,
+        parameters: [String: Any],
+        headers: [String: String],
+        cache: Bool,
+        reachability: ReachabilityProtocol
+    )
+    func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
+}
+
 final class DefaultDataRequest: DataRequest {
     // MARK: - Properties
     private let url: URL
@@ -16,17 +28,26 @@ final class DefaultDataRequest: DataRequest {
     private let headers: [String: String]
     private let session: URLSession
     private let cache: Bool
+    private let reachability: ReachabilityProtocol
 
     var task: URLSessionTask?
 
     // MARK: - Init
-    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String], cache: Bool = false) {
+    init(
+        url: URL,
+        method: HTTPMethod,
+        parameters: [String: Any],
+        headers: [String: String],
+        cache: Bool = false,
+        reachability: ReachabilityProtocol = Reachability()
+    ) {
         self.url = url
         self.method = method
         self.parameters = parameters
         self.headers = headers
         self.cache = cache
         self.session = URLSession(configuration: .default)
+        self.reachability = reachability
     }
 
     // MARK: - Functions
@@ -43,7 +64,7 @@ final class DefaultDataRequest: DataRequest {
             urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
         }
 
-        if Reachability().isConnectedToNetwork() {
+        if reachability.isConnectedToNetwork() {
             if cache {
                 urlRequest.setValue(nil, forHTTPHeaderField: "Pragma")
                 urlRequest.setValue(nil, forHTTPHeaderField: "Cache-Control")

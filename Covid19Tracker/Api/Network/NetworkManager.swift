@@ -9,6 +9,16 @@
 
 import UIKit
 
+protocol NetworkManagerProtocol {
+    func fetch(
+        urlString: String,
+        method: HTTPMethod,
+        parameters: [String: Any],
+        headers: [String: String],
+        completion: @escaping (Result<Data, WebserviceError>) -> Void
+    )
+}
+
 final class NetworkManager: NetworkManagerProtocol {
     // MARK: - Enum
     enum Source {

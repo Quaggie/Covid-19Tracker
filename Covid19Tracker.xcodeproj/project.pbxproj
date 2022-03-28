@@ -35,7 +35,6 @@
 		A93B3FB024355DCB00AFC97F /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAF24355DCB00AFC97F /* Country.swift */; };
 		A93B3FB324355EAE00AFC97F /* HistoricalCountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FB224355EAE00AFC97F /* HistoricalCountryInfo.swift */; };
 		A93B3FC824355F5700AFC97F /* DefaultDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FB624355F5700AFC97F /* DefaultDataRequest.swift */; };
-		A93B3FC924355F5700AFC97F /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FB824355F5700AFC97F /* DataRequest.swift */; };
 		A93B3FCA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FBA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift */; };
 		A93B3FCB24355F5700AFC97F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FBC24355F5700AFC97F /* NetworkManager.swift */; };
 		A93B3FCC24355F5700AFC97F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */; };
@@ -48,7 +47,6 @@
 		A95AEC8927F0F8D20092C93E /* XCTestCase+HelperObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8827F0F8D10092C93E /* XCTestCase+HelperObjects.swift */; };
 		A95AEC8B27F0FD6B0092C93E /* NewsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8A27F0FD6B0092C93E /* NewsServiceTests.swift */; };
 		A97100F424411A6D002EDF34 /* WorldService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97100F324411A6D002EDF34 /* WorldService.swift */; };
-		A98FC6A924411D51004433A6 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */; };
 		A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */; };
 		A98FC6AF24411F25004433A6 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AE24411F25004433A6 /* Timeline.swift */; };
 		A98FC6B124412164004433A6 /* UIView+BackgroundColorInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */; };
@@ -134,7 +132,6 @@
 		A93B3FAF24355DCB00AFC97F /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		A93B3FB224355EAE00AFC97F /* HistoricalCountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCountryInfo.swift; sourceTree = "<group>"; };
 		A93B3FB624355F5700AFC97F /* DefaultDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultDataRequest.swift; sourceTree = "<group>"; };
-		A93B3FB824355F5700AFC97F /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
 		A93B3FBA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultDataRequest+WebserviceRequest.swift"; sourceTree = "<group>"; };
 		A93B3FBC24355F5700AFC97F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -147,7 +144,6 @@
 		A95AEC8827F0F8D10092C93E /* XCTestCase+HelperObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+HelperObjects.swift"; sourceTree = "<group>"; };
 		A95AEC8A27F0FD6B0092C93E /* NewsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceTests.swift; sourceTree = "<group>"; };
 		A97100F324411A6D002EDF34 /* WorldService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldService.swift; sourceTree = "<group>"; };
-		A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCasesCell.swift; sourceTree = "<group>"; };
 		A98FC6AE24411F25004433A6 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundColorInit.swift"; sourceTree = "<group>"; };
@@ -389,54 +385,20 @@
 			isa = PBXGroup;
 			children = (
 				A93B3FB624355F5700AFC97F /* DefaultDataRequest.swift */,
-				A93B3FB724355F5700AFC97F /* Protocol */,
-				A93B3FB924355F5700AFC97F /* Extensions */,
-			);
-			path = DataRequest;
-			sourceTree = "<group>";
-		};
-		A93B3FB724355F5700AFC97F /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A93B3FB824355F5700AFC97F /* DataRequest.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		A93B3FB924355F5700AFC97F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
 				A93B3FBA24355F5700AFC97F /* DefaultDataRequest+WebserviceRequest.swift */,
 			);
-			path = Extensions;
+			path = DataRequest;
 			sourceTree = "<group>";
 		};
 		A93B3FBB24355F5700AFC97F /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				A93B3FBC24355F5700AFC97F /* NetworkManager.swift */,
-				A93B3FBD24355F5700AFC97F /* Enum */,
-				A93B3FBF24355F5700AFC97F /* Protocol */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		A93B3FBD24355F5700AFC97F /* Enum */ = {
-			isa = PBXGroup;
-			children = (
+				A93B3FC124355F5700AFC97F /* WebserviceRequest.swift */,
 				A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */,
 				A93B3FD224355FCD00AFC97F /* WebserviceError.swift */,
 			);
-			path = Enum;
-			sourceTree = "<group>";
-		};
-		A93B3FBF24355F5700AFC97F /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A98FC6A824411D51004433A6 /* NetworkManagerProtocol.swift */,
-				A93B3FC124355F5700AFC97F /* WebserviceRequest.swift */,
-			);
-			path = Protocol;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A950703E24531820007DC98F /* Home */ = {
@@ -586,6 +548,7 @@
 		A9B2AE3927ED152D00BA750B /* Covid19Tracker Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A9E3BEA427F2031D0071AAD4 /* Api */,
 				A95AEC8527F0F8520092C93E /* Helpers */,
 				A95AEC8227F0D36D0092C93E /* Extensions */,
 				A95AEC7F27F0D31D0092C93E /* Services */,
@@ -617,6 +580,13 @@
 				A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		A9E3BEA427F2031D0071AAD4 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 		F148B3CD0040E95CDBA0E984 /* Frameworks */ = {
@@ -844,7 +814,6 @@
 				A98FC6F424455226004433A6 /* Keyboard.swift in Sources */,
 				A93B3FCC24355F5700AFC97F /* HTTPMethod.swift in Sources */,
 				A99B73F0244679CE00383D30 /* CareCardCell.swift in Sources */,
-				A93B3FC924355F5700AFC97F /* DataRequest.swift in Sources */,
 				A98FC6E0244257DF004433A6 /* TodayCasesCell.swift in Sources */,
 				A9232E862457979F00CF1654 /* NewsService.swift in Sources */,
 				A98FC6D624424608004433A6 /* CountryInfo.swift in Sources */,
@@ -879,7 +848,6 @@
 				A93B3F8F2432D04D00AFC97F /* UIColor+Extension.swift in Sources */,
 				A98FC6C024421A12004433A6 /* String+Calculations.swift in Sources */,
 				A93B3FCE24355F5700AFC97F /* WebserviceRequest.swift in Sources */,
-				A98FC6A924411D51004433A6 /* NetworkManagerProtocol.swift in Sources */,
 				A93B3F952432D48400AFC97F /* CodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
