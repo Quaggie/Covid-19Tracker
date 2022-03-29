@@ -78,8 +78,11 @@ final class DefaultDataRequest: DataRequest {
 
         task = session.dataTask(with: urlRequest) { data, response, error in
             guard let response = response as? HTTPURLResponse, let data = data else {
-                completion(.failure(.unexpected))
-                return
+                if let urlError = error as? URLError {
+                    return completion(.failure(WebserviceError.from(urlError: urlError)))
+                } else {
+                    return completion(.failure(.unexpected))
+                }
             }
 
             do {
@@ -89,11 +92,6 @@ final class DefaultDataRequest: DataRequest {
                 }
                 completion(.success(data))
             } catch {
-                if let urlError = error as? URLError {
-                    completion(.failure(WebserviceError.from(urlError: urlError)))
-                    return
-                }
-
                 completion(.failure(WebserviceError.from(statusCode: response.statusCode)))
             }
         }

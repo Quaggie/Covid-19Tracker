@@ -34,6 +34,9 @@ class NetworkManagerTests: XCTestCase {
     func test_fetch_failsWhenRequestCompletesWithAllErrorCases() {
         expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: anyNSError()), for: Self.validURLPath)
         expect(.failure(.malformedURL), when: .init(data: nil, response: nil, error: anyNSError()), for: Self.invalidURLPath)
+        expect(.failure(.timedOut), when: .init(data: nil, response: nil, error: URLError(.timedOut, userInfo: [:])))
+        expect(.failure(.notConnectedToInternet), when: .init(data: nil, response: nil, error: URLError(.notConnectedToInternet, userInfo: [:])))
+        expect(.failure(.unexpected), when: .init(data: nil, response: nil, error: URLError(.badServerResponse, userInfo: [:])))
     }
 
     func test_fetch_shouldFailWithAllInvalidCases() {
@@ -87,7 +90,7 @@ extension NetworkManagerTests {
         var receivedRequest: URLRequest?
         let expectation = expectation(description: #function)
         URLProtocolStub.observeRequest { receivedRequest = $0 }
-        sut.fetch(urlString: urlPath, method: method, parameters: parameters, headers: [:]) { _ in
+        sut.fetch(urlString: urlPath, method: method, parameters: parameters, headers: headers) { _ in
             expectation.fulfill()
         }
 
