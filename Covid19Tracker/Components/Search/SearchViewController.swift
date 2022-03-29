@@ -16,7 +16,7 @@ final class SearchViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService = CountryService()
+    private let countryService = MainQueueDispatchDecorator(instance: CountryService())
 
     // MARK: - Notifications
     private var keyboardWillShowNoticationToken: Notification.Token!

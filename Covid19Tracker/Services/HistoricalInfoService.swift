@@ -115,3 +115,23 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
         return historicalTimelineDayInfoList
     }
 }
+
+extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: HistoricalInfoServiceProtocol {
+    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
+        instance.fetch(country: country) { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
+            }
+        }
+    }
+
+    func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
+        instance.fetchAll { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
+            }
+        }
+    }
+}

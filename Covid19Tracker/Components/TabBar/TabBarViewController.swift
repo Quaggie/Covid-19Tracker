@@ -18,7 +18,11 @@ final class TabBarViewController: UITabBarController {
         let homeViewController = HomeViewController()
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
 
-        let worldViewController = WorldViewController()
+        let worldViewController = WorldViewController(
+            worldService: MainQueueDispatchDecorator(instance: WorldService()),
+            countryService: MainQueueDispatchDecorator(instance: CountryService()),
+            historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+        )
         worldViewController.tabBarItem = UITabBarItem(title: "World", image: UIImage(named: "tabbar_world"), tag: 1)
 
         let searchViewController = SearchViewController(cameFromHome: false)
@@ -32,13 +36,17 @@ final class TabBarViewController: UITabBarController {
 
         viewControllers = [homeViewController, worldViewController, searchViewController, newsViewController, careViewController]
     }
+
+    private func makeSearchViewController() -> SearchViewController {
+        SearchViewController(cameFromHome: false)
+    }
 }
 
 // MARK: - UITabBarControllerDelegate
 extension TabBarViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is SearchViewController {
-            let controller = SearchViewController(cameFromHome: false)
+            let controller = makeSearchViewController()
             present(controller, animated: true)
             return false
         }

@@ -17,7 +17,7 @@ final class NewsViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let newsService = NewsService()
+    private let newsService = MainQueueDispatchDecorator(instance: NewsService())
 
     // MARK: - Properties
     private var state: State = .loading {

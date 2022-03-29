@@ -22,9 +22,9 @@ final class WorldViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let worldService = WorldService()
-    private let countryService = CountryService()
-    private let historicalInfoService = HistoricalInfoService()
+    private let worldService: WorldServiceProtocol
+    private let countryService: CountryServiceProtocol
+    private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -64,6 +64,24 @@ final class WorldViewController: BaseViewController {
         return .lightContent
     }
 
+    // MARK: - Init
+    init(
+        worldService: WorldServiceProtocol = WorldService(),
+        countryService: CountryServiceProtocol = CountryService(),
+        historicalInfoService: HistoricalInfoServiceProtocol = HistoricalInfoService()
+    ) {
+        self.worldService = worldService
+        self.countryService = countryService
+        self.historicalInfoService = historicalInfoService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -117,7 +135,7 @@ final class WorldViewController: BaseViewController {
         }
 
         dispatchGroup.enter()
-        countryService.fetchAll { [weak self] (result) in
+        countryService.fetchAll(sort: true) { [weak self] (result) in
             guard let self = self else { return }
             dispatchGroup.leave()
 

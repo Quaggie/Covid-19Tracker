@@ -42,7 +42,7 @@ final class CountryService: CountryServiceProtocol {
         }
     }
 
-    func fetchAll(sort: Bool = true, completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
+    func fetchAll(sort: Bool, completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
         var urlString = "/countries"
         if sort {
             urlString += "?sort=cases"
@@ -59,6 +59,26 @@ final class CountryService: CountryServiceProtocol {
                  }
             case .failure(let error):
                 completion(.failure(error))
+            }
+        }
+    }
+}
+
+extension MainQueueDispatchDecorator: CountryServiceProtocol where T: CountryServiceProtocol {
+    func fetch(country: String, completion: @escaping (Result<Country, WebserviceError>) -> Void) {
+        instance.fetch(country: country) { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
+            }
+        }
+    }
+
+    func fetchAll(sort: Bool, completion: @escaping (Result<[Country], WebserviceError>) -> Void) {
+        instance.fetchAll(sort: sort) { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
             }
         }
     }

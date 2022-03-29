@@ -23,8 +23,8 @@ final class HomeViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService = CountryService()
-    private let historicalInfoService = HistoricalInfoService()
+    private let countryService = MainQueueDispatchDecorator(instance: CountryService())
+    private let historicalInfoService = MainQueueDispatchDecorator(instance: HistoricalInfoService())
 
     // MARK: - Properties
     private var selectedCountry: Country? {

@@ -37,3 +37,14 @@ final class WorldService: WorldServiceProtocol {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: WorldServiceProtocol where T: WorldServiceProtocol {
+    func fetchCases(completion: @escaping (Result<Timeline, WebserviceError>) -> Void) {
+        instance.fetchCases { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
+            }
+        }
+    }
+}

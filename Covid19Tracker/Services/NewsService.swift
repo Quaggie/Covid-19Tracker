@@ -43,3 +43,14 @@ final class NewsService: NewsServiceProtocol {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: NewsServiceProtocol where T: NewsServiceProtocol {
+    func fetch(completion: @escaping (Result<[News], WebserviceError>) -> Void) {
+        instance.fetch { [weak self] result in
+            guard let self = self else { return }
+            self.dispatch {
+                completion(result)
+            }
+        }
+    }
+}

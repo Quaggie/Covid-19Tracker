@@ -30,7 +30,7 @@ final class NetworkManager: NetworkManagerProtocol {
     // MARK: - Properties
     private let source: Source
     private let sessionConfiguration: URLSessionConfiguration
-    private var requests: [WebserviceRequest] = []
+    var requests: [WebserviceRequest] = []
     private var baseUrl: String {
         switch source {
         case .covid:
@@ -68,11 +68,9 @@ final class NetworkManager: NetworkManagerProtocol {
 
         request.responseData { [weak self] result in
             guard let self = self else { return }
-            self.requests.removeAll { $0.task?.hashValue == request.task?.hashValue }
+            self.requests.removeAll { $0.task?.taskIdentifier == request.task?.taskIdentifier }
 
-            DispatchQueue.main.async {
-                completion(result)
-            }
+            completion(result)
         }
         self.requests.append(request)
         return request
