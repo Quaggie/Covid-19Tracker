@@ -125,12 +125,6 @@ final class CareViewController: BaseViewController {
     }
 }
 
-extension CareViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
-}
-
 extension CareViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if selectedIndex == 0 {

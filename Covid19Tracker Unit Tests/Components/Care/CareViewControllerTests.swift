@@ -9,7 +9,7 @@
 import XCTest
 @testable import Covid19_Tracker
 
-class CareViewController: UIViewController {
+class CareViewController: BaseViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

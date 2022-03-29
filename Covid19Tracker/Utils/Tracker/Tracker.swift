@@ -9,12 +9,15 @@
 import Firebase
 
 protocol TrackerProtocol {
-    var source: String { get }
     func screenView(name: String)
 }
 
-struct Tracker: TrackerProtocol {
-    let source: String
+final class Tracker: TrackerProtocol {
+    private let source: String
+
+    init(source: String) {
+        self.source = source
+    }
 
     func screenView(name: String) {
         Analytics.setScreenName(name, screenClass: source)
