@@ -17,8 +17,16 @@ class CareViewController: UIViewController {
 
 class CareViewControllerTests: XCTestCase {
     func test_preferredStatusBarStyle_isCorrectType() {
-        let sut = CareViewController()
+        let sut = makeSUT()
 
         XCTAssertEqual(sut.preferredStatusBarStyle, .lightContent)
+    }
+}
+
+extension CareViewControllerTests {
+    func makeSUT() -> CareViewController {
+        let viewController = CareViewController()
+        checkMemoryLeak(for: viewController)
+        return viewController
     }
 }
