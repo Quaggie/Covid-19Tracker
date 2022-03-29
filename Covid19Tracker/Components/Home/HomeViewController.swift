@@ -23,8 +23,8 @@ final class HomeViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService = MainQueueDispatchDecorator(instance: CountryService())
-    private let historicalInfoService = MainQueueDispatchDecorator(instance: HistoricalInfoService())
+    private let countryService: CountryServiceProtocol
+    private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
     private var selectedCountry: Country? {
@@ -87,6 +87,19 @@ final class HomeViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
+    // MARK: - Init
+    init(countryService: CountryServiceProtocol, historicalInfoService: HistoricalInfoServiceProtocol) {
+        self.countryService = countryService
+        self.historicalInfoService = historicalInfoService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

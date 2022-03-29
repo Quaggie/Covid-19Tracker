@@ -15,7 +15,10 @@ final class TabBarViewController: UITabBarController {
         tabBar.backgroundColor = Color.white
         delegate = self
 
-        let homeViewController = HomeViewController()
+        let homeViewController = HomeViewController(
+            countryService: MainQueueDispatchDecorator(instance: CountryService()),
+            historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+        )
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
 
         let worldViewController = WorldViewController(
