@@ -17,7 +17,7 @@ final class NewsViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let newsService = MainQueueDispatchDecorator(instance: NewsService())
+    private let newsService: NewsServiceProtocol
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -54,6 +54,17 @@ final class NewsViewController: BaseViewController {
 
     private let loadingView = LoadingView()
     private lazy var errorView = ErrorView(delegate: self)
+
+    // MARK: - Init
+    init(newsService: NewsServiceProtocol) {
+        self.newsService = newsService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {

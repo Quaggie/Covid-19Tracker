@@ -28,7 +28,7 @@ final class TabBarViewController: UITabBarController {
         let searchViewController = makeSearchViewController()
         searchViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search_icon"), tag: 2)
 
-        let newsViewController = NewsViewController()
+        let newsViewController = NewsViewController(newsService: MainQueueDispatchDecorator(instance: NewsService()))
         newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 3)
 
         let careViewController = CareViewController()
