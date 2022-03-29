@@ -87,6 +87,7 @@
 		A9E3BEAA27F224DF0071AAD4 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */; };
 		A9E3BEAC27F233DA0071AAD4 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */; };
 		A9E3BEAF27F371880071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */; };
+		A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,7 @@
 		A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA592B42C5FBFD43F32AFF9F /* Pods-Covid19Tracker Unit Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker Unit Tests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker Unit Tests/Pods-Covid19Tracker Unit Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F36BC17731B1BC0EAD156C71 /* Pods-Covid19Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker/Pods-Covid19Tracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 		A9B2AE3927ED152D00BA750B /* Covid19Tracker Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A9E3BEB027F37E4B0071AAD4 /* Utils */,
 				A9E3BEA427F2031D0071AAD4 /* Api */,
 				A95AEC8527F0F8520092C93E /* Helpers */,
 				A95AEC8227F0D36D0092C93E /* Extensions */,
@@ -602,6 +605,22 @@
 			isa = PBXGroup;
 			children = (
 				A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		A9E3BEB027F37E4B0071AAD4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A9E3BEB127F37E520071AAD4 /* Decorators */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A9E3BEB127F37E520071AAD4 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
@@ -880,6 +899,7 @@
 				A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9E3BEAA27F224DF0071AAD4 /* URLProtocolStub.swift in Sources */,
 				A9E3BEA627F205580071AAD4 /* NetworkManagerTests.swift in Sources */,
+				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecorator.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A95AEC8B27F0FD6B0092C93E /* NewsServiceTests.swift in Sources */,
 				A95AEC8927F0F8D20092C93E /* XCTestCase+HelperObjects.swift in Sources */,
