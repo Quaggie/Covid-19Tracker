@@ -25,7 +25,7 @@ final class TabBarViewController: UITabBarController {
         )
         worldViewController.tabBarItem = UITabBarItem(title: "World", image: UIImage(named: "tabbar_world"), tag: 1)
 
-        let searchViewController = SearchViewController(cameFromHome: false)
+        let searchViewController = makeSearchViewController()
         searchViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search_icon"), tag: 2)
 
         let newsViewController = NewsViewController()
@@ -38,7 +38,7 @@ final class TabBarViewController: UITabBarController {
     }
 
     private func makeSearchViewController() -> SearchViewController {
-        SearchViewController(cameFromHome: false)
+        SearchViewController(cameFromHome: false, countryService: MainQueueDispatchDecorator(instance: CountryService()))
     }
 }
 

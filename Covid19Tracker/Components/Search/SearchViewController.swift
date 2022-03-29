@@ -16,7 +16,7 @@ final class SearchViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService = MainQueueDispatchDecorator(instance: CountryService())
+    private let countryService: CountryServiceProtocol
 
     // MARK: - Notifications
     private var keyboardWillShowNoticationToken: Notification.Token!
@@ -85,8 +85,9 @@ final class SearchViewController: BaseViewController {
         return .lightContent
     }
 
-    init(cameFromHome: Bool) {
+    init(cameFromHome: Bool, countryService: CountryServiceProtocol) {
         self.cameFromHome = cameFromHome
+        self.countryService = countryService
         super.init(nibName: nil, bundle: nil)
     }
 

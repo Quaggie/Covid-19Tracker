@@ -170,7 +170,7 @@ final class HomeViewController: BaseViewController {
     }
 
     @objc private func goToSearch() {
-        let controller = SearchViewController(cameFromHome: true)
+        let controller = SearchViewController(cameFromHome: true, countryService: MainQueueDispatchDecorator(instance: CountryService()))
         present(controller, animated: true)
     }
 }
