@@ -44,6 +44,7 @@ final class CareViewController: BaseViewController {
         return .lightContent
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

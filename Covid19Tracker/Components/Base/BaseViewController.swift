@@ -9,9 +9,11 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    // MARK: - Properties
     private(set) lazy var tracker: TrackerProtocol = Tracker(source: String(describing: self))
     private let gradientLayer = CAGradientLayer()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradient()
@@ -23,6 +25,7 @@ class BaseViewController: UIViewController {
         gradientLayer.frame = view.bounds
     }
 
+    // MARK: - Setup
     private func setupGradient() {
         gradientLayer.colors = [Color.purpleDark.cgColor, Color.blueLight.cgColor]
         view.layer.insertSublayer(gradientLayer, at: 0)
