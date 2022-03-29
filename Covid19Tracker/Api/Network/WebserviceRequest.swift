@@ -14,3 +14,9 @@ protocol WebserviceRequest {
 
     func cancel()
 }
+
+extension WebserviceRequest {
+    var isCancelled: Bool {
+        task?.state == .canceling
+    }
+}

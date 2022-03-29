@@ -15,8 +15,10 @@ final class NetworkManagerSpy: NetworkManagerProtocol {
         fetchCompletionMessages.count
     }
 
-    func fetch(urlString: String, method: HTTPMethod, parameters: [String : Any], headers: [String : String], completion: @escaping (Result<Data, WebserviceError>) -> Void) {
+    @discardableResult
+    func fetch(urlString: String, method: HTTPMethod, parameters: [String : Any], headers: [String : String], completion: @escaping (Result<Data, WebserviceError>) -> Void) -> WebserviceRequest? {
         fetchCompletionMessages.append(completion)
+        return nil
     }
 
     func complete(with result: Result<Data, WebserviceError>, at index: Int = 0) {

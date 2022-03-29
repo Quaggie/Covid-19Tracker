@@ -10,13 +10,14 @@
 import UIKit
 
 protocol NetworkManagerProtocol {
+    @discardableResult
     func fetch(
         urlString: String,
         method: HTTPMethod,
         parameters: [String: Any],
         headers: [String: String],
         completion: @escaping (Result<Data, WebserviceError>) -> Void
-    )
+    ) -> WebserviceRequest?
 }
 
 final class NetworkManager: NetworkManagerProtocol {
@@ -45,17 +46,17 @@ final class NetworkManager: NetworkManagerProtocol {
         self.sessionConfiguration = sessionConfiguration
     }
 
-    // MARK: - Protocol
+    @discardableResult
     func fetch(
         urlString: String,
         method: HTTPMethod,
         parameters: [String: Any],
         headers: [String: String],
         completion: @escaping (Result<Data, WebserviceError>) -> Void
-    ) {
+    ) -> WebserviceRequest? {
         guard let url = URL(string: "\(baseUrl)\(urlString)") else {
             completion(.failure(WebserviceError.malformedURL))
-            return
+            return nil
         }
         let request = DefaultDataRequest(
             url: url, method: method,
@@ -74,6 +75,7 @@ final class NetworkManager: NetworkManagerProtocol {
             }
         }
         self.requests.append(request)
+        return request
     }
 
     // MARK: - Deinit

@@ -73,6 +73,19 @@ class NetworkManagerTests: XCTestCase {
         let data = Data()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
+
+    func test_fetch_cancelsRequestsOnDeinit() {
+        var sut: NetworkManager? = makeSUT()
+
+        let request = sut?.fetch(urlString: Self.validURLPath, method: .get, parameters: [:], headers: [:]) { _ in }
+
+        let unwrappedRequest: WebserviceRequest = try! XCTUnwrap(request)
+        XCTAssertFalse(unwrappedRequest.isCancelled)
+
+        sut = nil
+
+        XCTAssertTrue(unwrappedRequest.isCancelled)
+    }
 }
 
 extension NetworkManagerTests {
