@@ -120,7 +120,11 @@ final class SearchViewController: BaseViewController {
             NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
             closeModal()
         } else {
-            let controller = CountryViewController(countryName: country.country)
+            let controller = CountryViewController(
+                countryName: country.country,
+                countryService: MainQueueDispatchDecorator(instance: CountryService()),
+                historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+            )
             present(controller, animated: true)
         }
     }

@@ -176,7 +176,11 @@ final class WorldViewController: BaseViewController {
     }
 
     private func goToCountryDetail(country: Country) {
-        let controller = CountryViewController(countryName: country.country)
+        let controller = CountryViewController(
+            countryName: country.country,
+            countryService: MainQueueDispatchDecorator(instance: CountryService()),
+            historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+        )
         present(controller, animated: true)
     }
 }

@@ -23,8 +23,8 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService = MainQueueDispatchDecorator(instance: CountryService())
-    private let historicalInfoService = MainQueueDispatchDecorator(instance: HistoricalInfoService())
+    private let countryService: CountryServiceProtocol
+    private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
     private let countryName: String
@@ -71,8 +71,10 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(countryName: String) {
+    init(countryName: String, countryService: CountryServiceProtocol, historicalInfoService: HistoricalInfoServiceProtocol) {
         self.countryName = countryName
+        self.countryService = countryService
+        self.historicalInfoService = historicalInfoService
         super.init(nibName: nil, bundle: nil)
 
         self.titleLabel.text = countryName
