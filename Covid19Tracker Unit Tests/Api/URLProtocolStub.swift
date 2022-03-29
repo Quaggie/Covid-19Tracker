@@ -40,19 +40,21 @@ final class URLProtocolStub: URLProtocol {
             return requestObserver(request)
         }
 
-        if let response = URLProtocolStub.stub?.response {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
-        }
+        if let stub = URLProtocolStub.stub {
+            if let response = stub.response {
+                client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+            }
 
-        if let data = URLProtocolStub.stub?.data {
-            client?.urlProtocol(self, didLoad: data)
-        }
+            if let data = stub.data {
+                client?.urlProtocol(self, didLoad: data)
+            }
 
-        if let error = URLProtocolStub.stub?.error {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
+            if let error = stub.error {
+                client?.urlProtocol(self, didFailWithError: error)
+            }
 
-        client?.urlProtocolDidFinishLoading(self)
+            client?.urlProtocolDidFinishLoading(self)
+        }
     }
 
     override func stopLoading() {
@@ -63,7 +65,7 @@ final class URLProtocolStub: URLProtocol {
         URLProtocolStub.requestObserver = observer
     }
 
-    static func stub(_ stub: Stub) {
+    static func stub(_ stub: Stub?) {
         URLProtocolStub.stub = stub
     }
 }

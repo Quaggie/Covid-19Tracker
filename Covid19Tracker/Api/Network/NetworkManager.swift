@@ -30,7 +30,7 @@ final class NetworkManager: NetworkManagerProtocol {
     // MARK: - Properties
     private let source: Source
     private let sessionConfiguration: URLSessionConfiguration
-    var requests: [WebserviceRequest] = []
+    private var requests: [WebserviceRequest] = []
     private var baseUrl: String {
         switch source {
         case .covid:
@@ -59,7 +59,8 @@ final class NetworkManager: NetworkManagerProtocol {
             return nil
         }
         let request = DefaultDataRequest(
-            url: url, method: method,
+            url: url,
+            method: method,
             parameters: parameters,
             headers: headers,
             cache: source == .google,
@@ -78,7 +79,6 @@ final class NetworkManager: NetworkManagerProtocol {
 
     // MARK: - Deinit
     deinit {
-      print("DEINIT NetworkManager")
       requests.forEach { $0.cancel() }
     }
 }

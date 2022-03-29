@@ -21,13 +21,11 @@ class NetworkManagerTests: XCTestCase {
         URLProtocolStub.stopIntercepting()
     }
 
-    func test_fetch_requestsWithCorrectURLForGetMethod() {
+    func test_fetch_requestWithCorrectURLForGetMethod() {
         testRequest(source: .covid, urlPath: Self.validURLPath, for: .get)
-        testRequest(source: .google, urlPath: Self.validURLPath, for: .get)
     }
 
-    func test_fetch_requestsWithCorrectURLForPostMethod() {
-        testRequest(source: .covid, urlPath: Self.validURLPath, for: .post, with: anyDictionary(), and: anyHeader())
+    func test_fetch_requestWithCorrectURLForPostMethod() {
         testRequest(source: .google, urlPath: Self.validURLPath, for: .post, with: anyDictionary(), and: anyHeader())
     }
 
@@ -74,20 +72,21 @@ class NetworkManagerTests: XCTestCase {
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 
-//    func test_fetch_cancelsRequestsOnDeinit() {
-//        var sut: NetworkManager? = makeSUT()
-//
-//        let request = sut?.fetch(urlString: Self.validURLPath, method: .get, parameters: [:], headers: [:]) { _ in
-//            XCTFail("Request is not supposed to be enter callback")
-//        }
-//
-//        let unwrappedRequest: WebserviceRequest = try! XCTUnwrap(request)
-//        XCTAssertFalse(unwrappedRequest.isCancelled)
-//
-//        sut = nil
-//
-//        XCTAssertTrue(unwrappedRequest.isCancelled, "Expected \(URLSessionTask.State.canceling) instead got \(unwrappedRequest.task!.state)")
-//    }
+    func test_fetch_cancelsRequestsOnDeinit() {
+        var sut: NetworkManager? = makeSUT()
+
+        URLProtocolStub.stub(nil)
+        let request = sut?.fetch(urlString: Self.validURLPath, method: .get, parameters: [:], headers: [:]) { _ in
+            XCTFail("Request is not supposed to enter callback!")
+        }
+
+        let unwrappedRequest: WebserviceRequest = try! XCTUnwrap(request)
+        XCTAssertFalse(unwrappedRequest.isCancelled)
+
+        sut = nil
+
+        XCTAssertTrue(unwrappedRequest.isCancelled, "Expected \(URLSessionTask.State.canceling) instead got \(unwrappedRequest.task!.state)")
+    }
 }
 
 extension NetworkManagerTests {
@@ -111,8 +110,8 @@ extension NetworkManagerTests {
 
         wait(for: [expectation], timeout: 1)
 
-        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(urlPath))
-        XCTAssertEqual(receivedRequest!.httpMethod, method.rawValue)
+        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(urlPath), file: file, line: line)
+        XCTAssertEqual(receivedRequest!.httpMethod, method.rawValue, file: file, line: line)
     }
 
     func expect(_ expectedResult: Result<Data, WebserviceError>, when stub: Stub, for urlPath: String = NetworkManagerTests.validURLPath, file: StaticString = #filePath, line: UInt = #line) {
@@ -140,7 +139,7 @@ extension NetworkManagerTests {
             case (.failure(let expectedError), .failure(let receivedError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
-                XCTFail("Expected \(expectedResult) got \(String(describing: receivedResult)) instead")
+                XCTFail("Expected \(expectedResult) got \(String(describing: receivedResult)) instead", file: file, line: line)
             }
         }
     }
