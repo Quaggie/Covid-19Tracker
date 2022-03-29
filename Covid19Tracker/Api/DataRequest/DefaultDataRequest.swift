@@ -21,7 +21,7 @@ protocol DataRequest {
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
 }
 
-final class DefaultDataRequest: DataRequest {
+final class DefaultDataRequest: DataRequest, WebserviceRequest {
     // MARK: - Properties
     private let url: URL
     private let method: HTTPMethod
