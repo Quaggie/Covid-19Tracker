@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class CareViewController: BaseViewController {
     enum DatasourceType {
@@ -24,7 +25,7 @@ final class CareViewController: BaseViewController {
     // MARK: - Views
     private let titleLabel = UILabel(text: "Care", font: Font.regular(size: 24), textColor: Color.white)
     private lazy var pageSelectorView = PageSelectorView(titles: ["Prevention", "Symptoms"], selectedTitle: "Prevention", delegate: self)
-    private lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
 
@@ -143,7 +144,13 @@ extension CareViewController: UICollectionViewDataSource {
             cell.setup(model: model)
             return cell
         case .source:
-            return collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareSourceCell
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareSourceCell
+            cell.onTapLink = { [weak self] in
+                let url = URL(string: "https://www.who.int/emergencies/diseases/novel-coronavirus-2019")!
+                let controller = SFSafariViewController(url: url)
+                self?.present(controller, animated: true)
+            }
+            return cell
         }
     }
 }

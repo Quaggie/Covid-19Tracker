@@ -8,7 +8,7 @@
 
 import Firebase
 
-protocol TrackerProtocol {
+protocol TrackerProtocol: AnyObject {
     func screenView(name: String)
 }
 

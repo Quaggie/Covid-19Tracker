@@ -12,8 +12,10 @@ final class CareSourceCell: UICollectionViewCell {
     // MARK: - Static
     static let height: CGFloat = 14
 
-    // MARK: - Views
+    // MARK: - Properties
+    var onTapLink: (() -> Void)?
 
+    // MARK: - Views
     private let button: UIButton = {
         let btn = UIButton(type: .system)
 
@@ -27,7 +29,7 @@ final class CareSourceCell: UICollectionViewCell {
             .font: Font.regular(size: 10),
             .foregroundColor: Color.white,
             .underlineColor: Color.white,
-            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let linkAttributedString = NSAttributedString(string: "World Health Organization", attributes: linkAttributes)
         attributedString.append(linkAttributedString)
