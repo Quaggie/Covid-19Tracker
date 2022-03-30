@@ -291,6 +291,27 @@ class CareViewControllerTests: XCTestCase {
         let expectedsecondItemSize = CGSize(width: cellWidth, height: CareSourceCell.height)
         XCTAssertEqual(secondItemSize, expectedsecondItemSize)
     }
+
+    func test_minimumLineSpacing_returnsCorrectLineSpacing() {
+        let delegateFlowLayout = DelegateFlowLayoutComposite(
+            delegateFlowLayouts: [
+                CareDelegateFlowLayout(),
+                SourceDelegateFlowLayout()
+            ]
+        )
+        checkMemoryLeak(for: delegateFlowLayout)
+        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+
+        sut.loadViewIfNeeded()
+
+        let firstSectionLineSpacing = delegateFlowLayout.collectionView(sut.collectionView, layout: sut.collectionView.collectionViewLayout, minimumLineSpacingForSectionAt: 0)
+        let expectedFirstSectionLineSpacing: CGFloat = 16
+        XCTAssertEqual(firstSectionLineSpacing, expectedFirstSectionLineSpacing)
+
+        let secondSectionLineSpacing = delegateFlowLayout.collectionView(sut.collectionView, layout: sut.collectionView.collectionViewLayout, minimumLineSpacingForSectionAt: 1)
+        let expectedSecondSectionLineSpacing: CGFloat = .zero
+        XCTAssertEqual(secondSectionLineSpacing, expectedSecondSectionLineSpacing)
+    }
 }
 
 extension CareViewControllerTests {
