@@ -19,7 +19,7 @@ final class CareViewController: BaseViewController {
     private var selectedIndex: Int = 0
     private var preventionDatasource: [DatasourceType] = []
     private var symptomsDatasource: [DatasourceType] = []
-    private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
+    private let collectionViewInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
     private let lineSpacing: CGFloat = 16
 
     // MARK: - Views
@@ -33,6 +33,7 @@ final class CareViewController: BaseViewController {
         cv.dataSource = self
         cv.delegate = self
         cv.backgroundColor = .clear
+        cv.contentInset = collectionViewInset
 
         let bv = UIView()
         bv.backgroundColor = .clear
@@ -165,10 +166,10 @@ extension CareViewController: UICollectionViewDelegateFlowLayout {
 
         switch item {
         case .card:
-            let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+            let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
             return .init(width: width, height: CareCardCell.height)
         case .source:
-            let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
+            let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
             return .init(width: width, height: CareSourceCell.height)
         }
     }
@@ -179,14 +180,6 @@ extension CareViewController: UICollectionViewDelegateFlowLayout {
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         return lineSpacing
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        return sectionInset
     }
 }
 
@@ -217,12 +210,12 @@ extension CareViewController: CodeView {
         titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
-                          insets: .init(top: 36, left: sectionInset.left, bottom: 0, right: sectionInset.right))
+                          insets: .init(top: 36, left: collectionViewInset.left, bottom: 0, right: collectionViewInset.right))
 
         pageSelectorView.anchor(top: titleLabel.bottomAnchor,
                                 leading: view.leadingAnchor,
                                 trailing: view.trailingAnchor,
-                                insets: .init(top: 27, left: sectionInset.right, bottom: 0, right: sectionInset.right))
+                                insets: .init(top: 27, left: collectionViewInset.right, bottom: 0, right: collectionViewInset.right))
 
         collectionView.anchor(top: pageSelectorView.bottomAnchor,
                               leading: view.leadingAnchor,
