@@ -29,7 +29,7 @@ class CareViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         return .lightContent
     }
 
-    init(tracker: TrackerProtocol, dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegateFlowLayout) {
+    init(tracker: TrackerProtocol, dataSource: UICollectionViewDataSource?, delegate: UICollectionViewDelegateFlowLayout?) {
         self.tracker = tracker
         self.dataSource = dataSource
         self.delegate = delegate
@@ -135,13 +135,20 @@ final class SourceDataSource: NSObject, UICollectionViewDataSource, CellRegistra
     }
 }
 
-class PreventionDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout {
+final class DelegateFlowLayoutComposite: NSObject, UICollectionViewDelegateFlowLayout {
+    let delegateFlowLayouts: [UICollectionViewDelegateFlowLayout]
+
+    init(delegateFlowLayouts: [UICollectionViewDelegateFlowLayout]) {
+        self.delegateFlowLayouts = delegateFlowLayouts
+    }
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        delegateFlowLayout(forSection: indexPath.section)
+            .collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) ?? .zero
     }
 
     func collectionView(
@@ -149,7 +156,8 @@ class PreventionDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 0
+        delegateFlowLayout(forSection: section)
+            .collectionView?(collectionView, layout: collectionViewLayout, minimumLineSpacingForSectionAt: section) ?? 0
     }
 
     func collectionView(
@@ -157,19 +165,54 @@ class PreventionDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        return .zero
+        delegateFlowLayout(forSection: section)
+            .collectionView?(collectionView, layout: collectionViewLayout, insetForSectionAt: section) ?? .zero
+    }
+
+    private func delegateFlowLayout(forSection section: Int) -> UICollectionViewDelegateFlowLayout {
+        delegateFlowLayouts[section]
+    }
+}
+
+final class CareDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
+        return CGSize(width: width, height: CareCardCell.height)
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        16
+    }
+}
+
+final class SourceDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
+        return CGSize(width: width, height: CareSourceCell.height)
     }
 }
 
 class CareViewControllerTests: XCTestCase {
     func test_preferredStatusBarStyle_isCorrectType() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _) = makeSUT()
 
         XCTAssertEqual(sut.preferredStatusBarStyle, .lightContent)
     }
 
     func test_viewDidAppear_tracksScreenView() {
-        let (sut, tracker, _) = makeSUT()
+        let (sut, tracker) = makeSUT()
 
         sut.viewDidAppear(false)
 
@@ -185,8 +228,10 @@ class CareViewControllerTests: XCTestCase {
                 SourceDataSource()
             ]
         )
+        checkMemoryLeak(for: careDataSource)
+        checkMemoryLeak(for: dataSource)
         careDataSource.models = models
-        let (sut, _, _) = makeSUT(dataSource: dataSource)
+        let (sut, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -205,8 +250,10 @@ class CareViewControllerTests: XCTestCase {
                 SourceDataSource()
             ]
         )
+        checkMemoryLeak(for: careDataSource)
+        checkMemoryLeak(for: dataSource)
         careDataSource.models = models
-        let (sut, _, _) = makeSUT(dataSource: dataSource)
+        let (sut, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -219,6 +266,31 @@ class CareViewControllerTests: XCTestCase {
         let expectedSecondCell = dataSource.collectionView(sut.collectionView, cellForItemAt: secondItemIndexPath)
         XCTAssert(expectedSecondCell is CareSourceCell)
     }
+
+    func test_sizeForItem_returnCorrectSize() {
+        let delegateFlowLayout = DelegateFlowLayoutComposite(
+            delegateFlowLayouts: [
+                CareDelegateFlowLayout(),
+                SourceDelegateFlowLayout()
+            ]
+        )
+        checkMemoryLeak(for: delegateFlowLayout)
+        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+
+        sut.loadViewIfNeeded()
+
+        let cellWidth: CGFloat = sut.collectionView.frame.width - sut.collectionView.contentInset.left - sut.collectionView.contentInset.right
+
+        let firstItemIndexPath = IndexPath(item: 0, section: 0)
+        let firstItemSize = delegateFlowLayout.collectionView(sut.collectionView, layout: sut.collectionView.collectionViewLayout, sizeForItemAt: firstItemIndexPath)
+        let expectedFirstItemSize = CGSize(width: cellWidth, height: CareCardCell.height)
+        XCTAssertEqual(firstItemSize, expectedFirstItemSize)
+
+        let secondItemIndexPath = IndexPath(item: 0, section: 1)
+        let secondItemSize = delegateFlowLayout.collectionView(sut.collectionView, layout: sut.collectionView.collectionViewLayout, sizeForItemAt: secondItemIndexPath)
+        let expectedsecondItemSize = CGSize(width: cellWidth, height: CareSourceCell.height)
+        XCTAssertEqual(secondItemSize, expectedsecondItemSize)
+    }
 }
 
 extension CareViewControllerTests {
@@ -228,13 +300,11 @@ extension CareViewControllerTests {
 }
 
 extension CareViewControllerTests {
-    func makeSUT(dataSource: UICollectionViewDataSource = CareDataSource(), file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy, UICollectionViewDelegateFlowLayout) {
+    func makeSUT(dataSource: UICollectionViewDataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy) {
         let tracker = TrackerSpy()
-        let delegateFlowLayout = PreventionDelegateFlowLayout()
         let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout)
         checkMemoryLeak(for: viewController, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
-        checkMemoryLeak(for: delegateFlowLayout, file: file, line: line)
-        return (viewController, tracker, delegateFlowLayout)
+        return (viewController, tracker)
     }
 }
