@@ -18,6 +18,7 @@ final class TabBarViewController: UITabBarController {
             SourceDelegateFlowLayout()
         ]
     )
+    private let pageSelector = PageSelectorDelegatesObserver()
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -44,10 +45,14 @@ final class TabBarViewController: UITabBarController {
         let newsViewController = NewsViewController(newsService: MainQueueDispatchDecorator(instance: NewsService()))
         newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 3)
 
-        let careViewController = CareViewController(dataSource: dataSource, delegate: delegateFlowLayout)
-        careViewController.onTapPageSelector = { [weak self] index in
-            self?.careDataSource.index = index
-        }
+        let careViewController = CareViewController(
+            dataSource: dataSource,
+            delegate: delegateFlowLayout,
+            pageSelectorViewDelegate: pageSelector
+        )
+
+        pageSelector.addListener(careViewController)
+        pageSelector.addListener(careDataSource)
         sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(careViewController)
         careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 

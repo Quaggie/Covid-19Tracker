@@ -20,7 +20,9 @@
 		A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */; };
 		A906DEB627F4B06700F19932 /* ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */; };
 		A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */; };
-		A906DEBA27F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */; };
+		A906DEBD27F4F05000F19932 /* PageSelectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */; };
+		A906DEBF27F4F08000F19932 /* PageSelectorDelegatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */; };
+		A906DEC127F4F1EF00F19932 /* DelegatesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */; };
 		A9232E84245795FF00CF1654 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E83245795FE00CF1654 /* Keys.swift */; };
 		A9232E862457979F00CF1654 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E852457979F00CF1654 /* NewsService.swift */; };
 		A9232E88245797EE00CF1654 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E87245797EE00CF1654 /* News.swift */; };
@@ -133,7 +135,9 @@
 		A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenter.swift; sourceTree = "<group>"; };
 		A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewControllerPresenter.swift"; sourceTree = "<group>"; };
-		A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRefVirtualProxy+ViewControllerPresenter.swift"; sourceTree = "<group>"; };
+		A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegate.swift; sourceTree = "<group>"; };
+		A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegatesObserver.swift; sourceTree = "<group>"; };
+		A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatesObservable.swift; sourceTree = "<group>"; };
 		A9232E83245795FE00CF1654 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A9232E852457979F00CF1654 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A9232E87245797EE00CF1654 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -307,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */,
-				A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */,
 			);
 			path = Proxies;
 			sourceTree = "<group>";
@@ -319,6 +322,15 @@
 				A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		A906DEBB27F4F02200F19932 /* PageSelector */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */,
+				A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */,
+			);
+			path = PageSelector;
 			sourceTree = "<group>";
 		};
 		A93B3F492432CBB200AFC97F = {
@@ -430,6 +442,7 @@
 		A93B3F932432D47C00AFC97F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A906DEBB27F4F02200F19932 /* PageSelector */,
 				A906DEB427F4B05C00F19932 /* UIViewController */,
 				A906DEB127F4B02F00F19932 /* Proxies */,
 				A906DEA427F4ACE600F19932 /* UICollectionView */,
@@ -439,6 +452,7 @@
 				A98FC6F22445521E004433A6 /* Keyboard */,
 				A93B3F942432D48400AFC97F /* CodeView.swift */,
 				A9232E83245795FE00CF1654 /* Keys.swift */,
+				A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -945,6 +959,7 @@
 				A906DEA627F4ACF500F19932 /* CareDataSource.swift in Sources */,
 				A9E3BEAC27F233DA0071AAD4 /* HTTPStatusCode.swift in Sources */,
 				A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */,
+				A906DEC127F4F1EF00F19932 /* DelegatesObservable.swift in Sources */,
 				A98FC6E824427CA8004433A6 /* HistoricalInfoService.swift in Sources */,
 				A93B3FCB24355F5700AFC97F /* NetworkManager.swift in Sources */,
 				A98FC6B924416194004433A6 /* BaseViewController.swift in Sources */,
@@ -957,6 +972,7 @@
 				A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */,
 				A9232E88245797EE00CF1654 /* News.swift in Sources */,
 				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
+				A906DEBD27F4F05000F19932 /* PageSelectorDelegate.swift in Sources */,
 				A906DEA027F4ACB200F19932 /* DataSource.swift in Sources */,
 				A98FC6B62441224C004433A6 /* SpaceView.swift in Sources */,
 				A98FC6F424455226004433A6 /* Keyboard.swift in Sources */,
@@ -991,6 +1007,7 @@
 				A93B3FB324355EAE00AFC97F /* HistoricalCountryInfo.swift in Sources */,
 				A93B3FC824355F5700AFC97F /* DefaultDataRequest.swift in Sources */,
 				A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */,
+				A906DEBF27F4F08000F19932 /* PageSelectorDelegatesObserver.swift in Sources */,
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
@@ -1001,7 +1018,6 @@
 				A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */,
 				A93B3F8F2432D04D00AFC97F /* UIColor+Extension.swift in Sources */,
 				A98FC6C024421A12004433A6 /* String+Calculations.swift in Sources */,
-				A906DEBA27F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift in Sources */,
 				A93B3FCE24355F5700AFC97F /* WebserviceRequest.swift in Sources */,
 				A93B3F952432D48400AFC97F /* CodeView.swift in Sources */,
 			);

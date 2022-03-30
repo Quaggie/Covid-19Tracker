@@ -13,9 +13,8 @@ protocol PageSelectorViewDelegate: AnyObject {
 }
 
 final class PageSelectorView: UIView {
-
     // MARK: - Properties
-    private unowned let delegate: PageSelectorViewDelegate
+    var delegate: PageSelectorViewDelegate?
     private var selectedTitle: String
     private var selectedButtonLineWidthConstraint: NSLayoutConstraint?
     private var selectedButtonLineCenterXConstraint: NSLayoutConstraint?
@@ -49,7 +48,7 @@ final class PageSelectorView: UIView {
     }()
 
     // MARK: - Init
-    init(titles: [String], selectedTitle: String, delegate: PageSelectorViewDelegate) {
+    init(titles: [String], selectedTitle: String) {
         var btns: [UIButton] = []
 
         for title in titles {
@@ -64,7 +63,6 @@ final class PageSelectorView: UIView {
         }
         self.buttons = btns
         self.selectedTitle = selectedTitle
-        self.delegate = delegate
 
         super.init(frame: .zero)
         setupViews()
@@ -100,7 +98,7 @@ final class PageSelectorView: UIView {
         selectedTitle = sender.currentTitle ?? ""
 
         guard let selectedButtonIndex = selectedButtonIndex else { return }
-        delegate.pageSelectorViewDidChange(index: selectedButtonIndex)
+        delegate?.pageSelectorViewDidChange(index: selectedButtonIndex)
         animateLine(sender: sender)
     }
 
@@ -166,7 +164,6 @@ final class PageSelectorView: UIView {
 
 // MARK: - CodeView
 extension PageSelectorView: CodeView {
-
     func buildViewHierarchy() {
         addSubview(stackView)
         addSubview(selectedButtonLine)
@@ -190,7 +187,5 @@ extension PageSelectorView: CodeView {
         selectedButtonLineCenterXConstraint?.isActive = true
     }
 
-    func setupAdditionalConfiguration() {
-
-    }
+    func setupAdditionalConfiguration() {}
 }

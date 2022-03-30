@@ -11,7 +11,7 @@ import UIKit
 final class CareDataSource: NSObject, UICollectionViewDataSource, CellRegistrationable {
     private let preventionModels: [CareModel]
     private let symptomModels: [CareModel]
-    var index: Int = 0
+    private var index: Int = 0
 
     init(preventionModels: [CareModel], symptomModels: [CareModel]) {
         self.preventionModels = preventionModels
@@ -31,5 +31,11 @@ final class CareDataSource: NSObject, UICollectionViewDataSource, CellRegistrati
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareCardCell
         cell.setup(model: model)
         return cell
+    }
+}
+
+extension CareDataSource: PageSelectorDelegate {
+    func pageSelectorDidChange(index: Int) {
+        self.index = index
     }
 }

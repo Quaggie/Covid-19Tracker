@@ -11,13 +11,13 @@ import XCTest
 
 class CareViewControllerTests: XCTestCase {
     func test_preferredStatusBarStyle_isCorrectType() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
 
         XCTAssertEqual(sut.preferredStatusBarStyle, .lightContent)
     }
 
     func test_viewDidAppear_tracksScreenView() {
-        let (sut, tracker) = makeSUT()
+        let (sut, tracker, _) = makeSUT()
 
         sut.viewDidAppear(false)
 
@@ -31,7 +31,7 @@ class CareViewControllerTests: XCTestCase {
         ]
         let dataSource = DataSourceComposite(dataSources: dataSources)
         checkMemoryLeak(for: dataSource)
-        let (sut, _) = makeSUT(dataSource: dataSource)
+        let (sut, _, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -56,7 +56,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: dataSource)
-        let (sut, _) = makeSUT(dataSource: dataSource)
+        let (sut, _, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -82,7 +82,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: delegateFlowLayout)
-        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+        let (sut, _, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
 
         sut.loadViewIfNeeded()
 
@@ -107,7 +107,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: delegateFlowLayout)
-        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+        let (sut, _, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
 
         sut.loadViewIfNeeded()
 
@@ -128,11 +128,21 @@ extension CareViewControllerTests {
 }
 
 extension CareViewControllerTests {
-    func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy) {
+    func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy, PageSelectorSpy) {
         let tracker = TrackerSpy()
-        let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout)
+        let pageSelector = PageSelectorSpy()
+        let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout, pageSelectorViewDelegate: pageSelector)
         checkMemoryLeak(for: viewController, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
-        return (viewController, tracker)
+        checkMemoryLeak(for: pageSelector)
+        return (viewController, tracker, pageSelector)
+    }
+}
+
+final class PageSelectorSpy: PageSelectorViewDelegate {
+    var indexes: [Int] = []
+
+    func pageSelectorViewDidChange(index: Int) {
+        indexes.append(index)
     }
 }

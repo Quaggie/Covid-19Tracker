@@ -18,7 +18,7 @@ final class CareViewController: BaseViewController {
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Care", font: Font.regular(size: 24), textColor: Color.white)
-    private lazy var pageSelectorView = PageSelectorView(titles: ["Prevention", "Symptoms"], selectedTitle: "Prevention", delegate: self)
+    private lazy var pageSelectorView = PageSelectorView(titles: ["Prevention", "Symptoms"], selectedTitle: "Prevention")
     private(set) lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -41,7 +41,12 @@ final class CareViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(tracker: TrackerProtocol? = nil, dataSource: DataSource?, delegate: UICollectionViewDelegateFlowLayout?) {
+    init(
+        tracker: TrackerProtocol? = nil,
+        dataSource: DataSource?,
+        delegate: UICollectionViewDelegateFlowLayout?,
+        pageSelectorViewDelegate: PageSelectorViewDelegate
+    ) {
         self.dataSource = dataSource
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -50,6 +55,7 @@ final class CareViewController: BaseViewController {
             self.tracker = tracker
         }
         dataSource?.registerCells(on: collectionView)
+        pageSelectorView.delegate = pageSelectorViewDelegate
     }
 
     @available(*, unavailable)
@@ -70,8 +76,8 @@ final class CareViewController: BaseViewController {
     }
 }
 
-extension CareViewController: PageSelectorViewDelegate {
-    func pageSelectorViewDidChange(index: Int) {
+extension CareViewController: PageSelectorDelegate {
+    func pageSelectorDidChange(index: Int) {
         if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {

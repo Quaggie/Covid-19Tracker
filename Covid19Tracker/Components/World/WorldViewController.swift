@@ -41,7 +41,7 @@ final class WorldViewController: BaseViewController {
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Covid-19 in the world", font: Font.regular(size: 24), textColor: Color.white)
-    private lazy var pageSelectorView = PageSelectorView(titles: ["Overview", "Countries"], selectedTitle: "Overview", delegate: self)
+    private lazy var pageSelectorView = PageSelectorView(titles: ["Overview", "Countries"], selectedTitle: "Overview")
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
