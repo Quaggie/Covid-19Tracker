@@ -7,20 +7,14 @@
 //
 
 import UIKit
-import SafariServices
 
 final class CareViewController: BaseViewController {
-    enum DatasourceType {
-        case card(CareModel)
-        case source
-    }
-
     // MARK: - Properties
     private var selectedIndex: Int = 0
-    private var preventionDatasource: [DatasourceType] = []
-    private var symptomsDatasource: [DatasourceType] = []
-    private let collectionViewInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
-    private let lineSpacing: CGFloat = 16
+    private weak var dataSource: DataSource?
+    private weak var delegate: UICollectionViewDelegateFlowLayout?
+    private let collectionViewInset: UIEdgeInsets = .init(top: 8, left: 16, bottom: 16, right: 16)
+    var onTapPageSelector: ((Int) -> Void)?
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Care", font: Font.regular(size: 24), textColor: Color.white)
@@ -30,8 +24,8 @@ final class CareViewController: BaseViewController {
         flowLayout.scrollDirection = .vertical
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.dataSource = self
-        cv.delegate = self
+        cv.dataSource = dataSource
+        cv.delegate = delegate
         cv.backgroundColor = .clear
         cv.contentInset = collectionViewInset
 
@@ -46,13 +40,27 @@ final class CareViewController: BaseViewController {
         return .lightContent
     }
 
+    // MARK: - Init
+    init(tracker: TrackerProtocol? = nil, dataSource: DataSource?, delegate: UICollectionViewDelegateFlowLayout?) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+
+        if let tracker = tracker {
+            self.tracker = tracker
+        }
+        dataSource?.registerCells(on: collectionView)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        registerCells()
-        setupPreventionData()
-        setupSymptomsData()
         collectionView.reloadData()
     }
 
@@ -60,134 +68,14 @@ final class CareViewController: BaseViewController {
         super.viewDidAppear(animated)
         tracker.screenView(name: "Preventions")
     }
-
-    private func registerCells() {
-        collectionView.register(CareCardCell.self)
-        collectionView.register(CareSourceCell.self)
-    }
-
-    private func setupPreventionData() {
-        let washHandsModel = CareModel(title: "Wash your hands",
-                                       color: Color.purpleLight,
-                                       description: "Wash your hands regularly for 20 seconds, with soap and water or alcohol-based hand rub",
-                                       image: UIImage(named: "prevention_wash_hands_icon")!)
-
-        let coverNoseAndMouthModel = CareModel(title: "Cover nose and mouth",
-                                               color: Color.greenDark,
-                                               description: "Cover your nose and mouth with a disposable tissue or flexed elbow when you cough or sneeze",
-                                               image: UIImage(named: "prevention_cough_icon")!)
-
-        let dontTouchFaceModel = CareModel(title: "Do not touch your face",
-                                           color: Color.blueLight,
-                                           description: "Avoid close contact (1 meter or 3 feet) with people who are unwell",
-                                           image: UIImage(named: "prevention_avoid_contact_icon")!)
-
-        let avoidCloseContactModel = CareModel(title: "Avoid close contact",
-                                               color: Color.yellowDark,
-                                               description: "Avoid touching your eyes, nose, or mouth if your hands are not clean",
-                                               image: UIImage(named: "prevention_dont_touch_face_icon")!)
-
-        let stayHomeIcon = CareModel(title: "Stay home",
-                                     color: Color.purpleLight,
-                                     description: "Stay home and self-isolate from others in the household if you feel unwell",
-                                     image: UIImage(named: "prevention_mask_icon")!)
-
-        preventionDatasource = [
-            .card(washHandsModel),
-            .card(coverNoseAndMouthModel),
-            .card(dontTouchFaceModel),
-            .card(avoidCloseContactModel),
-            .card(stayHomeIcon),
-            .source
-        ]
-    }
-
-    private func setupSymptomsData() {
-        let coughModel = CareModel(title: "Cough",
-                                   color: Color.purpleLight,
-                                   description: "One of the most common symptoms is dry cough",
-                                   image: UIImage(named: "symptom_cough")!)
-
-        let feverModel = CareModel(title: "Fever",
-                                   color: Color.greenDark,
-                                   description: "Another common symptom is high fever",
-                                   image: UIImage(named: "symptom_fever")!)
-
-        let tirednessModel = CareModel(title: "Tiredness",
-                                       color: Color.blueLight,
-                                       description: "A person infected with the virus can experience unusual tiredness",
-                                       image: UIImage(named: "symptom_tiredness")!)
-
-        let difficultyBreathingModel = CareModel(title: "Difficulty breathing",
-                                                 color: Color.yellowDark,
-                                                 description: "In more severe cases, breathing may be difficult. This symptom requires medical help",
-                                                 image: UIImage(named: "symptom_difficulty_breathing")!)
-
-        symptomsDatasource = [.card(coughModel), .card(feverModel), .card(tirednessModel), .card(difficultyBreathingModel), .source]
-    }
-}
-
-extension CareViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if selectedIndex == 0 {
-            return preventionDatasource.count
-        } else {
-            return symptomsDatasource.count
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = selectedIndex == 0 ? preventionDatasource[indexPath.item] : symptomsDatasource[indexPath.item]
-
-        switch item {
-        case .card(let model):
-            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareCardCell
-            cell.setup(model: model)
-            return cell
-        case .source:
-            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareSourceCell
-            cell.onTapLink = { [weak self] in
-                let url = URL(string: "https://www.who.int/emergencies/diseases/novel-coronavirus-2019")!
-                let controller = SFSafariViewController(url: url)
-                self?.present(controller, animated: true)
-            }
-            return cell
-        }
-    }
-}
-
-extension CareViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let item = selectedIndex == 0 ? preventionDatasource[indexPath.item] : symptomsDatasource[indexPath.item]
-
-        switch item {
-        case .card:
-            let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
-            return .init(width: width, height: CareCardCell.height)
-        case .source:
-            let width: CGFloat = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
-            return .init(width: width, height: CareSourceCell.height)
-        }
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        return lineSpacing
-    }
 }
 
 extension CareViewController: PageSelectorViewDelegate {
     func pageSelectorViewDidChange(index: Int) {
-        if selectedIndex == index {
+        if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {
+            onTapPageSelector?(index)
             if index == 0 {
                 tracker.screenView(name: "Preventions")
             } else {

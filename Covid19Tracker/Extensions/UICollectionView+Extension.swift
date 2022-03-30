@@ -10,7 +10,6 @@ import UIKit
 
 extension UICollectionView {
     func register<T: UICollectionViewCell>(_: T.Type) {
-        print("REGISTERING CELL -> ", T.identifier)
         register(T.self, forCellWithReuseIdentifier: T.identifier)
     }
 

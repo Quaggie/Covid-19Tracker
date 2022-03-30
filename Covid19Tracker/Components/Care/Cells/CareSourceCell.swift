@@ -16,8 +16,9 @@ final class CareSourceCell: UICollectionViewCell {
     var onTapLink: (() -> Void)?
 
     // MARK: - Views
-    private let button: UIButton = {
+    private lazy var button: UIButton = {
         let btn = UIButton(type: .system)
+        btn.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         let sourceAttributes: [NSAttributedString.Key : Any] = [
             .font: Font.regular(size: 10),
@@ -48,6 +49,11 @@ final class CareSourceCell: UICollectionViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Actions
+    @objc private func didTapButton() {
+        onTapLink?()
     }
 }
 

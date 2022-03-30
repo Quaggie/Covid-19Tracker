@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		6FAF6CF94370349B6FF59B65 /* Pods_Covid19Tracker_Covid19Tracker_unit_tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DBF29B933AEE68126F2945 /* Pods_Covid19Tracker_Covid19Tracker_unit_tests.framework */; };
 		7B10B6E2FFAF89F0A22BF443 /* Pods_Covid19Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2BCB132259F7D4307471B9 /* Pods_Covid19Tracker.framework */; };
+		A906DE9E27F4AC8500F19932 /* DataSourceComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DE9D27F4AC8500F19932 /* DataSourceComposite.swift */; };
+		A906DEA027F4ACB200F19932 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DE9F27F4ACB200F19932 /* DataSource.swift */; };
+		A906DEA227F4ACC700F19932 /* CellRegistrationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEA127F4ACC700F19932 /* CellRegistrationable.swift */; };
+		A906DEA627F4ACF500F19932 /* CareDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEA527F4ACF500F19932 /* CareDataSource.swift */; };
+		A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEA727F4AD0500F19932 /* SourceDataSource.swift */; };
+		A906DEAB27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEAA27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift */; };
+		A906DEAE27F4AD5B00F19932 /* CareDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEAD27F4AD5B00F19932 /* CareDelegateFlowLayout.swift */; };
+		A906DEB027F4AD6B00F19932 /* SourceDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEAF27F4AD6B00F19932 /* SourceDelegateFlowLayout.swift */; };
+		A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */; };
+		A906DEB627F4B06700F19932 /* ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */; };
+		A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */; };
+		A906DEBA27F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */; };
 		A9232E84245795FF00CF1654 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E83245795FE00CF1654 /* Keys.swift */; };
 		A9232E862457979F00CF1654 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E852457979F00CF1654 /* NewsService.swift */; };
 		A9232E88245797EE00CF1654 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E87245797EE00CF1654 /* News.swift */; };
@@ -110,6 +122,18 @@
 		63BE8899354CA47E8AA360C5 /* Pods-Covid19Tracker_unit_tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker_unit_tests.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker_unit_tests/Pods-Covid19Tracker_unit_tests.release.xcconfig"; sourceTree = "<group>"; };
 		8831BD975F5249517B06745A /* Pods-Covid19Tracker_unit_tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker_unit_tests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker_unit_tests/Pods-Covid19Tracker_unit_tests.debug.xcconfig"; sourceTree = "<group>"; };
 		938147FC44BA872FF3E4421F /* Pods-Covid19Tracker Unit Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tracker Unit Tests.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tracker Unit Tests/Pods-Covid19Tracker Unit Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A906DE9D27F4AC8500F19932 /* DataSourceComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceComposite.swift; sourceTree = "<group>"; };
+		A906DE9F27F4ACB200F19932 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		A906DEA127F4ACC700F19932 /* CellRegistrationable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRegistrationable.swift; sourceTree = "<group>"; };
+		A906DEA527F4ACF500F19932 /* CareDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareDataSource.swift; sourceTree = "<group>"; };
+		A906DEA727F4AD0500F19932 /* SourceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDataSource.swift; sourceTree = "<group>"; };
+		A906DEAA27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateFlowLayoutComposite.swift; sourceTree = "<group>"; };
+		A906DEAD27F4AD5B00F19932 /* CareDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareDelegateFlowLayout.swift; sourceTree = "<group>"; };
+		A906DEAF27F4AD6B00F19932 /* SourceDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDelegateFlowLayout.swift; sourceTree = "<group>"; };
+		A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
+		A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenter.swift; sourceTree = "<group>"; };
+		A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewControllerPresenter.swift"; sourceTree = "<group>"; };
+		A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRefVirtualProxy+ViewControllerPresenter.swift"; sourceTree = "<group>"; };
 		A9232E83245795FE00CF1654 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A9232E852457979F00CF1654 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A9232E87245797EE00CF1654 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -234,6 +258,69 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A906DE9B27F4AC6800F19932 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEA527F4ACF500F19932 /* CareDataSource.swift */,
+				A906DEA727F4AD0500F19932 /* SourceDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		A906DEA327F4ACD100F19932 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A906DE9F27F4ACB200F19932 /* DataSource.swift */,
+				A906DE9D27F4AC8500F19932 /* DataSourceComposite.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		A906DEA427F4ACE600F19932 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEA127F4ACC700F19932 /* CellRegistrationable.swift */,
+				A906DEA927F4AD3400F19932 /* DelegateFlowLayout */,
+				A906DEA327F4ACD100F19932 /* DataSource */,
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		A906DEA927F4AD3400F19932 /* DelegateFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEAA27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift */,
+			);
+			path = DelegateFlowLayout;
+			sourceTree = "<group>";
+		};
+		A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEAD27F4AD5B00F19932 /* CareDelegateFlowLayout.swift */,
+				A906DEAF27F4AD6B00F19932 /* SourceDelegateFlowLayout.swift */,
+			);
+			path = DelegateFlowLayout;
+			sourceTree = "<group>";
+		};
+		A906DEB127F4B02F00F19932 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEB227F4B03800F19932 /* WeakRefVirtualProxy.swift */,
+				A906DEB927F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift */,
+			);
+			path = Proxies;
+			sourceTree = "<group>";
+		};
+		A906DEB427F4B05C00F19932 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */,
+				A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		A93B3F492432CBB200AFC97F = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +430,9 @@
 		A93B3F932432D47C00AFC97F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A906DEB427F4B05C00F19932 /* UIViewController */,
+				A906DEB127F4B02F00F19932 /* Proxies */,
+				A906DEA427F4ACE600F19932 /* UICollectionView */,
 				A9E3BEAD27F3717A0071AAD4 /* Decorators */,
 				A9A2D05A2459156E00BB6509 /* Reachability */,
 				A99B73F3244690EB00383D30 /* Tracker */,
@@ -502,6 +592,8 @@
 		A98FC6C8244228E6004433A6 /* Care */ = {
 			isa = PBXGroup;
 			children = (
+				A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */,
+				A906DE9B27F4AC6800F19932 /* DataSources */,
 				A99B73F72446969000383D30 /* Cells */,
 				A98FC6C9244228F4004433A6 /* CareViewController.swift */,
 			);
@@ -842,12 +934,17 @@
 				A98FC6D22442342E004433A6 /* SimpleCountryCasesCell.swift in Sources */,
 				A950703D24531819007DC98F /* HomeViewController.swift in Sources */,
 				A98FC6BC244218F7004433A6 /* CovidPieChartView.swift in Sources */,
+				A906DEB027F4AD6B00F19932 /* SourceDelegateFlowLayout.swift in Sources */,
 				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
+				A906DEA227F4ACC700F19932 /* CellRegistrationable.swift in Sources */,
 				A93B3FB024355DCB00AFC97F /* Country.swift in Sources */,
 				A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */,
+				A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */,
 				A98FC6D8244249A7004433A6 /* LoadingView.swift in Sources */,
 				A93B3F972432D5FC00AFC97F /* UILabel+Extension.swift in Sources */,
+				A906DEA627F4ACF500F19932 /* CareDataSource.swift in Sources */,
 				A9E3BEAC27F233DA0071AAD4 /* HTTPStatusCode.swift in Sources */,
+				A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */,
 				A98FC6E824427CA8004433A6 /* HistoricalInfoService.swift in Sources */,
 				A93B3FCB24355F5700AFC97F /* NetworkManager.swift in Sources */,
 				A98FC6B924416194004433A6 /* BaseViewController.swift in Sources */,
@@ -860,16 +957,20 @@
 				A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */,
 				A9232E88245797EE00CF1654 /* News.swift in Sources */,
 				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
+				A906DEA027F4ACB200F19932 /* DataSource.swift in Sources */,
 				A98FC6B62441224C004433A6 /* SpaceView.swift in Sources */,
 				A98FC6F424455226004433A6 /* Keyboard.swift in Sources */,
 				A93B3FCC24355F5700AFC97F /* HTTPMethod.swift in Sources */,
 				A99B73F0244679CE00383D30 /* CareCardCell.swift in Sources */,
 				A98FC6E0244257DF004433A6 /* TodayCasesCell.swift in Sources */,
+				A906DEB627F4B06700F19932 /* ViewControllerPresenter.swift in Sources */,
 				A9232E862457979F00CF1654 /* NewsService.swift in Sources */,
 				A98FC6D624424608004433A6 /* CountryInfo.swift in Sources */,
+				A906DEAE27F4AD5B00F19932 /* CareDelegateFlowLayout.swift in Sources */,
 				A98FC6AF24411F25004433A6 /* Timeline.swift in Sources */,
 				A9232E84245795FF00CF1654 /* Keys.swift in Sources */,
 				A99B73EE2446746800383D30 /* CareModel.swift in Sources */,
+				A906DEAB27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift in Sources */,
 				A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */,
 				A98FC6C3244221FF004433A6 /* CountryViewController.swift in Sources */,
 				A93B3FA724355BFF00AFC97F /* WorldViewController.swift in Sources */,
@@ -893,11 +994,14 @@
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
+				A906DE9E27F4AC8500F19932 /* DataSourceComposite.swift in Sources */,
 				A93B3F922432D2E100AFC97F /* TabBarViewController.swift in Sources */,
 				A9232E8A24579CAC00CF1654 /* NewsCell.swift in Sources */,
 				A98FC6B4244121B2004433A6 /* BallView.swift in Sources */,
+				A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */,
 				A93B3F8F2432D04D00AFC97F /* UIColor+Extension.swift in Sources */,
 				A98FC6C024421A12004433A6 /* String+Calculations.swift in Sources */,
+				A906DEBA27F4B0D800F19932 /* WeakRefVirtualProxy+ViewControllerPresenter.swift in Sources */,
 				A93B3FCE24355F5700AFC97F /* WebserviceRequest.swift in Sources */,
 				A93B3F952432D48400AFC97F /* CodeView.swift in Sources */,
 			);
