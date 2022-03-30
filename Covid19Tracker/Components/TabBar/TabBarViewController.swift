@@ -18,7 +18,7 @@ final class TabBarViewController: UITabBarController {
             SourceDelegateFlowLayout()
         ]
     )
-    private let pageSelector = PageSelectorDelegatesObserver()
+    private let pageSelectorDelegatesObserver = PageSelectorDelegatesObserver()
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -48,11 +48,11 @@ final class TabBarViewController: UITabBarController {
         let careViewController = CareViewController(
             dataSource: dataSource,
             delegate: delegateFlowLayout,
-            pageSelectorViewDelegate: pageSelector
+            pageSelectorViewDelegate: pageSelectorDelegatesObserver
         )
 
-        pageSelector.addListener(careViewController)
-        pageSelector.addListener(careDataSource)
+        pageSelectorDelegatesObserver.addListener(careViewController)
+        pageSelectorDelegatesObserver.addListener(careDataSource)
         sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(careViewController)
         careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
