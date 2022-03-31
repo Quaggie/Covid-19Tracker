@@ -10,11 +10,11 @@ import UIKit
 
 final class CareViewController: BaseViewController {
     // MARK: - Properties
+    private let tracker: TrackerProtocol
     private var selectedIndex: Int = 0
     private weak var dataSource: DataSource?
     private weak var delegate: UICollectionViewDelegateFlowLayout?
     private let collectionViewInset: UIEdgeInsets = .init(top: 8, left: 16, bottom: 16, right: 16)
-    var onTapPageSelector: ((Int) -> Void)?
 
     // MARK: - Views
     private let titleLabel = UILabel(text: "Care", font: Font.regular(size: 24), textColor: Color.white)
@@ -42,18 +42,16 @@ final class CareViewController: BaseViewController {
 
     // MARK: - Init
     init(
-        tracker: TrackerProtocol? = nil,
+        tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self)),
         dataSource: DataSource?,
         delegate: UICollectionViewDelegateFlowLayout?,
         pageSelectorViewDelegate: PageSelectorViewDelegate
     ) {
         self.dataSource = dataSource
         self.delegate = delegate
+        self.tracker = tracker
         super.init(nibName: nil, bundle: nil)
 
-        if let tracker = tracker {
-            self.tracker = tracker
-        }
         dataSource?.registerCells(on: collectionView)
         pageSelectorView.delegate = pageSelectorViewDelegate
     }
@@ -81,7 +79,6 @@ extension CareViewController: PageSelectorDelegate {
         if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {
-            onTapPageSelector?(index)
             if index == 0 {
                 tracker.screenView(name: "Preventions")
             } else {

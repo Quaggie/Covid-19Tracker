@@ -27,6 +27,7 @@ final class CountryViewController: BaseViewController {
     private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
+    private let tracker: TrackerProtocol
     private let countryName: String
     private var state: State = .loading {
         didSet {
@@ -71,7 +72,13 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(countryName: String, countryService: CountryServiceProtocol, historicalInfoService: HistoricalInfoServiceProtocol) {
+    init(
+        tracker: TrackerProtocol = Tracker(source: String(describing: CountryViewController.self)),
+        countryName: String,
+        countryService: CountryServiceProtocol,
+        historicalInfoService: HistoricalInfoServiceProtocol
+    ) {
+        self.tracker = tracker
         self.countryName = countryName
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService

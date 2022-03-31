@@ -27,6 +27,7 @@ final class HomeViewController: BaseViewController {
     private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
+    private let tracker: TrackerProtocol
     private var selectedCountry: Country? {
         didSet {
             selectedCountryButton.setTitle(selectedCountry?.country, for: .normal)
@@ -88,7 +89,12 @@ final class HomeViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(countryService: CountryServiceProtocol, historicalInfoService: HistoricalInfoServiceProtocol) {
+    init(
+        tracker: TrackerProtocol = Tracker(source: String(describing: HomeViewController.self)),
+        countryService: CountryServiceProtocol,
+        historicalInfoService: HistoricalInfoServiceProtocol
+    ) {
+        self.tracker = tracker
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService
         super.init(nibName: nil, bundle: nil)

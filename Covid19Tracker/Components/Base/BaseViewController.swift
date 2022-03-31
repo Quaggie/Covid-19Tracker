@@ -10,7 +10,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     // MARK: - Properties
-    lazy var tracker: TrackerProtocol = Tracker(source: String(describing: self))
     private let gradientLayer = CAGradientLayer()
 
     // MARK: - Lifecycle

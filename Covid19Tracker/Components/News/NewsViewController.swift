@@ -25,6 +25,7 @@ final class NewsViewController: BaseViewController {
             changeUIFor(state: state)
         }
     }
+    private let tracker: TrackerProtocol
     private var datasource: [News] = []
     private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
     private let lineSpacing: CGFloat = 16
@@ -56,7 +57,8 @@ final class NewsViewController: BaseViewController {
     private lazy var errorView = ErrorView(delegate: self)
 
     // MARK: - Init
-    init(newsService: NewsServiceProtocol) {
+    init(tracker: TrackerProtocol = Tracker(source: String(describing: NewsViewController.self)), newsService: NewsServiceProtocol) {
+        self.tracker = tracker
         self.newsService = newsService
         super.init(nibName: nil, bundle: nil)
     }

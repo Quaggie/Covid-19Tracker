@@ -22,6 +22,7 @@ final class WorldViewController: BaseViewController {
     }
 
     // MARK: - Services
+    private let tracker: TrackerProtocol
     private let worldService: WorldServiceProtocol
     private let countryService: CountryServiceProtocol
     private let historicalInfoService: HistoricalInfoServiceProtocol
@@ -66,10 +67,12 @@ final class WorldViewController: BaseViewController {
 
     // MARK: - Init
     init(
+        tracker: TrackerProtocol = Tracker(source: String(describing: WorldViewController.self)),
         worldService: WorldServiceProtocol = WorldService(),
         countryService: CountryServiceProtocol = CountryService(),
         historicalInfoService: HistoricalInfoServiceProtocol = HistoricalInfoService()
     ) {
+        self.tracker = tracker
         self.worldService = worldService
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService

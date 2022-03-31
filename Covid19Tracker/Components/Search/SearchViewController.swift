@@ -26,6 +26,7 @@ final class SearchViewController: BaseViewController {
     private var tableViewBottomConstraint: NSLayoutConstraint!
 
     // MARK: - Properties
+    private let tracker: TrackerProtocol
     private let cameFromHome: Bool
     private var countries: [Country] = []
     private var filteredCountries: [Country] = []
@@ -86,7 +87,12 @@ final class SearchViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(cameFromHome: Bool, countryService: CountryServiceProtocol) {
+    init(
+        tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self)),
+        cameFromHome: Bool,
+        countryService: CountryServiceProtocol
+    ) {
+        self.tracker = tracker
         self.cameFromHome = cameFromHome
         self.countryService = countryService
         super.init(nibName: nil, bundle: nil)
