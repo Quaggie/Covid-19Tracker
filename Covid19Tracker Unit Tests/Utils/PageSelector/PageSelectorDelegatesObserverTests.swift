@@ -10,10 +10,10 @@ import XCTest
 @testable import Covid19_Tracker
 
 final class PageSelectorDelegatesObserverTests: XCTestCase {
-    private let object1 = ExampleObject()
-    private var object2: ExampleObject?
-
     func test_delegatesAreRemovedFromArrayOnDeinit() {
+        let object1 = ExampleObject()
+        var object2: ExampleObject?
+
         object2 = ExampleObject()
         object1.otherObject = object2
         let sut = PageSelectorDelegatesObserver()
