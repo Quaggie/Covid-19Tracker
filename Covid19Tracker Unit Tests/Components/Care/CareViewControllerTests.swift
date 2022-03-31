@@ -11,13 +11,13 @@ import XCTest
 
 class CareViewControllerTests: XCTestCase {
     func test_preferredStatusBarStyle_isCorrectType() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _) = makeSUT()
 
         XCTAssertEqual(sut.preferredStatusBarStyle, .lightContent)
     }
 
     func test_viewDidAppear_tracksScreenView() {
-        let (sut, tracker, _) = makeSUT()
+        let (sut, tracker) = makeSUT()
 
         sut.viewDidAppear(false)
 
@@ -31,7 +31,7 @@ class CareViewControllerTests: XCTestCase {
         ]
         let dataSource = DataSourceComposite(dataSources: dataSources)
         checkMemoryLeak(for: dataSource)
-        let (sut, _, _) = makeSUT(dataSource: dataSource)
+        let (sut, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -56,7 +56,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: dataSource)
-        let (sut, _, _) = makeSUT(dataSource: dataSource)
+        let (sut, _) = makeSUT(dataSource: dataSource)
         dataSource.registerCells(on: sut.collectionView)
 
         sut.loadViewIfNeeded()
@@ -82,7 +82,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: delegateFlowLayout)
-        let (sut, _, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
 
         sut.loadViewIfNeeded()
 
@@ -107,7 +107,7 @@ class CareViewControllerTests: XCTestCase {
             ]
         )
         checkMemoryLeak(for: delegateFlowLayout)
-        let (sut, _, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
+        let (sut, _) = makeSUT(delegateFlowLayout: delegateFlowLayout)
 
         sut.loadViewIfNeeded()
 
@@ -119,6 +119,28 @@ class CareViewControllerTests: XCTestCase {
         let expectedSecondSectionLineSpacing: CGFloat = .zero
         XCTAssertEqual(secondSectionLineSpacing, expectedSecondSectionLineSpacing)
     }
+
+    func test_pageSelectorDidChange_reloadsDataAndTracksScreenOnSelectorIndexChange() {
+        let preventionModels: [CareModel] = [anyCareModel()]
+        let symptomModels: [CareModel] = []
+        let careDataSource = CareDataSource(preventionModels: preventionModels, symptomModels: symptomModels)
+        let dataSource = DataSourceComposite(dataSources: [careDataSource])
+        checkMemoryLeak(for: dataSource)
+        let (sut, tracker) = makeSUT(dataSource: dataSource)
+
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertTrue(tracker.screenViews.isEmpty)
+
+        careDataSource.pageSelectorDidChange(index: 1)
+        sut.pageSelectorDidChange(index: 1)
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), symptomModels.count)
+        XCTAssertEqual(tracker.screenViews, ["Symptoms"])
+
+        careDataSource.pageSelectorDidChange(index: 0)
+        sut.pageSelectorDidChange(index: 0)
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertEqual(tracker.screenViews, ["Symptoms", "Preventions"])
+    }
 }
 
 extension CareViewControllerTests {
@@ -128,21 +150,11 @@ extension CareViewControllerTests {
 }
 
 extension CareViewControllerTests {
-    func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy, PageSelectorSpy) {
+    func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy) {
         let tracker = TrackerSpy()
-        let pageSelector = PageSelectorSpy()
-        let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout, pageSelectorViewDelegate: pageSelector)
+        let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesObserver())
         checkMemoryLeak(for: viewController, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
-        checkMemoryLeak(for: pageSelector)
-        return (viewController, tracker, pageSelector)
-    }
-}
-
-final class PageSelectorSpy: PageSelectorViewDelegate {
-    var indexes: [Int] = []
-
-    func pageSelectorViewDidChange(index: Int) {
-        indexes.append(index)
+        return (viewController, tracker)
     }
 }
