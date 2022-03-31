@@ -24,8 +24,8 @@ final class PageSelectorDelegatesObserverTests: XCTestCase {
             sut.addListener(object1.otherObject!)
 
             XCTAssertEqual(sut.observers.count, 2)
-            XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).changeCount, 0)
-            XCTAssertEqual((sut.observers.allObjects[1] as! ExampleObject).changeCount, 0)
+            XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).indexes, [])
+            XCTAssertEqual((sut.observers.allObjects[1] as! ExampleObject).indexes, [])
 
             object2 = nil
         }
@@ -34,8 +34,36 @@ final class PageSelectorDelegatesObserverTests: XCTestCase {
 
         XCTAssertTrue(sut.observers.contains(object1))
         XCTAssertFalse(sut.observers.contains(object1.otherObject))
-        XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).changeCount, 1)
+        XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).indexes, [0])
         XCTAssertEqual(sut.observers.allObjects.count, 1)
+    }
+
+    func test_pageSelectorViewDidChange_notifiesAllObservers() {
+        let sut = makeSUT()
+        let object1 = ExampleObject()
+        let object2 = ExampleObject()
+        let object3 = ExampleObject()
+
+        sut.addListener(object1)
+
+        sut.pageSelectorViewDidChange(index: 0)
+        XCTAssertEqual(object1.indexes, [0])
+        XCTAssertEqual(object2.indexes, [])
+        XCTAssertEqual(object3.indexes, [])
+
+        sut.addListener(object2)
+
+        sut.pageSelectorViewDidChange(index: 1)
+        XCTAssertEqual(object1.indexes, [0, 1])
+        XCTAssertEqual(object2.indexes, [1])
+        XCTAssertEqual(object3.indexes, [])
+
+        sut.addListener(object3)
+
+        sut.pageSelectorViewDidChange(index: 1)
+        XCTAssertEqual(object1.indexes, [0, 1, 1])
+        XCTAssertEqual(object2.indexes, [1, 1])
+        XCTAssertEqual(object3.indexes, [1])
     }
 }
 
@@ -47,9 +75,9 @@ extension PageSelectorDelegatesObserverTests {
 
 private class ExampleObject: NSObject, PageSelectorDelegate {
     weak var otherObject: ExampleObject?
-    var changeCount = 0
+    var indexes: [Int] = []
 
     func pageSelectorDidChange(index: Int) {
-        changeCount += 1
+        indexes.append(index)
     }
 }
