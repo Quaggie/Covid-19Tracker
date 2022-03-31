@@ -141,6 +141,27 @@ class CareViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
         XCTAssertEqual(tracker.screenViews, ["Symptoms", "Preventions"])
     }
+
+    func test_pageSelectorDidChange_doesNotReloadDataAndDoesNotTrackScreenOnSelectorIndexRemainingTheSame() {
+        let preventionModels: [CareModel] = [anyCareModel()]
+        let careDataSource = CareDataSource(preventionModels: preventionModels, symptomModels: [])
+        let dataSource = DataSourceComposite(dataSources: [careDataSource])
+        checkMemoryLeak(for: dataSource)
+        let (sut, tracker) = makeSUT(dataSource: dataSource)
+
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertTrue(tracker.screenViews.isEmpty)
+
+        careDataSource.pageSelectorDidChange(index: 0)
+        sut.pageSelectorDidChange(index: 0)
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertTrue(tracker.screenViews.isEmpty)
+
+        careDataSource.pageSelectorDidChange(index: 0)
+        sut.pageSelectorDidChange(index: 0)
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertTrue(tracker.screenViews.isEmpty)
+    }
 }
 
 extension CareViewControllerTests {
