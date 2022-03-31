@@ -11,12 +11,12 @@ import Foundation
 final class PageSelectorDelegatesObserver: DelegatesObservable {
     var observers = NSHashTable<AnyObject>.weakObjects()
 
-    var allobservers: [PageSelectorDelegate] {
-        observers.allObjects as! [PageSelectorDelegate]
-    }
-
     func addListener(_ delegate: PageSelectorDelegate) {
         observers.add(delegate)
+    }
+
+    private var allobservers: [PageSelectorDelegate] {
+        observers.allObjects as! [PageSelectorDelegate]
     }
 }
 

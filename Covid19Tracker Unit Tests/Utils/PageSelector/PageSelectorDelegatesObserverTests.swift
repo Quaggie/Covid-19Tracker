@@ -16,14 +16,14 @@ final class PageSelectorDelegatesObserverTests: XCTestCase {
 
         object2 = ExampleObject()
         object1.otherObject = object2
-        let sut = PageSelectorDelegatesObserver()
+        let sut = makeSUT()
         checkMemoryLeak(for: sut)
 
         autoreleasepool {
             sut.addListener(object1)
             sut.addListener(object1.otherObject!)
 
-            XCTAssertEqual(sut.allobservers.count, 2)
+            XCTAssertEqual(sut.observers.count, 2)
             XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).changeCount, 0)
             XCTAssertEqual((sut.observers.allObjects[1] as! ExampleObject).changeCount, 0)
 
@@ -36,6 +36,12 @@ final class PageSelectorDelegatesObserverTests: XCTestCase {
         XCTAssertFalse(sut.observers.contains(object1.otherObject))
         XCTAssertEqual((sut.observers.allObjects[0] as! ExampleObject).changeCount, 1)
         XCTAssertEqual(sut.observers.allObjects.count, 1)
+    }
+}
+
+extension PageSelectorDelegatesObserverTests {
+    func makeSUT() -> PageSelectorDelegatesObserver {
+        PageSelectorDelegatesObserver()
     }
 }
 

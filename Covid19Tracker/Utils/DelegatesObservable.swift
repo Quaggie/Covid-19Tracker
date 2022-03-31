@@ -11,6 +11,5 @@ import Foundation
 protocol DelegatesObservable {
     associatedtype T
     var observers: NSHashTable<AnyObject> { get set }
-    var allobservers: [T] { get }
     func addListener(_ delegate: T)
 }
