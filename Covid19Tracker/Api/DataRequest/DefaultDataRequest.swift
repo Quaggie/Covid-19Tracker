@@ -15,8 +15,7 @@ protocol DataRequest {
         parameters: [String: Any],
         headers: [String: String],
         cache: Bool,
-        sessionConfiguration: URLSessionConfiguration,
-        reachability: ReachabilityProtocol
+        sessionConfiguration: URLSessionConfiguration
     )
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
 }
@@ -29,7 +28,6 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
     private let headers: [String: String]
     private let session: URLSession
     private let cache: Bool
-    private let reachability: ReachabilityProtocol
 
     var task: URLSessionTask?
 
@@ -40,8 +38,7 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
         parameters: [String: Any],
         headers: [String: String],
         cache: Bool = false,
-        sessionConfiguration: URLSessionConfiguration,
-        reachability: ReachabilityProtocol = Reachability()
+        sessionConfiguration: URLSessionConfiguration
     ) {
         self.url = url
         self.method = method
@@ -49,7 +46,6 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
         self.headers = headers
         self.cache = cache
         self.session = URLSession(configuration: sessionConfiguration)
-        self.reachability = reachability
     }
 
     // MARK: - Functions
@@ -66,14 +62,12 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
             urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
         }
 
-        if reachability.isConnectedToNetwork() {
-            if cache {
-                urlRequest.setValue(nil, forHTTPHeaderField: "Pragma")
-                urlRequest.setValue(nil, forHTTPHeaderField: "Cache-Control")
+        if cache {
+            urlRequest.setValue(nil, forHTTPHeaderField: "Pragma")
+            urlRequest.setValue(nil, forHTTPHeaderField: "Cache-Control")
 
-                let twoHours = 7200
-                urlRequest.setValue("max-age=\(twoHours)", forHTTPHeaderField: "Cache-Control")
-            }
+            let twoHours = 7200
+            urlRequest.setValue("max-age=\(twoHours)", forHTTPHeaderField: "Cache-Control")
         }
 
         task = session.dataTask(with: urlRequest) { data, response, error in

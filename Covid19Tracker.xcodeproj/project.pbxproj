@@ -93,7 +93,6 @@
 		A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99B73F12446901300383D30 /* GoogleService-Info.plist */; };
 		A99B73F5244690F600383D30 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F4244690F600383D30 /* Tracker.swift */; };
 		A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F8244696A700383D30 /* CareSourceCell.swift */; };
-		A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2D05B2459157D00BB6509 /* Reachability.swift */; };
 		A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
 		A9B116A027F72AC90070F427 /* FirebaseAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */; };
 		A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */; };
@@ -212,7 +211,6 @@
 		A99B73F12446901300383D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A99B73F4244690F600383D30 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		A99B73F8244696A700383D30 /* CareSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareSourceCell.swift; sourceTree = "<group>"; };
-		A9A2D05B2459157D00BB6509 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A9A2D05D2459198F00BB6509 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAppDelegate.swift; sourceTree = "<group>"; };
 		A9B2AE3827ED152D00BA750B /* Covid19Tracker_unit_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Covid19Tracker_unit_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,7 +449,6 @@
 				A906DEB127F4B02F00F19932 /* Proxies */,
 				A906DEA427F4ACE600F19932 /* UICollectionView */,
 				A9E3BEAD27F3717A0071AAD4 /* Decorators */,
-				A9A2D05A2459156E00BB6509 /* Reachability */,
 				A99B73F3244690EB00383D30 /* Tracker */,
 				A98FC6F22445521E004433A6 /* Keyboard */,
 				A93B3F942432D48400AFC97F /* CodeView.swift */,
@@ -659,14 +656,6 @@
 				A99B73F8244696A700383D30 /* CareSourceCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		A9A2D05A2459156E00BB6509 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				A9A2D05B2459157D00BB6509 /* Reachability.swift */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		A9B1169E27F72AB90070F427 /* AppDelegate */ = {
@@ -991,7 +980,6 @@
 				A98FC6CC24422C3D004433A6 /* CountryService.swift in Sources */,
 				A93B3F992432D70A00AFC97F /* UIView+Anchors.swift in Sources */,
 				A98FC6BE24421966004433A6 /* PageSelectorView.swift in Sources */,
-				A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */,
 				A9232E88245797EE00CF1654 /* News.swift in Sources */,
 				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
 				A906DEBD27F4F05000F19932 /* PageSelectorDelegate.swift in Sources */,
