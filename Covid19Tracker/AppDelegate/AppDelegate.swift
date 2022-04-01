@@ -7,46 +7,42 @@
 //
 
 import UIKit
-import Firebase
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    private lazy var appDelegates: [UIApplicationDelegate] = [
+        FirebaseAppDelegate()
+    ]
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-
-        guard !AppDelegate.isRunningTests else {
-            let window = UIWindow(frame: UIScreen.main.bounds)
-            self.window = window
-            let viewController = UIViewController()
-            viewController.view.backgroundColor = .white
-            window.rootViewController = viewController
-            setupAppearance()
-            window.makeKeyAndVisible()
-            return true
-        }
-
         setupWindow()
         setupAppearance()
+        setupAppDelegates(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
+    }
+
+    private func setupWindow() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = AppDelegate.isRunningTests ? UIViewController() : TabBarViewController()
+        window?.makeKeyAndVisible()
     }
 
     private func setupAppearance() {
         window?.tintColor = Color.blueDark
     }
 
-    private func setupWindow() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = TabBarViewController()
-        window?.makeKeyAndVisible()
-    }
-
-    private func setupFirebase() {
-        FirebaseApp.configure()
+    private func setupAppDelegates(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) {
+        if !AppDelegate.isRunningTests {
+            appDelegates.forEach { _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions) }
+        }
     }
 }
 

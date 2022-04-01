@@ -95,6 +95,7 @@
 		A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F8244696A700383D30 /* CareSourceCell.swift */; };
 		A9A2D05C2459157D00BB6509 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2D05B2459157D00BB6509 /* Reachability.swift */; };
 		A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
+		A9B116A027F72AC90070F427 /* FirebaseAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */; };
 		A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */; };
 		A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */; };
 		A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B52BFF27F3D028008413E4 /* TrackerSpy.swift */; };
@@ -213,6 +214,7 @@
 		A99B73F8244696A700383D30 /* CareSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareSourceCell.swift; sourceTree = "<group>"; };
 		A9A2D05B2459157D00BB6509 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A9A2D05D2459198F00BB6509 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAppDelegate.swift; sourceTree = "<group>"; };
 		A9B2AE3827ED152D00BA750B /* Covid19Tracker_unit_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Covid19Tracker_unit_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerTests.swift; sourceTree = "<group>"; };
 		A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerTests.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 		A93B3F542432CBB200AFC97F /* Covid19Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				A9B1169E27F72AB90070F427 /* AppDelegate */,
 				A98FC6B2244121AA004433A6 /* Views */,
 				A93B3F932432D47C00AFC97F /* Utils */,
 				A93B3F8D2432D04200AFC97F /* Extensions */,
@@ -368,7 +371,6 @@
 				A93B3FB124355E8900AFC97F /* Services */,
 				A98FC6C7244224CA004433A6 /* Cells */,
 				A93B3F8B2432CFE700AFC97F /* Components */,
-				A93B3F552432CBB200AFC97F /* AppDelegate.swift */,
 				A93B3F5E2432CBB300AFC97F /* Assets.xcassets */,
 				A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */,
 				A93B3F632432CBB300AFC97F /* Info.plist */,
@@ -665,6 +667,15 @@
 				A9A2D05B2459157D00BB6509 /* Reachability.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		A9B1169E27F72AB90070F427 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A93B3F552432CBB200AFC97F /* AppDelegate.swift */,
+				A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		A9B2AE3927ED152D00BA750B /* Covid19Tracker Unit Tests */ = {
@@ -997,6 +1008,7 @@
 				A98FC6AF24411F25004433A6 /* Timeline.swift in Sources */,
 				A9232E84245795FF00CF1654 /* Keys.swift in Sources */,
 				A99B73EE2446746800383D30 /* CareModel.swift in Sources */,
+				A9B116A027F72AC90070F427 /* FirebaseAppDelegate.swift in Sources */,
 				A906DEAB27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift in Sources */,
 				A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */,
 				A98FC6C3244221FF004433A6 /* CountryViewController.swift in Sources */,
