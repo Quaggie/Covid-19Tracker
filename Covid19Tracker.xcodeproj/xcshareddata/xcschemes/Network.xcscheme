@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A9B116A527F738780070F427"
-               BuildableName = "Network.framework"
+               BuildableName = "Networking.framework"
                BlueprintName = "Networking"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
@@ -46,8 +46,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A9B116AE27F738790070F427"
-               BuildableName = "NetworkTests.xctest"
-               BlueprintName = "NetworkTests"
+               BuildableName = "NetworkingTests.xctest"
+               BlueprintName = "NetworkingTests"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -74,7 +74,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A9B116A527F738780070F427"
-            BuildableName = "Network.framework"
+            BuildableName = "Networking.framework"
             BlueprintName = "Networking"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>

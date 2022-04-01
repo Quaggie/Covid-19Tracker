@@ -247,7 +247,7 @@
 		A9A2D05D2459198F00BB6509 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAppDelegate.swift; sourceTree = "<group>"; };
 		A9B116A627F738780070F427 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9B116AF27F738790070F427 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B116AF27F738790070F427 /* NetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B116CB27F73E330070F427 /* XCTestCase+HelperObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+HelperObjects.swift"; sourceTree = "<group>"; };
 		A9B116CE27F73E7F0070F427 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		A9B2AE3827ED152D00BA750B /* Covid19Tracker_unit_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Covid19Tracker_unit_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -408,7 +408,7 @@
 				A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */,
 				A9B2AE3827ED152D00BA750B /* Covid19Tracker_unit_tests.xctest */,
 				A9B116A627F738780070F427 /* Networking.framework */,
-				A9B116AF27F738790070F427 /* NetworkTests.xctest */,
+				A9B116AF27F738790070F427 /* NetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -711,18 +711,10 @@
 			isa = PBXGroup;
 			children = (
 				A9B116CD27F73E780070F427 /* Extensions */,
-				A9B116CA27F73E250070F427 /* Helpers */,
 				A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */,
 				A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */,
 			);
 			path = NetworkingTests;
-			sourceTree = "<group>";
-		};
-		A9B116CA27F73E250070F427 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A9B116CD27F73E780070F427 /* Extensions */ = {
@@ -870,13 +862,13 @@
 			dependencies = (
 			);
 			name = Networking;
-			productName = Network;
+			productName = Networking;
 			productReference = A9B116A627F738780070F427 /* Networking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A9B116AE27F738790070F427 /* NetworkTests */ = {
+		A9B116AE27F738790070F427 /* NetworkingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9B116BA27F738790070F427 /* Build configuration list for PBXNativeTarget "NetworkTests" */;
+			buildConfigurationList = A9B116BA27F738790070F427 /* Build configuration list for PBXNativeTarget "NetworkingTests" */;
 			buildPhases = (
 				A9B116AB27F738790070F427 /* Sources */,
 				A9B116AC27F738790070F427 /* Frameworks */,
@@ -887,9 +879,9 @@
 			dependencies = (
 				A9B116B227F738790070F427 /* PBXTargetDependency */,
 			);
-			name = NetworkTests;
-			productName = NetworkTests;
-			productReference = A9B116AF27F738790070F427 /* NetworkTests.xctest */;
+			name = NetworkingTests;
+			productName = NetworkingTests;
+			productReference = A9B116AF27F738790070F427 /* NetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A9B2AE3727ED152D00BA750B /* Covid19Tracker_unit_tests */ = {
@@ -953,7 +945,7 @@
 				A93B3F512432CBB200AFC97F /* Covid19Tracker */,
 				A9B2AE3727ED152D00BA750B /* Covid19Tracker_unit_tests */,
 				A9B116A527F738780070F427 /* Networking */,
-				A9B116AE27F738790070F427 /* NetworkTests */,
+				A9B116AE27F738790070F427 /* NetworkingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1413,7 +1405,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.Network;
+				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.Networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1447,7 +1439,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.Network;
+				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.Networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1470,7 +1462,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
@@ -1490,7 +1482,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = DevsCarioca.Covid19Tracker.NetworkingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
@@ -1573,7 +1565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9B116BA27F738790070F427 /* Build configuration list for PBXNativeTarget "NetworkTests" */ = {
+		A9B116BA27F738790070F427 /* Build configuration list for PBXNativeTarget "NetworkingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A9B116BB27F738790070F427 /* Debug */,

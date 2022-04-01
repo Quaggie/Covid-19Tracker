@@ -1,6 +1,6 @@
 //
 //  XCTestCase+HelperObjects.swift
-//  NetworkTests
+//  NetworkingTests
 //
 //  Created by Jonathan Bijos on 01/04/22.
 //  Copyright © 2022 DevsCarioca. All rights reserved.
