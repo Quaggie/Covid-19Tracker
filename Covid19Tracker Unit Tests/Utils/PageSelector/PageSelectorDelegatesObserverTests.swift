@@ -10,14 +10,28 @@ import XCTest
 @testable import Covid19_Tracker
 
 final class PageSelectorDelegatesObserverTests: XCTestCase {
-    func test_delegatesAreRemovedFromArrayOnDeinit() {
+    func test_delegatesAreDeallocatedOnDeinit() {
+        var sut: PageSelectorDelegatesObserver? = makeSUT()
+        let object1 = ExampleObject()
+        let object2 = ExampleObject()
+        checkMemoryLeak(for: object1)
+        checkMemoryLeak(for: object2)
+
+        sut?.addListener(object1)
+        sut?.addListener(object2)
+        XCTAssertEqual(sut!.observers.count, 2)
+        XCTAssertEqual((sut!.observers.allObjects[0] as! ExampleObject).indexes, [])
+        XCTAssertEqual((sut!.observers.allObjects[1] as! ExampleObject).indexes, [])
+        sut = nil
+    }
+
+    func test_delegatesAreRemovedFromArrayOnTheirDeinit() {
         let object1 = ExampleObject()
         var object2: ExampleObject?
 
         object2 = ExampleObject()
         object1.otherObject = object2
         let sut = makeSUT()
-        checkMemoryLeak(for: sut)
 
         autoreleasepool {
             sut.addListener(object1)
@@ -69,7 +83,9 @@ final class PageSelectorDelegatesObserverTests: XCTestCase {
 
 extension PageSelectorDelegatesObserverTests {
     func makeSUT() -> PageSelectorDelegatesObserver {
-        PageSelectorDelegatesObserver()
+        let sut = PageSelectorDelegatesObserver()
+        checkMemoryLeak(for: sut)
+        return sut
     }
 }
 
