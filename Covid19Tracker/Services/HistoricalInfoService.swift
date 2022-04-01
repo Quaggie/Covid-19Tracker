@@ -9,6 +9,19 @@
 import Foundation
 import Networking
 
+struct HistoricalCountryInfo: Codable {
+    let country: String
+    let timeline: [HistoricalTimelineDayInfo]
+}
+
+struct HistoricalTimelineDayInfo: Codable {
+    let day: String
+    let active: Int
+    let recovered: Int
+    let deaths: Int
+}
+
+
 protocol HistoricalInfoServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void)
     func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void)

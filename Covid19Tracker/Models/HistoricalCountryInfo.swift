@@ -16,17 +16,3 @@ struct HistoricalTimelineResponse: Codable {
     let deaths: [String: Int]
     let recovered: [String: Int]
 }
-
-// Viewmodel
-struct HistoricalCountryInfo: Codable {
-    let country: String
-    let timeline: [HistoricalTimelineDayInfo]
-}
-
-// Viewmodel
-struct HistoricalTimelineDayInfo: Codable {
-    let day: String
-    let active: Int
-    let recovered: Int
-    let deaths: Int
-}

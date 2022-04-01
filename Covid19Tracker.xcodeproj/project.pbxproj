@@ -423,7 +423,6 @@
 				A93B3F862432CF3100AFC97F /* Constants */,
 				A93B3FAE24355DBD00AFC97F /* Models */,
 				A93B3FB124355E8900AFC97F /* Services */,
-				A98FC6C7244224CA004433A6 /* Cells */,
 				A93B3F8B2432CFE700AFC97F /* Components */,
 				A93B3F5E2432CBB300AFC97F /* Assets.xcassets */,
 				A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */,
@@ -584,6 +583,7 @@
 		A98FC6B2244121AA004433A6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A98FC6C7244224CA004433A6 /* Cells */,
 				A98FC6E92442BA17004433A6 /* Charts */,
 				A98FC6B3244121B2004433A6 /* BallView.swift */,
 				A98FC6B52441224C004433A6 /* SpaceView.swift */,

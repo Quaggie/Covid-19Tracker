@@ -6,8 +6,6 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-import Foundation
-
 struct CountryInfo: Codable {
     let flag: String
 }

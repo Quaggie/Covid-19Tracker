@@ -15,9 +15,8 @@ struct Country: Codable {
     let todayDeaths: Int
     let recovered: Int
     let active: Int
-    let critical: Int
 
     var timeline: Timeline {
-        return Timeline(cases: cases, active: active, deaths: deaths, recovered: recovered, todayCases: todayCases, todayDeaths: todayDeaths)
+        Timeline(cases: cases, active: active, deaths: deaths, recovered: recovered, todayCases: todayCases, todayDeaths: todayDeaths)
     }
 }
