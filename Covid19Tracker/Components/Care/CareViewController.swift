@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol CareViewControllerDelegate: AnyObject {
+    func viewDidAppear()
+    func pageSelectorDidChange(index: Int)
+}
+
 final class CareViewController: BaseViewController {
     // MARK: - Properties
-    private let tracker: TrackerProtocol
+    private let delegate: CareViewControllerDelegate
     private var selectedIndex: Int = 0
     private weak var dataSource: DataSource?
-    private weak var delegate: UICollectionViewDelegateFlowLayout?
+    private weak var delegateFlowLayout: UICollectionViewDelegateFlowLayout?
     private let collectionViewInset: UIEdgeInsets = .init(top: 8, left: 16, bottom: 16, right: 16)
 
     // MARK: - Views
@@ -25,7 +30,7 @@ final class CareViewController: BaseViewController {
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.dataSource = dataSource
-        cv.delegate = delegate
+        cv.delegate = delegateFlowLayout
         cv.backgroundColor = .clear
         cv.contentInset = collectionViewInset
 
@@ -42,14 +47,14 @@ final class CareViewController: BaseViewController {
 
     // MARK: - Init
     init(
-        tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self)),
+        delegate: CareViewControllerDelegate,
         dataSource: DataSource?,
-        delegate: UICollectionViewDelegateFlowLayout?,
+        delegateFlowLayout: UICollectionViewDelegateFlowLayout?,
         pageSelectorViewDelegate: PageSelectorViewDelegate
     ) {
-        self.dataSource = dataSource
         self.delegate = delegate
-        self.tracker = tracker
+        self.dataSource = dataSource
+        self.delegateFlowLayout = delegateFlowLayout
         super.init(nibName: nil, bundle: nil)
 
         dataSource?.registerCells(on: collectionView)
@@ -70,7 +75,7 @@ final class CareViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tracker.screenView(name: "Preventions")
+        delegate.viewDidAppear()
     }
 }
 
@@ -79,15 +84,15 @@ extension CareViewController: PageSelectorDelegate {
         if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {
-            if index == 0 {
-                tracker.screenView(name: "Preventions")
-            } else {
-                tracker.screenView(name: "Symptoms")
-            }
+            delegate.pageSelectorDidChange(index: index)
             selectedIndex = index
             collectionView.reloadData()
         }
     }
+}
+
+final class CareView: UIView {
+// TODO
 }
 
 extension CareViewController: CodeView {

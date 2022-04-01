@@ -173,8 +173,10 @@ extension CareViewControllerTests {
 extension CareViewControllerTests {
     func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy) {
         let tracker = TrackerSpy()
-        let viewController = CareViewController(tracker: tracker, dataSource: dataSource, delegate: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesObserver())
+        let delegate = CareTrackerAdaptor(tracker: tracker)
+        let viewController = CareViewController(delegate: delegate, dataSource: dataSource, delegateFlowLayout: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesComposite())
         checkMemoryLeak(for: viewController, file: file, line: line)
+        checkMemoryLeak(for: delegate, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
         return (viewController, tracker)
     }

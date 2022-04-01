@@ -9,6 +9,7 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
+    private lazy var trackerAdaptor = CareTrackerAdaptor()
     private lazy var careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
     private lazy var sourceDataSource = SourceDataSource()
     private lazy var dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
@@ -18,7 +19,7 @@ final class TabBarViewController: UITabBarController {
             SourceDelegateFlowLayout()
         ]
     )
-    private let pageSelectorDelegatesObserver = PageSelectorDelegatesObserver()
+    private let pageSelectorDelegatesComposite = PageSelectorDelegatesComposite()
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -45,15 +46,7 @@ final class TabBarViewController: UITabBarController {
         let newsViewController = NewsViewController(newsService: MainQueueDispatchDecorator(instance: NewsService()))
         newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 3)
 
-        let careViewController = CareViewController(
-            dataSource: dataSource,
-            delegate: delegateFlowLayout,
-            pageSelectorViewDelegate: pageSelectorDelegatesObserver
-        )
-
-        pageSelectorDelegatesObserver.addListener(careViewController)
-        pageSelectorDelegatesObserver.addListener(careDataSource)
-        sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(careViewController)
+        let careViewController = makeCareViewController()
         careViewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
         viewControllers = [homeViewController, worldViewController, searchViewController, newsViewController, careViewController]
@@ -61,6 +54,21 @@ final class TabBarViewController: UITabBarController {
 
     private func makeSearchViewController() -> SearchViewController {
         SearchViewController(cameFromHome: false, countryService: MainQueueDispatchDecorator(instance: CountryService()))
+    }
+
+    private func makeCareViewController() -> CareViewController {
+        let careViewController = CareViewController(
+            delegate: trackerAdaptor,
+            dataSource: dataSource,
+            delegateFlowLayout: delegateFlowLayout,
+            pageSelectorViewDelegate: pageSelectorDelegatesComposite
+        )
+
+        pageSelectorDelegatesComposite.addDelegate(careViewController)
+        pageSelectorDelegatesComposite.addDelegate(careDataSource)
+        pageSelectorDelegatesComposite.addDelegate(careDataSource)
+        sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(careViewController)
+        return careViewController
     }
 
     private func setupPreventionData() -> [CareModel] {
@@ -133,5 +141,36 @@ extension TabBarViewController: UITabBarControllerDelegate {
         }
 
         return true
+    }
+}
+
+final class CareTrackerAdaptor {
+    private let tracker: TrackerProtocol
+    private var selectedIndex = 0
+
+    init(tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self))) {
+        self.tracker = tracker
+    }
+
+    private func trackScreenFor(index: Int) {
+        if index == 0 {
+            tracker.screenView(name: "Preventions")
+        } else {
+            tracker.screenView(name: "Symptoms")
+        }
+    }
+}
+
+extension CareTrackerAdaptor: PageSelectorDelegate {
+    func pageSelectorDidChange(index: Int) {
+        guard selectedIndex != index else { return }
+        selectedIndex = index
+        trackScreenFor(index: index)
+    }
+}
+
+extension CareTrackerAdaptor: CareViewControllerDelegate {
+    func viewDidAppear() {
+        trackScreenFor(index: selectedIndex)
     }
 }

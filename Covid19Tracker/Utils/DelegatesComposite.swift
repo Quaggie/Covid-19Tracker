@@ -1,5 +1,5 @@
 //
-//  DelegatesObservable.swift
+//  DelegatesComposite.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 30/03/22.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol DelegatesObservable {
+protocol DelegatesComposite {
     associatedtype T
-    var observers: NSHashTable<AnyObject> { get set }
-    func addListener(_ delegate: T)
+    var delegates: NSHashTable<AnyObject> { get set }
+    func addDelegate(_ delegate: T)
 }

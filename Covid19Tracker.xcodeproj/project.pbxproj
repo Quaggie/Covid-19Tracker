@@ -21,8 +21,8 @@
 		A906DEB627F4B06700F19932 /* ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */; };
 		A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */; };
 		A906DEBD27F4F05000F19932 /* PageSelectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */; };
-		A906DEBF27F4F08000F19932 /* PageSelectorDelegatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */; };
-		A906DEC127F4F1EF00F19932 /* DelegatesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */; };
+		A906DEBF27F4F08000F19932 /* PageSelectorDelegatesComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEBE27F4F08000F19932 /* PageSelectorDelegatesComposite.swift */; };
+		A906DEC127F4F1EF00F19932 /* DelegatesComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */; };
 		A9232E84245795FF00CF1654 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E83245795FE00CF1654 /* Keys.swift */; };
 		A9232E862457979F00CF1654 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E852457979F00CF1654 /* NewsService.swift */; };
 		A9232E88245797EE00CF1654 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E87245797EE00CF1654 /* News.swift */; };
@@ -170,8 +170,8 @@
 		A906DEB527F4B06700F19932 /* ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenter.swift; sourceTree = "<group>"; };
 		A906DEB727F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewControllerPresenter.swift"; sourceTree = "<group>"; };
 		A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegate.swift; sourceTree = "<group>"; };
-		A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegatesObserver.swift; sourceTree = "<group>"; };
-		A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatesObservable.swift; sourceTree = "<group>"; };
+		A906DEBE27F4F08000F19932 /* PageSelectorDelegatesComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegatesComposite.swift; sourceTree = "<group>"; };
+		A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatesComposite.swift; sourceTree = "<group>"; };
 		A9232E83245795FE00CF1654 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A9232E852457979F00CF1654 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		A9232E87245797EE00CF1654 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				A906DEBC27F4F05000F19932 /* PageSelectorDelegate.swift */,
-				A906DEBE27F4F08000F19932 /* PageSelectorDelegatesObserver.swift */,
+				A906DEBE27F4F08000F19932 /* PageSelectorDelegatesComposite.swift */,
 			);
 			path = PageSelector;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 				A98FC6F22445521E004433A6 /* Keyboard */,
 				A93B3F942432D48400AFC97F /* CodeView.swift */,
 				A9232E83245795FE00CF1654 /* Keys.swift */,
-				A906DEC027F4F1EF00F19932 /* DelegatesObservable.swift */,
+				A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1088,7 +1088,7 @@
 				A93B3F972432D5FC00AFC97F /* UILabel+Extension.swift in Sources */,
 				A906DEA627F4ACF500F19932 /* CareDataSource.swift in Sources */,
 				A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */,
-				A906DEC127F4F1EF00F19932 /* DelegatesObservable.swift in Sources */,
+				A906DEC127F4F1EF00F19932 /* DelegatesComposite.swift in Sources */,
 				A98FC6E824427CA8004433A6 /* HistoricalInfoService.swift in Sources */,
 				A98FC6B924416194004433A6 /* BaseViewController.swift in Sources */,
 				A98FC6EF2445300E004433A6 /* SearchCell.swift in Sources */,
@@ -1132,7 +1132,7 @@
 				A98FC6DA244249D2004433A6 /* ErrorView.swift in Sources */,
 				A93B3FB324355EAE00AFC97F /* HistoricalCountryInfo.swift in Sources */,
 				A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */,
-				A906DEBF27F4F08000F19932 /* PageSelectorDelegatesObserver.swift in Sources */,
+				A906DEBF27F4F08000F19932 /* PageSelectorDelegatesComposite.swift in Sources */,
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
