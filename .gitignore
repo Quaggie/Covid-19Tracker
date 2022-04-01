@@ -107,6 +107,5 @@ Keys.plist
 
 .DS_Store
 xcov_output/
-xcshareddata/
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
