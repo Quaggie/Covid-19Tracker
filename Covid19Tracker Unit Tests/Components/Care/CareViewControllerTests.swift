@@ -140,6 +140,11 @@ class CareViewControllerTests: XCTestCase {
         sut.pageSelectorDidChange(index: 0)
         XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
         XCTAssertEqual(tracker.screenViews, ["Symptoms", "Preventions"])
+
+        careDataSource.pageSelectorDidChange(index: 0)
+        sut.pageSelectorDidChange(index: 0)
+        XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), preventionModels.count)
+        XCTAssertEqual(tracker.screenViews, ["Symptoms", "Preventions"])
     }
 
     func test_pageSelectorDidChange_doesNotReloadDataAndDoesNotTrackScreenOnSelectorIndexRemainingTheSame() {
