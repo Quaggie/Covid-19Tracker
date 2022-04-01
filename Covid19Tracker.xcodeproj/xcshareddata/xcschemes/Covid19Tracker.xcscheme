@@ -28,7 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       enableThreadSanitizer = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A93B3F512432CBB200AFC97F"
+            BuildableName = "Covid19 Tracker.app"
+            BlueprintName = "Covid19Tracker"
+            ReferencedContainer = "container:Covid19Tracker.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A9B2AE3727ED152D00BA750B"
+            BuildableName = "Covid19Tracker_unit_tests.xctest"
+            BlueprintName = "Covid19Tracker_unit_tests"
+            ReferencedContainer = "container:Covid19Tracker.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"

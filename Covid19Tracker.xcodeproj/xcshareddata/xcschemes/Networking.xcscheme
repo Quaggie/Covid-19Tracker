@@ -38,6 +38,13 @@
             BlueprintName = "Networking"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A9B116AE27F738790070F427"
+            BuildableName = "NetworkingTests.xctest"
+            BlueprintName = "NetworkingTests"
+            ReferencedContainer = "container:Covid19Tracker.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
