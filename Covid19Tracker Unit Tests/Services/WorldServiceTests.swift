@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Covid19_Tracker
+import Networking
 
 class WorldServiceTests: XCTestCase {
     func test_fetchCases_callsServiceOncePerExecution() {

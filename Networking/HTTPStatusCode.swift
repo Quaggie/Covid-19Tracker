@@ -6,7 +6,7 @@
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-enum HTTPStatusCode: Int {
+public enum HTTPStatusCode: Int {
     case badRequest = 400
     case unauthorized = 401
     case forbidden = 403

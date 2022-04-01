@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DataRequest {
+public protocol DataRequest {
     init(
         url: URL,
         method: HTTPMethod,
@@ -20,7 +20,7 @@ protocol DataRequest {
     func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
 }
 
-final class DefaultDataRequest: DataRequest, WebserviceRequest {
+public final class DefaultDataRequest: DataRequest, WebserviceRequest {
     // MARK: - Properties
     private let url: URL
     private let method: HTTPMethod
@@ -29,10 +29,10 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
     private let session: URLSession
     private let cache: Bool
 
-    var task: URLSessionTask?
+    public var task: URLSessionTask?
 
     // MARK: - Init
-    init(
+    public init(
         url: URL,
         method: HTTPMethod,
         parameters: [String: Any],
@@ -49,11 +49,11 @@ final class DefaultDataRequest: DataRequest, WebserviceRequest {
     }
 
     // MARK: - Functions
-    func cancel() {
+    public func cancel() {
         task?.cancel()
     }
 
-    func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void) {
+    public func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void) {
         var urlRequest = URLRequest(url: url)
         urlRequest.timeoutInterval = 30
         urlRequest.httpMethod = method.rawValue

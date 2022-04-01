@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Covid19_Tracker
+import Networking
 
 class NetworkManagerTests: XCTestCase {
     static let validURLPath = "/test"

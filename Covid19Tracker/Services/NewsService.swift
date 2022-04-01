@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 protocol NewsServiceProtocol {
     func fetch(completion: @escaping (Result<[News], WebserviceError>) -> Void)

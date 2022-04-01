@@ -9,14 +9,14 @@
 
 import Foundation
 
-protocol WebserviceRequest {
+public protocol WebserviceRequest {
     var task: URLSessionTask? { get }
 
     func cancel()
 }
 
 extension WebserviceRequest {
-    var isCancelled: Bool {
+    public var isCancelled: Bool {
         task?.state == .canceling
     }
 }

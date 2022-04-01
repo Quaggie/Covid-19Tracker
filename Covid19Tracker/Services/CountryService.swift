@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 protocol CountryServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<Country, WebserviceError>) -> Void)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 protocol WorldServiceProtocol {
     func fetchCases(completion: @escaping (Result<Timeline, WebserviceError>) -> Void)

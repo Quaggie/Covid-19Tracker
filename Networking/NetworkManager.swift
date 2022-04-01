@@ -7,9 +7,9 @@
 //
 
 
-import UIKit
+import Foundation
 
-protocol NetworkManagerProtocol {
+public protocol NetworkManagerProtocol {
     @discardableResult
     func fetch(
         urlString: String,
@@ -20,9 +20,9 @@ protocol NetworkManagerProtocol {
     ) -> WebserviceRequest?
 }
 
-final class NetworkManager: NetworkManagerProtocol {
+public final class NetworkManager: NetworkManagerProtocol {
     // MARK: - Enum
-    enum Source {
+    public enum Source {
         case covid
         case google
     }
@@ -41,13 +41,13 @@ final class NetworkManager: NetworkManagerProtocol {
     }
 
     // MARK: - Init
-    init(source: Source = .covid, sessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default) {
+    public init(source: Source = .covid, sessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.source = source
         self.sessionConfiguration = sessionConfiguration
     }
 
     @discardableResult
-    func fetch(
+    public func fetch(
         urlString: String,
         method: HTTPMethod,
         parameters: [String: Any],

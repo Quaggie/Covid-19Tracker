@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 struct Stub {
     let data: Data?

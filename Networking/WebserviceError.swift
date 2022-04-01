@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WebserviceError: Error {
+public enum WebserviceError: Error {
     case internalServerError
     case notConnectedToInternet
     case timedOut

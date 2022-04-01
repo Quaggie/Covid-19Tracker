@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 protocol HistoricalInfoServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void)
