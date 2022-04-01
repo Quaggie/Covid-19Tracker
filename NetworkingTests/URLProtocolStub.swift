@@ -18,6 +18,7 @@ struct Stub {
 final class URLProtocolStub: URLProtocol {
     private static var stub: Stub?
     private static var requestObserver: ((URLRequest) -> Void)?
+    private static let lockQueue = DispatchQueue(label: "name.lock.queue")
 
     static func startIntercepting() {
         URLProtocol.registerClass(URLProtocolStub.self)
@@ -36,37 +37,45 @@ final class URLProtocolStub: URLProtocol {
     }
 
     override func startLoading() {
-        if let requestObserver = URLProtocolStub.requestObserver {
-            client?.urlProtocolDidFinishLoading(self)
-            return requestObserver(request)
-        }
-
-        if let stub = URLProtocolStub.stub {
-            if let response = stub.response {
-                client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+        URLProtocolStub.lockQueue.async { [self] in
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                return requestObserver(request)
             }
 
-            if let data = stub.data {
-                client?.urlProtocol(self, didLoad: data)
-            }
+            if let stub = URLProtocolStub.stub {
+                if let response = stub.response {
+                    client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+                }
 
-            if let error = stub.error {
-                client?.urlProtocol(self, didFailWithError: error)
-            }
+                if let data = stub.data {
+                    client?.urlProtocol(self, didLoad: data)
+                }
 
-            client?.urlProtocolDidFinishLoading(self)
+                if let error = stub.error {
+                    client?.urlProtocol(self, didFailWithError: error)
+                }
+
+                client?.urlProtocolDidFinishLoading(self)
+            }
         }
     }
 
     override func stopLoading() {
-        URLProtocolStub.requestObserver = nil
+        URLProtocolStub.lockQueue.async {
+            URLProtocolStub.requestObserver = nil
+        }
     }
 
     static func observeRequest(with observer: @escaping (URLRequest) -> Void) {
-        URLProtocolStub.requestObserver = observer
+        lockQueue.async {
+            URLProtocolStub.requestObserver = observer
+        }
     }
 
     static func stub(_ stub: Stub?) {
-        URLProtocolStub.stub = stub
+        lockQueue.async {
+            URLProtocolStub.stub = stub
+        }
     }
 }
