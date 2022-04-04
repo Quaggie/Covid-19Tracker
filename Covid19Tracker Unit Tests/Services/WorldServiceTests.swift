@@ -9,6 +9,7 @@
 import XCTest
 @testable import Covid19_Tracker
 import Networking
+@testable import Data
 
 class WorldServiceTests: XCTestCase {
     func test_fetchCases_callsServiceOncePerExecution() {
@@ -22,7 +23,7 @@ class WorldServiceTests: XCTestCase {
     func test_fetchCases_returnsTimelineOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
-        let timeline = Timeline(cases: 0, active: 0, deaths: 0, recovered: 0, todayCases: 0, todayDeaths: 0)
+        let timeline = TimelineModel(cases: 0, active: 0, deaths: 0, recovered: 0, todayCases: 0, todayDeaths: 0)
         expect(sut: sut, with: .success(timeline)) {
             let data = try! JSONEncoder().encode(timeline)
             networkManager.complete(with: .success(data))
@@ -56,9 +57,9 @@ extension WorldServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: WorldService, with expectedResult: Result<Timeline, WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: WorldService, with expectedResult: Result<TimelineModel, WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<Timeline, WebserviceError>?
+        var receivedResult: Result<TimelineModel, WebserviceError>?
         sut.fetchCases { result in
             receivedResult = result
             exp.fulfill()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Data
 
 final class HomeViewController: BaseViewController {
     enum State {
@@ -141,12 +142,13 @@ final class HomeViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let country):
-                self.historicalInfoService.fetch(country: country.country) { [weak self] (result) in
+            case .success(let countryModel):
+                self.historicalInfoService.fetch(country: countryModel.country) { [weak self] (result) in
                     guard let self = self else { return }
 
                     switch result {
                     case .success(let historicalInfo):
+                        let country = Country.from(model: countryModel)
                         self.selectedCountry = country
                         self.datasource = [
                             .totalCases(country),

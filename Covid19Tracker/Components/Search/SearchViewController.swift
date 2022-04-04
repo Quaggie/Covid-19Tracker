@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Data
 
 final class SearchViewController: BaseViewController {
     enum State {
@@ -152,7 +153,8 @@ final class SearchViewController: BaseViewController {
         countryService.fetchAll(sort: false) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case .success(let countries):
+            case .success(let countriesModel):
+                let countries = countriesModel.map(Country.from(model:))
                 self.countries = countries
                 self.state = .success
             case .failure:

@@ -2,11 +2,13 @@
 //  Country.swift
 //  Covid19Tracker
 //
-//  Created by Jonathan Bijos on 01/04/20.
-//  Copyright © 2020 DevsCarioca. All rights reserved.
+//  Created by Jonathan Bijos on 04/04/22.
+//  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-struct Country: Codable {
+import Data
+
+struct Country {
     let country: String
     let countryInfo: CountryInfo
     let cases: Int
@@ -18,5 +20,18 @@ struct Country: Codable {
 
     var timeline: Timeline {
         Timeline(cases: cases, active: active, deaths: deaths, recovered: recovered, todayCases: todayCases, todayDeaths: todayDeaths)
+    }
+
+    static func from(model: CountryModel) -> Country {
+        Country(
+            country: model.country,
+            countryInfo: CountryInfo.from(model: model.countryInfo),
+            cases: model.cases,
+            todayCases: model.todayCases,
+            deaths: model.deaths,
+            todayDeaths: model.todayDeaths,
+            recovered: model.recovered,
+            active: model.active
+        )
     }
 }

@@ -1,6 +1,6 @@
 //
 //  HistoricalInfoService.swift
-//  Covid19Tracker
+//  Data
 //
 //  Created by Jonathan Bijos on 11/04/20.
 //  Copyright © 2020 DevsCarioca. All rights reserved.
@@ -9,32 +9,32 @@
 import Foundation
 import Networking
 
-struct HistoricalCountryInfo: Codable {
-    let country: String
-    let timeline: [HistoricalTimelineDayInfo]
+public struct HistoricalCountryInfo: Codable {
+    public let country: String
+    public let timeline: [HistoricalTimelineDayInfo]
 }
 
-struct HistoricalTimelineDayInfo: Codable {
-    let day: String
-    let active: Int
-    let recovered: Int
-    let deaths: Int
+public struct HistoricalTimelineDayInfo: Codable {
+    public let day: String
+    public let active: Int
+    public let recovered: Int
+    public let deaths: Int
 }
 
 
-protocol HistoricalInfoServiceProtocol {
+public protocol HistoricalInfoServiceProtocol {
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void)
     func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void)
 }
 
-final class HistoricalInfoService: HistoricalInfoServiceProtocol {
+public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
     private let networkManager: NetworkManagerProtocol
 
-    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    public init(networkManager: NetworkManagerProtocol = NetworkManager()) {
         self.networkManager = networkManager
     }
 
-    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
+    public func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
         guard let encodedCountry = country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(.failure(.unparseable))
             return
@@ -45,7 +45,7 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
             switch result {
             case .success(let data):
                  do {
-                    let decodedObject = try JSONDecoder().decode(HistoricalCountryInfoResponse.self, from: data)
+                    let decodedObject = try JSONDecoder().decode(HistoricalCountryInfoModel.self, from: data)
                     let list = self.historicalTimelineDayInfo(from: decodedObject.timeline)
                     let countryInfo = HistoricalCountryInfo(country: decodedObject.country, timeline: list)
 
@@ -59,14 +59,14 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
         }
     }
 
-    func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
+    public func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
         let urlString = "/historical/all?lastdays=7"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
             switch result {
             case .success(let data):
                  do {
-                    let decodedObject = try JSONDecoder().decode(HistoricalTimelineResponse.self, from: data)
+                     let decodedObject = try JSONDecoder().decode(HistoricalCountryInfoModel.Timeline.self, from: data)
                     let list = self.historicalTimelineDayInfo(from: decodedObject)
 
                     completion(.success(list))
@@ -79,7 +79,7 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
         }
     }
 
-    private func historicalTimelineDayInfo(from response: HistoricalTimelineResponse) -> [HistoricalTimelineDayInfo] {
+    private func historicalTimelineDayInfo(from response: HistoricalCountryInfoModel.Timeline) -> [HistoricalTimelineDayInfo] {
         let now = Date()
         let calendar = Calendar.current
         let formatter = DateFormatter()
@@ -127,25 +127,5 @@ final class HistoricalInfoService: HistoricalInfoServiceProtocol {
         }
 
         return historicalTimelineDayInfoList
-    }
-}
-
-extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: HistoricalInfoServiceProtocol {
-    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
-        instance.fetch(country: country) { [weak self] result in
-            guard let self = self else { return }
-            self.dispatch {
-                completion(result)
-            }
-        }
-    }
-
-    func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
-        instance.fetchAll { [weak self] result in
-            guard let self = self else { return }
-            self.dispatch {
-                completion(result)
-            }
-        }
     }
 }

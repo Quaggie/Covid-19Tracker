@@ -85,7 +85,7 @@ final class NewsCell: UICollectionViewCell {
         postImageView.kf.setImage(with: URL(string: model.urlToImage))
         titleLabel.text = model.title
         separatorView.backgroundColor = model.color(forIndex: index)
-        sourceLabel.text = model.source.name
+        sourceLabel.text = model.source
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"

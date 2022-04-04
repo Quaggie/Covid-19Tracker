@@ -2,8 +2,8 @@
 //  CareModel.swift
 //  Covid19Tracker
 //
-//  Created by Jonathan Bijos on 14/04/20.
-//  Copyright © 2020 DevsCarioca. All rights reserved.
+//  Created by Jonathan Bijos on 04/04/22.
+//  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
 import UIKit

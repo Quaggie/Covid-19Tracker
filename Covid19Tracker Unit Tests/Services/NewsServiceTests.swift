@@ -9,6 +9,7 @@
 import XCTest
 @testable import Covid19_Tracker
 import Networking
+@testable import Data
 
 class NewsServiceTests: XCTestCase {
     func test_fetch_callsServiceOncePerExecution() {
@@ -22,8 +23,8 @@ class NewsServiceTests: XCTestCase {
     func test_fetch_returnsNewsOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
-        let newsArray = [News(source: .init(name: ""), title: "", url: "", urlToImage: "", publishedAt: "")]
-        let newsResponse = NewsResponse(status: "", totalResults: 1, articles: newsArray)
+        let newsArray = [NewsModel.Article(source: NewsModel.Article.Source(name: ""), title: "", url: "", urlToImage: "", publishedAt: "")]
+        let newsResponse = NewsModel(status: "", totalResults: 1, articles: newsArray)
         expect(sut: sut, with: .success(newsArray)) {
             let data = try! JSONEncoder().encode(newsResponse)
             networkManager.complete(with: .success(data))
@@ -57,9 +58,9 @@ extension NewsServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: NewsService, with expectedResult: Result<[News], WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: NewsService, with expectedResult: Result<[NewsModel.Article], WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<[News], WebserviceError>?
+        var receivedResult: Result<[NewsModel.Article], WebserviceError>?
         sut.fetch { result in
             receivedResult = result
             exp.fulfill()

@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import Data
 
 final class NewsViewController: BaseViewController {
     enum State {
@@ -93,7 +94,8 @@ final class NewsViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let news):
+            case .success(let articles):
+                let news = articles.map(News.from(model:))
                 self.datasource = news
                 self.state = .success
             case .failure:

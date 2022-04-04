@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Data
 
 final class WorldViewController: BaseViewController {
     enum State {
@@ -115,7 +116,8 @@ final class WorldViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let timeline):
+            case .success(let timelineModel):
+                let timeline = Timeline.from(model: timelineModel)
                 self.historicalInfoService.fetchAll { [weak self] (result) in
                     guard let self = self else { return }
                     dispatchGroup.leave()
@@ -143,7 +145,8 @@ final class WorldViewController: BaseViewController {
             dispatchGroup.leave()
 
             switch result {
-            case .success(let countries):
+            case .success(let countriesModel):
+                let countries = countriesModel.map(Country.from(model:))
                 self.countriesDatasource = countries
             case .failure:
                 hasError = true

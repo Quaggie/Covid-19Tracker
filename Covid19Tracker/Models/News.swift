@@ -2,18 +2,15 @@
 //  News.swift
 //  Covid19Tracker
 //
-//  Created by Jonathan Bijos on 27/04/20.
-//  Copyright © 2020 DevsCarioca. All rights reserved.
+//  Created by Jonathan Bijos on 04/04/22.
+//  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
 import UIKit
+import Data
 
-struct News: Codable, Equatable {
-    struct Source: Codable, Equatable {
-        let name: String
-    }
-
-    let source: Source
+struct News: Equatable {
+    let source: String
     let title: String
     let url: String
     let urlToImage: String
@@ -32,10 +29,14 @@ struct News: Codable, Equatable {
             return Color.purpleLight
         }
     }
-}
 
-struct NewsResponse: Codable {
-    let status: String
-    let totalResults: Int
-    let articles: [News]
+    static func from(model: NewsModel.Article) -> News {
+        News(
+            source: model.source.name,
+            title: model.title,
+            url: model.url,
+            urlToImage: model.urlToImage,
+            publishedAt: model.publishedAt
+        )
+    }
 }

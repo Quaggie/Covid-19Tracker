@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Data
 
 final class CountryViewController: BaseViewController {
     enum State {
@@ -124,12 +125,13 @@ final class CountryViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let country):
-                self.historicalInfoService.fetch(country: country.country) { [weak self] (result) in
+            case .success(let countryModel):
+                self.historicalInfoService.fetch(country: countryModel.country) { [weak self] (result) in
                     guard let self = self else { return }
 
                     switch result {
                     case .success(let historicalInfo):
+                        let country = Country.from(model: countryModel)
                         self.datasource = [
                             .totalCases(country),
                             .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
