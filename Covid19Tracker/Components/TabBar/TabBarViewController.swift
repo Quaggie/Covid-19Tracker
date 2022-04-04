@@ -9,7 +9,7 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    private lazy var trackerAdaptor = CareTrackerAdaptor()
+    private lazy var trackerAdapter = CareTrackerAdapter()
     private lazy var careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
     private lazy var sourceDataSource = SourceDataSource()
     private lazy var dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
@@ -58,7 +58,7 @@ final class TabBarViewController: UITabBarController {
 
     private func makeCareViewController() -> CareViewController {
         let careViewController = CareViewController(
-            delegate: trackerAdaptor,
+            delegate: trackerAdapter,
             dataSource: dataSource,
             delegateFlowLayout: delegateFlowLayout,
             pageSelectorViewDelegate: pageSelectorDelegatesComposite
@@ -144,7 +144,7 @@ extension TabBarViewController: UITabBarControllerDelegate {
     }
 }
 
-final class CareTrackerAdaptor {
+final class CareTrackerAdapter {
     private let tracker: TrackerProtocol
     private var selectedIndex = 0
 
@@ -161,7 +161,7 @@ final class CareTrackerAdaptor {
     }
 }
 
-extension CareTrackerAdaptor: PageSelectorDelegate {
+extension CareTrackerAdapter: PageSelectorDelegate {
     func pageSelectorDidChange(index: Int) {
         guard selectedIndex != index else { return }
         selectedIndex = index
@@ -169,7 +169,7 @@ extension CareTrackerAdaptor: PageSelectorDelegate {
     }
 }
 
-extension CareTrackerAdaptor: CareViewControllerDelegate {
+extension CareTrackerAdapter: CareViewControllerDelegate {
     func viewDidAppear() {
         trackScreenFor(index: selectedIndex)
     }
