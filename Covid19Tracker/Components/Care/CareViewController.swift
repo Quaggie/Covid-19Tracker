@@ -91,10 +91,6 @@ extension CareViewController: PageSelectorDelegate {
     }
 }
 
-final class CareView: UIView {
-// TODO
-}
-
 extension CareViewController: CodeView {
     func buildViewHierarchy() {
         view.addSubview(titleLabel)

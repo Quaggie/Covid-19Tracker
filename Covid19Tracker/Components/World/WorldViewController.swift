@@ -123,10 +123,11 @@ final class WorldViewController: BaseViewController {
                     dispatchGroup.leave()
 
                     switch result {
-                    case .success(let historicalTimelineList):
+                    case .success(let historicalCountryInfoModelTimeline):
+                        let historicalTimeline = HistoricalTimelineDayInfo.last7Days(from: historicalCountryInfoModelTimeline)
                         self.overviewDatasource = [
                             .totalCases(timeline),
-                            .spreadOverTime(historicalTimelineList),
+                            .spreadOverTime(historicalTimeline),
                             .todayCases(timeline)
                         ]
                     case .failure:

@@ -55,7 +55,7 @@ extension MainQueueDispatchDecorator: CountryServiceProtocol where T: CountrySer
 }
 
 extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: HistoricalInfoServiceProtocol {
-    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfo, WebserviceError>) -> Void) {
+    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, WebserviceError>) -> Void) {
         instance.fetch(country: country) { [weak self] result in
             guard let self = self else { return }
             self.dispatch {
@@ -64,7 +64,7 @@ extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: His
         }
     }
 
-    func fetchAll(completion: @escaping (Result<[HistoricalTimelineDayInfo], WebserviceError>) -> Void) {
+    func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, WebserviceError>) -> Void) {
         instance.fetchAll { [weak self] result in
             guard let self = self else { return }
             self.dispatch {

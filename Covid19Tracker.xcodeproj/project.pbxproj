@@ -48,6 +48,8 @@
 		A934E63427FB93A5002866AF /* CountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63327FB93A5002866AF /* CountryInfo.swift */; };
 		A934E63827FB93BF002866AF /* CareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63727FB93BF002866AF /* CareModel.swift */; };
 		A934E63A27FB93D0002866AF /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63927FB93D0002866AF /* News.swift */; };
+		A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63B27FBA379002866AF /* HistoricalCountryInfo.swift */; };
+		A934E63E27FBA391002866AF /* HistoricalTimelineDayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63D27FBA391002866AF /* HistoricalTimelineDayInfo.swift */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -233,6 +235,8 @@
 		A934E63327FB93A5002866AF /* CountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfo.swift; sourceTree = "<group>"; };
 		A934E63727FB93BF002866AF /* CareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareModel.swift; sourceTree = "<group>"; };
 		A934E63927FB93D0002866AF /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		A934E63B27FBA379002866AF /* HistoricalCountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCountryInfo.swift; sourceTree = "<group>"; };
+		A934E63D27FBA391002866AF /* HistoricalTimelineDayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalTimelineDayInfo.swift; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -656,6 +660,8 @@
 			children = (
 				A934E61127FB4DF8002866AF /* Country.swift */,
 				A934E62F27FB9357002866AF /* HistoricalCountryTimeline.swift */,
+				A934E63B27FBA379002866AF /* HistoricalCountryInfo.swift */,
+				A934E63D27FBA391002866AF /* HistoricalTimelineDayInfo.swift */,
 				A934E63127FB9396002866AF /* Timeline.swift */,
 				A934E63327FB93A5002866AF /* CountryInfo.swift */,
 				A934E63727FB93BF002866AF /* CareModel.swift */,
@@ -1352,6 +1358,7 @@
 				A98FC6D42442452D004433A6 /* Int+DecimalFormat.swift in Sources */,
 				A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */,
 				A98FC6DA244249D2004433A6 /* ErrorView.swift in Sources */,
+				A934E63E27FBA391002866AF /* HistoricalTimelineDayInfo.swift in Sources */,
 				A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */,
 				A906DEBF27F4F08000F19932 /* PageSelectorDelegatesComposite.swift in Sources */,
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
@@ -1359,6 +1366,7 @@
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
 				A906DE9E27F4AC8500F19932 /* DataSourceComposite.swift in Sources */,
 				A93B3F922432D2E100AFC97F /* TabBarViewController.swift in Sources */,
+				A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */,
 				A9232E8A24579CAC00CF1654 /* NewsCell.swift in Sources */,
 				A98FC6B4244121B2004433A6 /* BallView.swift in Sources */,
 				A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */,

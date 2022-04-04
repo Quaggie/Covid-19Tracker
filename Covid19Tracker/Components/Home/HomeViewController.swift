@@ -147,14 +147,15 @@ final class HomeViewController: BaseViewController {
                     guard let self = self else { return }
 
                     switch result {
-                    case .success(let historicalInfo):
+                    case .success(let historicalCountryInfoModel):
                         let country = Country.from(model: countryModel)
+                        let historicalCountryInfo = HistoricalCountryInfo.from(model: historicalCountryInfoModel)
                         self.selectedCountry = country
                         self.datasource = [
                             .totalCases(country),
                             .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
                             .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
-                            .spreadOverTime(historicalInfo.timeline),
+                            .spreadOverTime(historicalCountryInfo.timeline),
                             .todayCases(country)
                         ]
                         self.state = .success
