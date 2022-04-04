@@ -78,6 +78,8 @@ final class WorldViewController: BaseViewController {
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService
         super.init(nibName: nil, bundle: nil)
+
+        pageSelectorView.delegate = self
     }
 
     @available(*, unavailable)
