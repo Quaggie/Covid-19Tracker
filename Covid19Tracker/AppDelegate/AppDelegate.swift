@@ -25,9 +25,13 @@ final class AppDelegate: UIResponder {
 
     private func setupCoordinator() {
         let window = setupWindow()
-        let mainCoordinator = MainCoordinator(window: window)
-        self.mainCoordinator = mainCoordinator
-        mainCoordinator.start()
+        if !Self.isRunningTests {
+            let mainCoordinator = MainCoordinator(window: window)
+            self.mainCoordinator = mainCoordinator
+            mainCoordinator.start()
+        } else {
+            window.rootViewController = UIViewController()
+        }
 
         window.makeKeyAndVisible()
     }
@@ -40,7 +44,7 @@ final class AppDelegate: UIResponder {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) {
-        if !AppDelegate.isRunningTests {
+        if !Self.isRunningTests {
             appDelegates.forEach { _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions) }
         }
     }
