@@ -10,6 +10,7 @@ import Foundation
 import Networking
 
 final class NetworkManagerSpy: NetworkManagerProtocol {
+    var urlStrings: [String] = []
     var fetchCompletionMessages: [(Result<Data, WebserviceError>) -> Void] = []
     var messagesCount: Int {
         fetchCompletionMessages.count
@@ -17,6 +18,7 @@ final class NetworkManagerSpy: NetworkManagerProtocol {
 
     @discardableResult
     func fetch(urlString: String, method: HTTPMethod, parameters: [String : Any], headers: [String : String], completion: @escaping (Result<Data, WebserviceError>) -> Void) -> WebserviceRequest? {
+        urlStrings.append(urlString)
         fetchCompletionMessages.append(completion)
         return nil
     }

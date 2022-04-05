@@ -6,7 +6,7 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-public struct CountryModel: Codable {
+public struct CountryModel: Codable, Equatable {
     public let country: String
     public let countryInfo: CountryInfoModel
     public let cases: Int

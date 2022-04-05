@@ -6,6 +6,6 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-public struct CountryInfoModel: Codable {
+public struct CountryInfoModel: Codable, Equatable {
     public let flag: String
 }
