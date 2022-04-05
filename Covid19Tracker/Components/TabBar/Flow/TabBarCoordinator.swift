@@ -15,21 +15,30 @@ protocol TabBarCoordinatorDelegate: AnyObject {
 final class TabBarCoordinator: Coordinator {
     private let window: UIWindow
 
-    private let composers: [() -> UIViewController] = [
-        HomeUIComposer().compose,
-        WorldUIComposer().compose,
-        SearchUIComposer(cameFromHome: false).compose,
-        NewsUIComposer().compose,
-        CareUIComposer().compose
+    private lazy var coordinators: [Coordinator] = [
+        HomeCoordinator(viewController: WeakRefVirtualProxy(self)),
+        WorldCoordinator(viewController: WeakRefVirtualProxy(self)),
+        SearchCoordinator(viewController: WeakRefVirtualProxy(self), cameFromHome: false),
+        NewsCoordinator(viewController: WeakRefVirtualProxy(self)),
+        CareCoordinator(viewController: WeakRefVirtualProxy(self))
     ]
 
     init(window: UIWindow) {
         self.window = window
+        print("[TabBarCoordinator] initialized!")
     }
 
     func start() {
-        let viewControllers = composers.map { $0() }
-        window.rootViewController = TabBarUIComposer(coordinator: self, viewControllers: viewControllers).compose()
+        window.rootViewController = TabBarUIComposer(coordinator: self).compose()
+        startCoordinators()
+    }
+
+    private func startCoordinators() {
+        coordinators.forEach { $0.start() }
+    }
+
+    deinit {
+        print("[TabBarCoordinator] deinitialized!")
     }
 }
 
@@ -43,5 +52,17 @@ extension TabBarCoordinator: TabBarCoordinatorDelegate {
         }
 
         return true
+    }
+}
+
+// MARK: - ViewControllerPresenter
+extension TabBarCoordinator: ViewControllerPresenter {
+    func show(_ vc: UIViewController, sender: Any?) {
+        let tabBarViewController = window.rootViewController as? TabBarViewController
+        if tabBarViewController?.viewControllers != nil {
+            tabBarViewController?.viewControllers?.append(vc)
+        } else {
+            tabBarViewController?.viewControllers = [vc]
+        }
     }
 }

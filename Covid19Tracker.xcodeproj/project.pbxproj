@@ -63,6 +63,10 @@
 		A934E66727FC9DBC002866AF /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66627FC9DBC002866AF /* MainCoordinator.swift */; };
 		A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */; };
 		A934E66C27FCD0E4002866AF /* CountryUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */; };
+		A934E66E27FCE52D002866AF /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66D27FCE52D002866AF /* NewsCoordinator.swift */; };
+		A934E67027FCE5C7002866AF /* WorldCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66F27FCE5C7002866AF /* WorldCoordinator.swift */; };
+		A934E67227FCE5EA002866AF /* CountryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67127FCE5EA002866AF /* CountryCoordinator.swift */; };
+		A934E67427FCE669002866AF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67327FCE669002866AF /* HomeCoordinator.swift */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -263,6 +267,10 @@
 		A934E66427FC9DA4002866AF /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		A934E66627FC9DBC002866AF /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryUIComposer.swift; sourceTree = "<group>"; };
+		A934E66D27FCE52D002866AF /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
+		A934E66F27FCE5C7002866AF /* WorldCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCoordinator.swift; sourceTree = "<group>"; };
+		A934E67127FCE5EA002866AF /* CountryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoordinator.swift; sourceTree = "<group>"; };
+		A934E67327FCE669002866AF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -575,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E65827FC9D05002866AF /* NewsUIComposer.swift */,
+				A934E66D27FCE52D002866AF /* NewsCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -601,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E65E27FC9D3E002866AF /* WorldUIComposer.swift */,
+				A934E66F27FCE5C7002866AF /* WorldCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -618,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E66027FC9D5E002866AF /* HomeUIComposer.swift */,
+				A934E67327FCE669002866AF /* HomeCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -626,6 +637,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */,
+				A934E67127FCE5EA002866AF /* CountryCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1485,6 +1497,7 @@
 				A950703D24531819007DC98F /* HomeViewController.swift in Sources */,
 				A98FC6BC244218F7004433A6 /* CovidPieChartView.swift in Sources */,
 				A906DEB027F4AD6B00F19932 /* SourceDelegateFlowLayout.swift in Sources */,
+				A934E67427FCE669002866AF /* HomeCoordinator.swift in Sources */,
 				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
 				A906DEA227F4ACC700F19932 /* CellRegistrationable.swift in Sources */,
 				A934E63A27FB93D0002866AF /* News.swift in Sources */,
@@ -1535,6 +1548,7 @@
 				A934E65927FC9D05002866AF /* NewsUIComposer.swift in Sources */,
 				A98FC6F1244537A9004433A6 /* Notification+Extension.swift in Sources */,
 				A934E62E27FB90B1002866AF /* UIComposer.swift in Sources */,
+				A934E67227FCE5EA002866AF /* CountryCoordinator.swift in Sources */,
 				A98FC6CA244228F4004433A6 /* CareViewController.swift in Sources */,
 				A934E63427FB93A5002866AF /* CountryInfo.swift in Sources */,
 				A98FC6E2244260CD004433A6 /* PercentRateCell.swift in Sources */,
@@ -1546,6 +1560,7 @@
 				A934E63E27FBA391002866AF /* HistoricalTimelineDayInfo.swift in Sources */,
 				A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */,
 				A906DEBF27F4F08000F19932 /* PageSelectorDelegatesComposite.swift in Sources */,
+				A934E67027FCE5C7002866AF /* WorldCoordinator.swift in Sources */,
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
@@ -1554,6 +1569,7 @@
 				A93B3F922432D2E100AFC97F /* TabBarViewController.swift in Sources */,
 				A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */,
 				A934E66727FC9DBC002866AF /* MainCoordinator.swift in Sources */,
+				A934E66E27FCE52D002866AF /* NewsCoordinator.swift in Sources */,
 				A9232E8A24579CAC00CF1654 /* NewsCell.swift in Sources */,
 				A98FC6B4244121B2004433A6 /* BallView.swift in Sources */,
 				A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */,

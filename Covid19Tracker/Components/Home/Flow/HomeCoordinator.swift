@@ -1,27 +1,25 @@
 //
-//  CareCoordinator.swift
+//  HomeCoordinator.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 05/04/22.
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-import UIKit
-
-final class CareCoordinator: Coordinator {
+final class HomeCoordinator: Coordinator {
     private let viewController: ViewControllerPresenter
 
     init(viewController: ViewControllerPresenter) {
         self.viewController = viewController
-        print("[CareCoordinator] initialized!")
+        print("[HomeCoordinator] initialized!")
     }
 
     func start() {
-        let vc = CareUIComposer().compose()
+        let vc = HomeUIComposer().compose()
         viewController.show(vc, sender: self)
     }
 
     deinit {
-        print("[CareCoordinator] deinitialized!")
+        print("[HomeCoordinator] deinitialized!")
     }
 }

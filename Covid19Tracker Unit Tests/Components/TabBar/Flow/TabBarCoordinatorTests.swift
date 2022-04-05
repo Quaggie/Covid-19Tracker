@@ -13,7 +13,6 @@ class TabBarCoordinatorTests: XCTestCase {
     func test_start_configureViewControllers() {
         let (_, tabBarViewController, window) = makeSUT()
 
-        // Should go to coordinator
         XCTAssertEqual(tabBarViewController.viewControllers?.count, 5)
 
         simulateAppContextChangeFrom(window: window)
