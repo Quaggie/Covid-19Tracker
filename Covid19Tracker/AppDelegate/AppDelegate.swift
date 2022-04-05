@@ -9,27 +9,27 @@
 import UIKit
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder {
     var window: UIWindow?
+    private var mainCoordinator: MainCoordinator?
+
     private lazy var appDelegates: [UIApplicationDelegate] = [
         FirebaseAppDelegate()
     ]
 
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        setupWindow()
-        setupAppearance()
-        setupAppDelegates(application, didFinishLaunchingWithOptions: launchOptions)
-
-        return true
+    private func setupWindow() -> UIWindow {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        return window
     }
 
-    private func setupWindow() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = AppDelegate.isRunningTests ? UIViewController() : TabBarViewController()
-        window?.makeKeyAndVisible()
+    private func setupCoordinator() {
+        let window = setupWindow()
+        let mainCoordinator = MainCoordinator(window: window)
+        self.mainCoordinator = mainCoordinator
+        mainCoordinator.start()
+
+        window.makeKeyAndVisible()
     }
 
     private func setupAppearance() {
@@ -46,6 +46,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - UIApplicationDelegate
+extension AppDelegate: UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        setupCoordinator()
+        setupAppearance()
+        setupAppDelegates(application, didFinishLaunchingWithOptions: launchOptions)
+
+        return true
+    }
+}
+
+// MARKL: - Tests
 extension AppDelegate {
     static var isRunningTests: Bool {
         return NSClassFromString("XCTest") != nil

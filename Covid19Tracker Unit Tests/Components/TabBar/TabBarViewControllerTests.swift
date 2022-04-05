@@ -13,7 +13,9 @@ class TabBarViewControllerTests: XCTestCase {
     func test_init_configureViewControllers() {
         let sut = makeSut()
 
+        // Should go to coordinator
         XCTAssertEqual(sut.viewControllers?.count, 5)
+        
         XCTAssertTrue(sut.tabBar.isOpaque)
         XCTAssertEqual(sut.tabBar.backgroundColor, Color.white)
         XCTAssertNotNil(sut.delegate)
@@ -25,6 +27,7 @@ class TabBarViewControllerTests: XCTestCase {
         let shouldSelect = { (viewController: UIViewController) -> Bool in
             return sut.tabBarController(sut, shouldSelect: viewController)
         }
+        // Should go to coordinator
         XCTAssertTrue(shouldSelect(sut.viewControllers![0]))
         XCTAssertTrue(shouldSelect(sut.viewControllers![1]))
         XCTAssertFalse(shouldSelect(sut.viewControllers![2]))

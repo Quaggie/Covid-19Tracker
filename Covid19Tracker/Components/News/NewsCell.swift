@@ -82,7 +82,11 @@ final class NewsCell: UICollectionViewCell {
 
     // MARK: - Public functions
     func setup(model: News, index: Int) {
-        postImageView.kf.setImage(with: URL(string: model.urlToImage))
+        if let url = model.urlToImage {
+            postImageView.kf.setImage(with: url)
+        } else {
+            postImageView.image = UIImage(named: "missing_image_placeholder")
+        }
         titleLabel.text = model.title
         separatorView.backgroundColor = model.color(forIndex: index)
         sourceLabel.text = model.source

@@ -50,6 +50,10 @@
 		A934E63A27FB93D0002866AF /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63927FB93D0002866AF /* News.swift */; };
 		A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63B27FBA379002866AF /* HistoricalCountryInfo.swift */; };
 		A934E63E27FBA391002866AF /* HistoricalTimelineDayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E63D27FBA391002866AF /* HistoricalTimelineDayInfo.swift */; };
+		A934E64127FC68D5002866AF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64027FC68D5002866AF /* Coordinator.swift */; };
+		A934E64527FC6906002866AF /* CareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64427FC6906002866AF /* CareCoordinator.swift */; };
+		A934E64827FC6ED2002866AF /* CareTrackerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */; };
+		A934E64A27FC8240002866AF /* TabBarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -237,6 +241,10 @@
 		A934E63927FB93D0002866AF /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		A934E63B27FBA379002866AF /* HistoricalCountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCountryInfo.swift; sourceTree = "<group>"; };
 		A934E63D27FBA391002866AF /* HistoricalTimelineDayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalTimelineDayInfo.swift; sourceTree = "<group>"; };
+		A934E64027FC68D5002866AF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		A934E64427FC6906002866AF /* CareCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCoordinator.swift; sourceTree = "<group>"; };
+		A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareTrackerAdapter.swift; sourceTree = "<group>"; };
+		A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatorTests.swift; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -519,6 +527,38 @@
 			path = Composer;
 			sourceTree = "<group>";
 		};
+		A934E63F27FC68C3002866AF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A934E64027FC68D5002866AF /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		A934E64227FC68EB002866AF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A934E64427FC6906002866AF /* CareCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		A934E64327FC68F5002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98FC6C9244228F4004433A6 /* CareViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E64627FC6EC7002866AF /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		A93B3F492432CBB200AFC97F = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				A9B1169E27F72AB90070F427 /* AppDelegate */,
+				A934E63F27FC68C3002866AF /* Coordinator */,
 				A98FC6B2244121AA004433A6 /* Views */,
 				A93B3F932432D47C00AFC97F /* Utils */,
 				A93B3F8D2432D04200AFC97F /* Extensions */,
@@ -770,11 +811,13 @@
 		A98FC6C8244228E6004433A6 /* Care */ = {
 			isa = PBXGroup;
 			children = (
+				A934E64627FC6EC7002866AF /* Adapter */,
+				A934E64227FC68EB002866AF /* Coordinator */,
+				A934E64327FC68F5002866AF /* View */,
 				A934E61927FB7EB6002866AF /* Composer */,
 				A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */,
 				A906DE9B27F4AC6800F19932 /* DataSources */,
 				A99B73F72446969000383D30 /* Cells */,
-				A98FC6C9244228F4004433A6 /* CareViewController.swift */,
 			);
 			path = Care;
 			sourceTree = "<group>";
@@ -888,6 +931,7 @@
 		A9B2AE4227ED1AE900BA750B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */,
 				A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */,
 			);
 			path = TabBar;
@@ -1306,12 +1350,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A98FC6D22442342E004433A6 /* SimpleCountryCasesCell.swift in Sources */,
+				A934E64827FC6ED2002866AF /* CareTrackerAdapter.swift in Sources */,
 				A950703D24531819007DC98F /* HomeViewController.swift in Sources */,
 				A98FC6BC244218F7004433A6 /* CovidPieChartView.swift in Sources */,
 				A906DEB027F4AD6B00F19932 /* SourceDelegateFlowLayout.swift in Sources */,
 				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
 				A906DEA227F4ACC700F19932 /* CellRegistrationable.swift in Sources */,
 				A934E63A27FB93D0002866AF /* News.swift in Sources */,
+				A934E64527FC6906002866AF /* CareCoordinator.swift in Sources */,
 				A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */,
 				A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */,
 				A98FC6D8244249A7004433A6 /* LoadingView.swift in Sources */,
@@ -1321,7 +1367,9 @@
 				A906DEC127F4F1EF00F19932 /* DelegatesComposite.swift in Sources */,
 				A98FC6B924416194004433A6 /* BaseViewController.swift in Sources */,
 				A934E63827FB93BF002866AF /* CareModel.swift in Sources */,
+				A934E64A27FC8240002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A934E61B27FB7EBF002866AF /* CareUIComposer.swift in Sources */,
+				A934E64127FC68D5002866AF /* Coordinator.swift in Sources */,
 				A98FC6EF2445300E004433A6 /* SearchCell.swift in Sources */,
 				A93B3FAD24355C7A00AFC97F /* UICollectionReusableView+Extension.swift in Sources */,
 				A93B3FA424355B8200AFC97F /* UIView+Gradient.swift in Sources */,

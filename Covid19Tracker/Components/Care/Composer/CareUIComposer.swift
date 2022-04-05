@@ -22,17 +22,18 @@ final class CareUIComposer: UIComposer {
     private let pageSelectorDelegatesComposite = PageSelectorDelegatesComposite()
 
     func compose() -> CareViewController {
-        let careViewController = CareViewController(
+        let viewController = CareViewController(
             delegate: trackerAdapter,
             dataSource: dataSource,
             delegateFlowLayout: delegateFlowLayout,
             pageSelectorViewDelegate: pageSelectorDelegatesComposite
         )
+        viewController.tabBarItem = UITabBarItem(title: "Care", image: UIImage(named: "tabbar_care"), tag: 4)
 
-        pageSelectorDelegatesComposite.addDelegate(careViewController)
+        pageSelectorDelegatesComposite.addDelegate(viewController)
         pageSelectorDelegatesComposite.addDelegate(careDataSource)
-        sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(careViewController)
-        return careViewController
+        sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(viewController)
+        return viewController
     }
 
     private func setupPreventionData() -> [CareModel] {

@@ -134,10 +134,7 @@ final class NewsViewController: BaseViewController {
 extension NewsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = datasource[indexPath.item]
-        let urlString = model.url
-        guard let url = URL(string: urlString) else { return }
-
-        let controller = SFSafariViewController(url: url)
+        let controller = SFSafariViewController(url: model.url)
         present(controller, animated: true)
     }
 }

@@ -12,8 +12,8 @@ import Data
 struct News: Equatable {
     let source: String
     let title: String
-    let url: String
-    let urlToImage: String
+    let url: URL
+    let urlToImage: URL?
     let publishedAt: String
 
     func color(forIndex index: Int) -> UIColor {

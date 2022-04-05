@@ -23,7 +23,7 @@ class NewsServiceTests: XCTestCase {
     func test_fetch_returnsNewsOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
-        let newsArray = [NewsModel.Article(source: NewsModel.Article.Source(name: ""), title: "", url: "", urlToImage: "", publishedAt: "")]
+        let newsArray = [NewsModel.Article(source: NewsModel.Article.Source(name: ""), title: "", url: anyURL(), urlToImage: anyURL(), publishedAt: "")]
         let newsResponse = NewsModel(status: "", totalResults: 1, articles: newsArray)
         expect(sut: sut, with: .success(newsArray)) {
             let data = try! JSONEncoder().encode(newsResponse)

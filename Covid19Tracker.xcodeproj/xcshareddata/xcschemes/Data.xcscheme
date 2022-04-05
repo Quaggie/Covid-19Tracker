@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A934E5F527FB4C7A002866AF"
-               BuildableName = "Domain.framework"
+               BuildableName = "Data.framework"
                BlueprintName = "Data"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A934E5FC27FB4C7A002866AF"
-               BuildableName = "DomainTests.xctest"
+               BuildableName = "DataTests.xctest"
                BlueprintName = "DataTests"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
@@ -81,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A934E5F527FB4C7A002866AF"
-            BuildableName = "Domain.framework"
+            BuildableName = "Data.framework"
             BlueprintName = "Data"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>
