@@ -53,7 +53,16 @@
 		A934E64127FC68D5002866AF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64027FC68D5002866AF /* Coordinator.swift */; };
 		A934E64527FC6906002866AF /* CareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64427FC6906002866AF /* CareCoordinator.swift */; };
 		A934E64827FC6ED2002866AF /* CareTrackerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */; };
-		A934E64A27FC8240002866AF /* TabBarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */; };
+		A934E65727FC9CD2002866AF /* TabBarUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E65627FC9CD2002866AF /* TabBarUIComposer.swift */; };
+		A934E65927FC9D05002866AF /* NewsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E65827FC9D05002866AF /* NewsUIComposer.swift */; };
+		A934E65C27FC9D24002866AF /* SearchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E65B27FC9D24002866AF /* SearchUIComposer.swift */; };
+		A934E65F27FC9D3E002866AF /* WorldUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E65E27FC9D3E002866AF /* WorldUIComposer.swift */; };
+		A934E66127FC9D5E002866AF /* HomeUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66027FC9D5E002866AF /* HomeUIComposer.swift */; };
+		A934E66327FC9D7E002866AF /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66227FC9D7E002866AF /* SearchCoordinator.swift */; };
+		A934E66527FC9DA4002866AF /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66427FC9DA4002866AF /* TabBarCoordinator.swift */; };
+		A934E66727FC9DBC002866AF /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66627FC9DBC002866AF /* MainCoordinator.swift */; };
+		A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */; };
+		A934E66C27FCD0E4002866AF /* CountryUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -245,6 +254,15 @@
 		A934E64427FC6906002866AF /* CareCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCoordinator.swift; sourceTree = "<group>"; };
 		A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareTrackerAdapter.swift; sourceTree = "<group>"; };
 		A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatorTests.swift; sourceTree = "<group>"; };
+		A934E65627FC9CD2002866AF /* TabBarUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUIComposer.swift; sourceTree = "<group>"; };
+		A934E65827FC9D05002866AF /* NewsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsUIComposer.swift; sourceTree = "<group>"; };
+		A934E65B27FC9D24002866AF /* SearchUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUIComposer.swift; sourceTree = "<group>"; };
+		A934E65E27FC9D3E002866AF /* WorldUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldUIComposer.swift; sourceTree = "<group>"; };
+		A934E66027FC9D5E002866AF /* HomeUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUIComposer.swift; sourceTree = "<group>"; };
+		A934E66227FC9D7E002866AF /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		A934E66427FC9DA4002866AF /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		A934E66627FC9DBC002866AF /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryUIComposer.swift; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -531,16 +549,17 @@
 			isa = PBXGroup;
 			children = (
 				A934E64027FC68D5002866AF /* Coordinator.swift */,
+				A934E66627FC9DBC002866AF /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		A934E64227FC68EB002866AF /* Coordinator */ = {
+		A934E64227FC68EB002866AF /* Flow */ = {
 			isa = PBXGroup;
 			children = (
 				A934E64427FC6906002866AF /* CareCoordinator.swift */,
 			);
-			path = Coordinator;
+			path = Flow;
 			sourceTree = "<group>";
 		};
 		A934E64327FC68F5002866AF /* View */ = {
@@ -557,6 +576,122 @@
 				A934E64727FC6ED2002866AF /* CareTrackerAdapter.swift */,
 			);
 			path = Adapter;
+			sourceTree = "<group>";
+		};
+		A934E64B27FC9C56002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E65827FC9D05002866AF /* NewsUIComposer.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E64C27FC9C5A002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98FC6C524422406004433A6 /* NewsViewController.swift */,
+				A9232E8924579CAC00CF1654 /* NewsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E64E27FC9C69002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E65B27FC9D24002866AF /* SearchUIComposer.swift */,
+				A934E66227FC9D7E002866AF /* SearchCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E64F27FC9C6E002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E65E27FC9D3E002866AF /* WorldUIComposer.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E65027FC9C73002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E65627FC9CD2002866AF /* TabBarUIComposer.swift */,
+				A934E66427FC9DA4002866AF /* TabBarCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E65127FC9C77002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E66027FC9D5E002866AF /* HomeUIComposer.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E65227FC9C7D002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E66B27FCD0E4002866AF /* CountryUIComposer.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E65327FC9C81002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98FC6C2244221FF004433A6 /* CountryViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E65427FC9C88002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A950703C24531819007DC98F /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E65527FC9C95002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A93B3F912432D2E100AFC97F /* TabBarViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E65A27FC9D19002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98FC6DC244252FD004433A6 /* SearchViewController.swift */,
+				A98FC6EE2445300E004433A6 /* SearchCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E65D27FC9D36002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A93B3FA624355BFF00AFC97F /* WorldViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A934E66827FCC034002866AF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A934E66927FCC03B002866AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A93B3F492432CBB200AFC97F = {
@@ -666,7 +801,8 @@
 		A93B3F902432D2CD00AFC97F /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				A93B3F912432D2E100AFC97F /* TabBarViewController.swift */,
+				A934E65027FC9C73002866AF /* Flow */,
+				A934E65527FC9C95002866AF /* View */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -691,7 +827,8 @@
 		A93B3FA524355BEF00AFC97F /* World */ = {
 			isa = PBXGroup;
 			children = (
-				A93B3FA624355BFF00AFC97F /* WorldViewController.swift */,
+				A934E64F27FC9C6E002866AF /* Flow */,
+				A934E65D27FC9D36002866AF /* View */,
 			);
 			path = World;
 			sourceTree = "<group>";
@@ -725,7 +862,8 @@
 		A950703E24531820007DC98F /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A950703C24531819007DC98F /* HomeViewController.swift */,
+				A934E65127FC9C77002866AF /* Flow */,
+				A934E65427FC9C88002866AF /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -782,7 +920,8 @@
 		A98FC6C1244221F2004433A6 /* Country */ = {
 			isa = PBXGroup;
 			children = (
-				A98FC6C2244221FF004433A6 /* CountryViewController.swift */,
+				A934E65227FC9C7D002866AF /* Flow */,
+				A934E65327FC9C81002866AF /* View */,
 			);
 			path = Country;
 			sourceTree = "<group>";
@@ -790,8 +929,8 @@
 		A98FC6C4244223FA004433A6 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				A98FC6C524422406004433A6 /* NewsViewController.swift */,
-				A9232E8924579CAC00CF1654 /* NewsCell.swift */,
+				A934E64B27FC9C56002866AF /* Flow */,
+				A934E64C27FC9C5A002866AF /* View */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -812,7 +951,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E64627FC6EC7002866AF /* Adapter */,
-				A934E64227FC68EB002866AF /* Coordinator */,
+				A934E64227FC68EB002866AF /* Flow */,
 				A934E64327FC68F5002866AF /* View */,
 				A934E61927FB7EB6002866AF /* Composer */,
 				A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */,
@@ -825,8 +964,8 @@
 		A98FC6DB244252EE004433A6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				A98FC6DC244252FD004433A6 /* SearchViewController.swift */,
-				A98FC6EE2445300E004433A6 /* SearchCell.swift */,
+				A934E64E27FC9C69002866AF /* Flow */,
+				A934E65A27FC9D19002866AF /* View */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -931,8 +1070,8 @@
 		A9B2AE4227ED1AE900BA750B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				A934E64927FC8240002866AF /* TabBarCoordinatorTests.swift */,
-				A9B2AE3A27ED152D00BA750B /* TabBarViewControllerTests.swift */,
+				A934E66827FCC034002866AF /* Flow */,
+				A934E66927FCC03B002866AF /* View */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -1361,13 +1500,14 @@
 				A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */,
 				A906DEB827F4B08E00F19932 /* UIViewController+ViewControllerPresenter.swift in Sources */,
 				A98FC6D8244249A7004433A6 /* LoadingView.swift in Sources */,
+				A934E66C27FCD0E4002866AF /* CountryUIComposer.swift in Sources */,
 				A93B3F972432D5FC00AFC97F /* UILabel+Extension.swift in Sources */,
 				A906DEA627F4ACF500F19932 /* CareDataSource.swift in Sources */,
+				A934E65C27FC9D24002866AF /* SearchUIComposer.swift in Sources */,
 				A906DEB327F4B03800F19932 /* WeakRefVirtualProxy.swift in Sources */,
 				A906DEC127F4F1EF00F19932 /* DelegatesComposite.swift in Sources */,
 				A98FC6B924416194004433A6 /* BaseViewController.swift in Sources */,
 				A934E63827FB93BF002866AF /* CareModel.swift in Sources */,
-				A934E64A27FC8240002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A934E61B27FB7EBF002866AF /* CareUIComposer.swift in Sources */,
 				A934E64127FC68D5002866AF /* Coordinator.swift in Sources */,
 				A98FC6EF2445300E004433A6 /* SearchCell.swift in Sources */,
@@ -1375,6 +1515,7 @@
 				A93B3FA424355B8200AFC97F /* UIView+Gradient.swift in Sources */,
 				A93B3F992432D70A00AFC97F /* UIView+Anchors.swift in Sources */,
 				A98FC6BE24421966004433A6 /* PageSelectorView.swift in Sources */,
+				A934E65727FC9CD2002866AF /* TabBarUIComposer.swift in Sources */,
 				A99B73F5244690F600383D30 /* Tracker.swift in Sources */,
 				A906DEBD27F4F05000F19932 /* PageSelectorDelegate.swift in Sources */,
 				A906DEA027F4ACB200F19932 /* DataSource.swift in Sources */,
@@ -1387,15 +1528,19 @@
 				A906DEAE27F4AD5B00F19932 /* CareDelegateFlowLayout.swift in Sources */,
 				A9B116A027F72AC90070F427 /* FirebaseAppDelegate.swift in Sources */,
 				A906DEAB27F4AD3F00F19932 /* DelegateFlowLayoutComposite.swift in Sources */,
+				A934E66327FC9D7E002866AF /* SearchCoordinator.swift in Sources */,
+				A934E66527FC9DA4002866AF /* TabBarCoordinator.swift in Sources */,
 				A934E63027FB9357002866AF /* HistoricalCountryTimeline.swift in Sources */,
 				A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */,
 				A98FC6C3244221FF004433A6 /* CountryViewController.swift in Sources */,
 				A93B3FA724355BFF00AFC97F /* WorldViewController.swift in Sources */,
 				A934E63227FB9396002866AF /* Timeline.swift in Sources */,
 				A93B3FA924355C5600AFC97F /* UIView+Shadow.swift in Sources */,
+				A934E65F27FC9D3E002866AF /* WorldUIComposer.swift in Sources */,
 				A98FC6C624422406004433A6 /* NewsViewController.swift in Sources */,
 				A93B3F8A2432CFD900AFC97F /* Color.swift in Sources */,
 				A98FC6B124412164004433A6 /* UIView+BackgroundColorInit.swift in Sources */,
+				A934E65927FC9D05002866AF /* NewsUIComposer.swift in Sources */,
 				A98FC6F1244537A9004433A6 /* Notification+Extension.swift in Sources */,
 				A934E62E27FB90B1002866AF /* UIComposer.swift in Sources */,
 				A98FC6CA244228F4004433A6 /* CareViewController.swift in Sources */,
@@ -1412,9 +1557,11 @@
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
+				A934E66127FC9D5E002866AF /* HomeUIComposer.swift in Sources */,
 				A906DE9E27F4AC8500F19932 /* DataSourceComposite.swift in Sources */,
 				A93B3F922432D2E100AFC97F /* TabBarViewController.swift in Sources */,
 				A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */,
+				A934E66727FC9DBC002866AF /* MainCoordinator.swift in Sources */,
 				A9232E8A24579CAC00CF1654 /* NewsCell.swift in Sources */,
 				A98FC6B4244121B2004433A6 /* BallView.swift in Sources */,
 				A906DEA827F4AD0500F19932 /* SourceDataSource.swift in Sources */,
@@ -1458,6 +1605,7 @@
 				A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
+				A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,
 				A95AEC8B27F0FD6B0092C93E /* NewsServiceTests.swift in Sources */,

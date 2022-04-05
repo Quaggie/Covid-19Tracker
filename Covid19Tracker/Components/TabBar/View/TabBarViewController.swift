@@ -28,12 +28,6 @@ final class TabBarViewController: UITabBarController {
 // MARK: - UITabBarControllerDelegate
 extension TabBarViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is SearchViewController {
-            let coordinator = SearchCoordinator(viewController: tabBarController, cameFromHome: false)
-            coordinator.start()
-            return false
-        }
-
-        return true
+        coordinator.tabBarController(tabBarController, shouldSelect: viewController)
     }
 }
