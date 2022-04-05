@@ -10,7 +10,7 @@ import Foundation
 
 enum Keys {
     static var newsApi: String {
-        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist") else {
+        guard let path = Bundle(for: NewsService.self).path(forResource: "Keys", ofType: "plist") else {
             fatalError("Could not find Keys.plist file")
         }
         guard let json = NSDictionary(contentsOfFile: path) else {

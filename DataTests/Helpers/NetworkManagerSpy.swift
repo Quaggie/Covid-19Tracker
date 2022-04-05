@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import Covid19_Tracker
 import Networking
 
 final class NetworkManagerSpy: NetworkManagerProtocol {

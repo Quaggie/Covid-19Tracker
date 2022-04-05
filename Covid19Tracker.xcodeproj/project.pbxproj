@@ -25,7 +25,6 @@
 		A906DEC127F4F1EF00F19932 /* DelegatesComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */; };
 		A9232E8A24579CAC00CF1654 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E8924579CAC00CF1654 /* NewsCell.swift */; };
 		A934E5FE27FB4C7A002866AF /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A934E5F627FB4C7A002866AF /* Data.framework */; };
-		A934E60327FB4C7A002866AF /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E60227FB4C7A002866AF /* DataTests.swift */; };
 		A934E60B27FB4C99002866AF /* CountryInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6D524424608004433A6 /* CountryInfoModel.swift */; };
 		A934E60D27FB4C99002866AF /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E87245797EE00CF1654 /* NewsModel.swift */; };
 		A934E60E27FB4C99002866AF /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAF24355DCB00AFC97F /* CountryModel.swift */; };
@@ -67,6 +66,13 @@
 		A934E67027FCE5C7002866AF /* WorldCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E66F27FCE5C7002866AF /* WorldCoordinator.swift */; };
 		A934E67227FCE5EA002866AF /* CountryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67127FCE5EA002866AF /* CountryCoordinator.swift */; };
 		A934E67427FCE669002866AF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67327FCE669002866AF /* HomeCoordinator.swift */; };
+		A934E67527FCFF12002866AF /* NewsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8A27F0FD6B0092C93E /* NewsServiceTests.swift */; };
+		A934E67627FCFF12002866AF /* WorldServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8027F0D3300092C93E /* WorldServiceTests.swift */; };
+		A934E67827FCFF55002866AF /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */; };
+		A934E67927FCFF99002866AF /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8327F0D38B0092C93E /* XCTestCase+MemoryLeak.swift */; };
+		A934E67A27FCFF99002866AF /* XCTestCase+HelperObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8827F0F8D10092C93E /* XCTestCase+HelperObjects.swift */; };
+		A934E67D27FD003D002866AF /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67C27FD003D002866AF /* XCTestCase+MemoryLeak.swift */; };
+		A934E67E27FD0077002866AF /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -87,11 +93,6 @@
 		A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAA24355C6B00AFC97F /* UICollectionView+Extension.swift */; };
 		A93B3FAD24355C7A00AFC97F /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAC24355C7A00AFC97F /* UICollectionReusableView+Extension.swift */; };
 		A950703D24531819007DC98F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A950703C24531819007DC98F /* HomeViewController.swift */; };
-		A95AEC8127F0D3300092C93E /* WorldServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8027F0D3300092C93E /* WorldServiceTests.swift */; };
-		A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8327F0D38B0092C93E /* XCTestCase+MemoryLeak.swift */; };
-		A95AEC8727F0F85F0092C93E /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */; };
-		A95AEC8927F0F8D20092C93E /* XCTestCase+HelperObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8827F0F8D10092C93E /* XCTestCase+HelperObjects.swift */; };
-		A95AEC8B27F0FD6B0092C93E /* NewsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8A27F0FD6B0092C93E /* NewsServiceTests.swift */; };
 		A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */; };
 		A98FC6B124412164004433A6 /* UIView+BackgroundColorInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */; };
 		A98FC6B4244121B2004433A6 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6B3244121B2004433A6 /* BallView.swift */; };
@@ -120,7 +121,6 @@
 		A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99B73F12446901300383D30 /* GoogleService-Info.plist */; };
 		A99B73F5244690F600383D30 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F4244690F600383D30 /* Tracker.swift */; };
 		A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F8244696A700383D30 /* CareSourceCell.swift */; };
-		A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9A2D05D2459198F00BB6509 /* Keys.plist */; };
 		A9B116A027F72AC90070F427 /* FirebaseAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1169F27F72AC90070F427 /* FirebaseAppDelegate.swift */; };
 		A9B116B027F738790070F427 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B116A627F738780070F427 /* Networking.framework */; };
 		A9B116BD27F739220070F427 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */; };
@@ -243,7 +243,6 @@
 		A9232E8924579CAC00CF1654 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		A934E5F627FB4C7A002866AF /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A934E5FD27FB4C7A002866AF /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A934E60227FB4C7A002866AF /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		A934E61127FB4DF8002866AF /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		A934E61A27FB7EBF002866AF /* CareUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareUIComposer.swift; sourceTree = "<group>"; };
 		A934E62D27FB90B1002866AF /* UIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComposer.swift; sourceTree = "<group>"; };
@@ -271,6 +270,7 @@
 		A934E66F27FCE5C7002866AF /* WorldCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCoordinator.swift; sourceTree = "<group>"; };
 		A934E67127FCE5EA002866AF /* CountryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoordinator.swift; sourceTree = "<group>"; };
 		A934E67327FCE669002866AF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		A934E67C27FD003D002866AF /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -512,7 +512,9 @@
 		A934E60127FB4C7A002866AF /* DataTests */ = {
 			isa = PBXGroup;
 			children = (
-				A934E60227FB4C7A002866AF /* DataTests.swift */,
+				A934E67727FCFF47002866AF /* Helpers */,
+				A95AEC8227F0D36D0092C93E /* Extensions */,
+				A95AEC7F27F0D31D0092C93E /* Services */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -532,6 +534,7 @@
 		A934E62A27FB8BD8002866AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9A2D05D2459198F00BB6509 /* Keys.plist */,
 				A9232E83245795FE00CF1654 /* Keys.swift */,
 			);
 			path = Utils;
@@ -699,6 +702,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A934E67727FCFF47002866AF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A934E67B27FD0019002866AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A934E67C27FD003D002866AF /* XCTestCase+MemoryLeak.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A93B3F492432CBB200AFC97F = {
 			isa = PBXGroup;
 			children = (
@@ -743,7 +762,6 @@
 				A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */,
 				A93B3F632432CBB300AFC97F /* Info.plist */,
 				A99B73F12446901300383D30 /* GoogleService-Info.plist */,
-				A9A2D05D2459198F00BB6509 /* Keys.plist */,
 			);
 			path = Covid19Tracker;
 			sourceTree = "<group>";
@@ -894,7 +912,6 @@
 		A95AEC8527F0F8520092C93E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */,
 				A9B52BFF27F3D028008413E4 /* TrackerSpy.swift */,
 			);
 			path = Helpers;
@@ -1052,10 +1069,9 @@
 		A9B2AE3927ED152D00BA750B /* Covid19Tracker Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A934E67B27FD0019002866AF /* Extensions */,
 				A9E3BEB027F37E4B0071AAD4 /* Utils */,
 				A95AEC8527F0F8520092C93E /* Helpers */,
-				A95AEC8227F0D36D0092C93E /* Extensions */,
-				A95AEC7F27F0D31D0092C93E /* Services */,
 				A9B2AE4127ED1ADE00BA750B /* Components */,
 			);
 			path = "Covid19Tracker Unit Tests";
@@ -1333,6 +1349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A934E67E27FD0077002866AF /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1347,7 +1364,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A2D05E2459198F00BB6509 /* Keys.plist in Resources */,
 				A93B3F7D2432CE6600AFC97F /* Nunito-SemiBold.ttf in Resources */,
 				A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */,
 				A93B3F7B2432CE6600AFC97F /* Nunito-Light.ttf in Resources */,
@@ -1484,7 +1500,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A934E60327FB4C7A002866AF /* DataTests.swift in Sources */,
+				A934E67A27FCFF99002866AF /* XCTestCase+HelperObjects.swift in Sources */,
+				A934E67627FCFF12002866AF /* WorldServiceTests.swift in Sources */,
+				A934E67527FCFF12002866AF /* NewsServiceTests.swift in Sources */,
+				A934E67927FCFF99002866AF /* XCTestCase+MemoryLeak.swift in Sources */,
+				A934E67827FCFF55002866AF /* NetworkManagerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,17 +1627,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95AEC8127F0D3300092C93E /* WorldServiceTests.swift in Sources */,
-				A95AEC8727F0F85F0092C93E /* NetworkManagerSpy.swift in Sources */,
 				A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */,
-				A95AEC8427F0D38B0092C93E /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
 				A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,
-				A95AEC8B27F0FD6B0092C93E /* NewsServiceTests.swift in Sources */,
-				A95AEC8927F0F8D20092C93E /* XCTestCase+HelperObjects.swift in Sources */,
+				A934E67D27FD003D002866AF /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9B88F8327F50389009BF798 /* PageSelectorDelegatesObserverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  WorldServiceTests.swift
+//  NewsServiceTests.swift
 //  Covid19Tracker_unit_tests
 //
 //  Created by Jonathan Bijos on 27/03/22.
@@ -7,30 +7,30 @@
 //
 
 import XCTest
-@testable import Covid19_Tracker
 import Networking
 @testable import Data
 
-class WorldServiceTests: XCTestCase {
-    func test_fetchCases_callsServiceOncePerExecution() {
+class NewsServiceTests: XCTestCase {
+    func test_fetch_callsServiceOncePerExecution() {
         let (sut, networkManager) = makeSUT()
 
-        sut.fetchCases { _ in }
+        sut.fetch { _ in }
 
         XCTAssertEqual(networkManager.messagesCount, 1)
     }
 
-    func test_fetchCases_returnsTimelineOnSuccess() {
+    func test_fetch_returnsNewsOnSuccess() {
         let (sut, networkManager) = makeSUT()
 
-        let timeline = TimelineModel(cases: 0, active: 0, deaths: 0, recovered: 0, todayCases: 0, todayDeaths: 0)
-        expect(sut: sut, with: .success(timeline)) {
-            let data = try! JSONEncoder().encode(timeline)
+        let newsArray = [NewsModel.Article(source: NewsModel.Article.Source(name: ""), title: "", url: anyURL(), urlToImage: anyURL(), publishedAt: "")]
+        let newsResponse = NewsModel(status: "", totalResults: 1, articles: newsArray)
+        expect(sut: sut, with: .success(newsArray)) {
+            let data = try! JSONEncoder().encode(newsResponse)
             networkManager.complete(with: .success(data))
         }
     }
 
-    func test_fetchCases_returnsUnparseableErrorForWrongJSON() {
+    func test_fetch_returnsUnparseableErrorForWrongJSON() {
         let (sut, networkManager) = makeSUT()
 
         expect(sut: sut, with: .failure(.unparseable)) {
@@ -39,7 +39,7 @@ class WorldServiceTests: XCTestCase {
         }
     }
 
-    func test_fetchCases_returnsCorrectErrorForFailure() {
+    func test_fetch_returnsCorrectErrorForFailure() {
         let (sut, networkManager) = makeSUT()
 
         expect(sut: sut, with: .failure(.internalServerError)) {
@@ -48,19 +48,19 @@ class WorldServiceTests: XCTestCase {
     }
 }
 
-extension WorldServiceTests {
-    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (WorldService, NetworkManagerSpy) {
+extension NewsServiceTests {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (NewsService, NetworkManagerSpy) {
         let networkManager = NetworkManagerSpy()
-        let service = WorldService(networkManager: networkManager)
+        let service = NewsService(networkManager: networkManager)
         checkMemoryLeak(for: networkManager, file: file, line: line)
         checkMemoryLeak(for: service, file: file, line: line)
         return (service, networkManager)
     }
 
-    func expect(sut: WorldService, with expectedResult: Result<TimelineModel, WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: NewsService, with expectedResult: Result<[NewsModel.Article], WebserviceError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<TimelineModel, WebserviceError>?
-        sut.fetchCases { result in
+        var receivedResult: Result<[NewsModel.Article], WebserviceError>?
+        sut.fetch { result in
             receivedResult = result
             exp.fulfill()
         }

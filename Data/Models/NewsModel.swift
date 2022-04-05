@@ -6,8 +6,6 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-import Foundation
-
 public struct NewsModel: Codable, Equatable {
     public struct Article: Codable, Equatable {
         public struct Source: Codable, Equatable {
