@@ -521,14 +521,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A934E61927FB7EB6002866AF /* Composer */ = {
-			isa = PBXGroup;
-			children = (
-				A934E61A27FB7EBF002866AF /* CareUIComposer.swift */,
-			);
-			path = Composer;
-			sourceTree = "<group>";
-		};
 		A934E62A27FB8BD8002866AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +549,7 @@
 		A934E64227FC68EB002866AF /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				A934E61A27FB7EBF002866AF /* CareUIComposer.swift */,
 				A934E64427FC6906002866AF /* CareCoordinator.swift */,
 			);
 			path = Flow;
@@ -950,10 +943,9 @@
 		A98FC6C8244228E6004433A6 /* Care */ = {
 			isa = PBXGroup;
 			children = (
-				A934E64627FC6EC7002866AF /* Adapter */,
 				A934E64227FC68EB002866AF /* Flow */,
+				A934E64627FC6EC7002866AF /* Adapter */,
 				A934E64327FC68F5002866AF /* View */,
-				A934E61927FB7EB6002866AF /* Composer */,
 				A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */,
 				A906DE9B27F4AC6800F19932 /* DataSources */,
 				A99B73F72446969000383D30 /* Cells */,
