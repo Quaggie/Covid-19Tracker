@@ -1,5 +1,5 @@
 //
-//  WebserviceRequest.swift
+//  NetworkRequest.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 01/04/20.
@@ -9,13 +9,13 @@
 
 import Foundation
 
-public protocol WebserviceRequest {
+public protocol NetworkRequest {
     var task: URLSessionTask? { get }
 
     func cancel()
 }
 
-extension WebserviceRequest {
+extension NetworkRequest {
     public var isCancelled: Bool {
         task?.state == .canceling
     }

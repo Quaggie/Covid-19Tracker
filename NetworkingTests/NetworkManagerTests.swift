@@ -80,7 +80,7 @@ class NetworkManagerTests: XCTestCase {
             XCTFail("Request is not supposed to enter callback!")
         }
 
-        let unwrappedRequest: WebserviceRequest = try! XCTUnwrap(request)
+        let unwrappedRequest: NetworkRequest = try! XCTUnwrap(request)
         XCTAssertFalse(unwrappedRequest.isCancelled)
 
         sut = nil
@@ -114,9 +114,9 @@ extension NetworkManagerTests {
         XCTAssertEqual(receivedRequest!.httpMethod, method.rawValue, file: file, line: line)
     }
 
-    func expect(_ expectedResult: Result<Data, WebserviceError>, when stub: Stub, for urlPath: String = NetworkManagerTests.validURLPath, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ expectedResult: Result<Data, NetworkError>, when stub: Stub, for urlPath: String = NetworkManagerTests.validURLPath, file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT()
-        var receivedResult: Result<Data, WebserviceError>?
+        var receivedResult: Result<Data, NetworkError>?
 
         let expectation = expectation(description: #function)
         URLProtocolStub.stub(stub)

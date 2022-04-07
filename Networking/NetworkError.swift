@@ -1,5 +1,5 @@
 //
-//  WebserviceError.swift
+//  NetworkError.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 01/04/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum WebserviceError: Error {
+public enum NetworkError: Error {
     case internalServerError
     case notConnectedToInternet
     case timedOut
@@ -23,7 +23,7 @@ public enum WebserviceError: Error {
     case conflict
     case invalidResponse
 
-    static func from(urlError: URLError) -> WebserviceError {
+    static func from(urlError: URLError) -> NetworkError {
         switch urlError.code {
         case .notConnectedToInternet:
             return .notConnectedToInternet
@@ -34,7 +34,7 @@ public enum WebserviceError: Error {
         }
     }
 
-    static func from(statusCode: Int) -> WebserviceError {
+    static func from(statusCode: Int) -> NetworkError {
         guard let error = HTTPStatusCode(rawValue: statusCode) else {
             return .unexpected
         }

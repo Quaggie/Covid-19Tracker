@@ -10,7 +10,7 @@ import Foundation
 import Networking
 
 public protocol NewsServiceProtocol {
-    func fetch(completion: @escaping (Result<[NewsModel.Article], WebserviceError>) -> Void)
+    func fetch(completion: @escaping (Result<[NewsModel.Article], NetworkError>) -> Void)
 }
 
 public final class NewsService: NewsServiceProtocol {
@@ -20,7 +20,7 @@ public final class NewsService: NewsServiceProtocol {
         self.networkManager = networkManager
     }
 
-    public func fetch(completion: @escaping (Result<[NewsModel.Article], WebserviceError>) -> Void) {
+    public func fetch(completion: @escaping (Result<[NewsModel.Article], NetworkError>) -> Void) {
         let q = "covid"
         let category = "health"
         let page = 1
@@ -36,7 +36,7 @@ public final class NewsService: NewsServiceProtocol {
                     let decodedObject = try JSONDecoder().decode(NewsModel.self, from: data)
                     completion(.success(decodedObject.articles))
                  } catch {
-                    completion(.failure(WebserviceError.unparseable))
+                    completion(.failure(NetworkError.unparseable))
                  }
             case .failure(let error):
                 completion(.failure(error))

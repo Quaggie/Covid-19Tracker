@@ -17,10 +17,10 @@ public protocol DataRequest {
         cache: Bool,
         sessionConfiguration: URLSessionConfiguration
     )
-    func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void)
+    func responseData(completion: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
-public final class DefaultDataRequest: DataRequest, WebserviceRequest {
+public final class DefaultDataRequest: DataRequest, NetworkRequest {
     // MARK: - Properties
     private let url: URL
     private let method: HTTPMethod
@@ -53,7 +53,7 @@ public final class DefaultDataRequest: DataRequest, WebserviceRequest {
         task?.cancel()
     }
 
-    public func responseData(completion: @escaping (Result<Data, WebserviceError>) -> Void) {
+    public func responseData(completion: @escaping (Result<Data, NetworkError>) -> Void) {
         var urlRequest = URLRequest(url: url)
         urlRequest.timeoutInterval = 30
         urlRequest.httpMethod = method.rawValue
@@ -73,7 +73,7 @@ public final class DefaultDataRequest: DataRequest, WebserviceRequest {
         task = session.dataTask(with: urlRequest) { data, response, error in
             guard let response = response as? HTTPURLResponse, let data = data else {
                 if let urlError = error as? URLError {
-                    return completion(.failure(WebserviceError.from(urlError: urlError)))
+                    return completion(.failure(NetworkError.from(urlError: urlError)))
                 } else {
                     return completion(.failure(.unexpected))
                 }
@@ -82,11 +82,11 @@ public final class DefaultDataRequest: DataRequest, WebserviceRequest {
             do {
                 guard (200 ..< 300) ~= response.statusCode, error == nil else {
                     // Data was nil, validation failed or an error occurred.
-                    throw error ?? WebserviceError.unexpected
+                    throw error ?? NetworkError.unexpected
                 }
                 completion(.success(data))
             } catch {
-                completion(.failure(WebserviceError.from(statusCode: response.statusCode)))
+                completion(.failure(NetworkError.from(statusCode: response.statusCode)))
             }
         }
         task?.resume()

@@ -16,8 +16,8 @@ public protocol NetworkManagerProtocol {
         method: HTTPMethod,
         parameters: [String: Any],
         headers: [String: String],
-        completion: @escaping (Result<Data, WebserviceError>) -> Void
-    ) -> WebserviceRequest?
+        completion: @escaping (Result<Data, NetworkError>) -> Void
+    ) -> NetworkRequest?
 }
 
 public final class NetworkManager: NetworkManagerProtocol {
@@ -30,7 +30,7 @@ public final class NetworkManager: NetworkManagerProtocol {
     // MARK: - Properties
     private let source: Source
     private let sessionConfiguration: URLSessionConfiguration
-    private var requests: [WebserviceRequest] = []
+    private var requests: [NetworkRequest] = []
     private var baseUrl: String {
         switch source {
         case .covid:
@@ -52,10 +52,10 @@ public final class NetworkManager: NetworkManagerProtocol {
         method: HTTPMethod,
         parameters: [String: Any],
         headers: [String: String],
-        completion: @escaping (Result<Data, WebserviceError>) -> Void
-    ) -> WebserviceRequest? {
+        completion: @escaping (Result<Data, NetworkError>) -> Void
+    ) -> NetworkRequest? {
         guard let url = URL(string: "\(baseUrl)\(urlString)") else {
-            completion(.failure(WebserviceError.malformedURL))
+            completion(.failure(NetworkError.malformedURL))
             return nil
         }
         let request = DefaultDataRequest(
