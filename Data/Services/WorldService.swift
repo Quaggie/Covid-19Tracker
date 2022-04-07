@@ -10,7 +10,7 @@ import Foundation
 import Networking
 
 public protocol WorldServiceProtocol {
-    func fetchCases(completion: @escaping (Result<TimelineModel, NetworkError>) -> Void)
+    func fetchCases(completion: @escaping (Result<TimelineModel, ConnectionError>) -> Void)
 }
 
 public final class WorldService: WorldServiceProtocol {
@@ -20,7 +20,7 @@ public final class WorldService: WorldServiceProtocol {
         self.networkManager = networkManager
     }
 
-    public func fetchCases(completion: @escaping (Result<TimelineModel, NetworkError>) -> Void) {
+    public func fetchCases(completion: @escaping (Result<TimelineModel, ConnectionError>) -> Void) {
         let urlString = "/all"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
@@ -30,10 +30,10 @@ public final class WorldService: WorldServiceProtocol {
                     let decodedObject = try JSONDecoder().decode(TimelineModel.self, from: data)
                     completion(.success(decodedObject))
                  } catch {
-                    completion(.failure(NetworkError.unparseable))
+                    completion(.failure(.unparseable))
                  }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(ConnectionError.from(networkError: error)))
             }
         }
     }

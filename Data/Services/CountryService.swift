@@ -10,8 +10,8 @@ import Foundation
 import Networking
 
 public protocol CountryServiceProtocol {
-    func fetch(country: String, completion: @escaping (Result<CountryModel, NetworkError>) -> Void)
-    func fetchAll(sort: Bool, completion: @escaping (Result<[CountryModel], NetworkError>) -> Void)
+    func fetch(country: String, completion: @escaping (Result<CountryModel, ConnectionError>) -> Void)
+    func fetchAll(sort: Bool, completion: @escaping (Result<[CountryModel], ConnectionError>) -> Void)
 }
 
 public final class CountryService: CountryServiceProtocol {
@@ -21,7 +21,7 @@ public final class CountryService: CountryServiceProtocol {
         self.networkManager = networkManager
     }
 
-    public func fetch(country: String, completion: @escaping (Result<CountryModel, NetworkError>) -> Void) {
+    public func fetch(country: String, completion: @escaping (Result<CountryModel, ConnectionError>) -> Void) {
         guard let encodedCountry = country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(.failure(.unparseable))
             return
@@ -35,15 +35,15 @@ public final class CountryService: CountryServiceProtocol {
                     let decodedObject = try JSONDecoder().decode(CountryModel.self, from: data)
                     completion(.success(decodedObject))
                  } catch {
-                    completion(.failure(NetworkError.unparseable))
+                    completion(.failure(.unparseable))
                  }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(ConnectionError.from(networkError: error)))
             }
         }
     }
 
-    public func fetchAll(sort: Bool, completion: @escaping (Result<[CountryModel], NetworkError>) -> Void) {
+    public func fetchAll(sort: Bool, completion: @escaping (Result<[CountryModel], ConnectionError>) -> Void) {
         var urlString = "/countries"
         if sort {
             urlString += "?sort=cases"
@@ -56,10 +56,10 @@ public final class CountryService: CountryServiceProtocol {
                     let decodedObject = try JSONDecoder().decode([CountryModel].self, from: data)
                     completion(.success(decodedObject))
                  } catch {
-                    completion(.failure(NetworkError.unparseable))
+                    completion(.failure(.unparseable))
                  }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(ConnectionError.from(networkError: error)))
             }
         }
     }

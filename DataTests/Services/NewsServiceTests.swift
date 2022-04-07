@@ -57,9 +57,9 @@ extension NewsServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: NewsService, with expectedResult: Result<[NewsModel.Article], NetworkError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: NewsService, with expectedResult: Result<[NewsModel.Article], ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<[NewsModel.Article], NetworkError>?
+        var receivedResult: Result<[NewsModel.Article], ConnectionError>?
         sut.fetch { result in
             receivedResult = result
             exp.fulfill()

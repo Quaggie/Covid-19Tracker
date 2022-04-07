@@ -10,8 +10,8 @@ import Foundation
 import Networking
 
 public protocol HistoricalInfoServiceProtocol {
-    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, NetworkError>) -> Void)
-    func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, NetworkError>) -> Void)
+    func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, ConnectionError>) -> Void)
+    func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, ConnectionError>) -> Void)
 }
 
 public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
@@ -21,7 +21,7 @@ public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
         self.networkManager = networkManager
     }
 
-    public func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, NetworkError>) -> Void) {
+    public func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, ConnectionError>) -> Void) {
         guard let encodedCountry = country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(.failure(.unparseable))
             return
@@ -35,15 +35,15 @@ public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
                     let decodedObject = try JSONDecoder().decode(HistoricalCountryInfoModel.self, from: data)
                      completion(.success(decodedObject))
                  } catch {
-                    completion(.failure(NetworkError.unparseable))
+                    completion(.failure(.unparseable))
                  }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(ConnectionError.from(networkError: error)))
             }
         }
     }
 
-    public func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, NetworkError>) -> Void) {
+    public func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, ConnectionError>) -> Void) {
         let urlString = "/historical/all?lastdays=7"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { result in
@@ -53,10 +53,10 @@ public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
                      let decodedObject = try JSONDecoder().decode(HistoricalCountryInfoModel.Timeline.self, from: data)
                      completion(.success(decodedObject))
                  } catch {
-                    completion(.failure(NetworkError.unparseable))
+                    completion(.failure(.unparseable))
                  }
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(ConnectionError.from(networkError: error)))
             }
         }
     }

@@ -56,9 +56,9 @@ extension WorldServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: WorldService, with expectedResult: Result<TimelineModel, NetworkError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: WorldService, with expectedResult: Result<TimelineModel, ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<TimelineModel, NetworkError>?
+        var receivedResult: Result<TimelineModel, ConnectionError>?
         sut.fetchCases { result in
             receivedResult = result
             exp.fulfill()

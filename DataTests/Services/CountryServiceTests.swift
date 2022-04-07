@@ -67,9 +67,9 @@ extension CountryServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: CountryService, country: String, with expectedResult: Result<CountryModel, NetworkError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: CountryService, country: String, with expectedResult: Result<CountryModel, ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
-        var receivedResult: Result<CountryModel, NetworkError>?
+        var receivedResult: Result<CountryModel, ConnectionError>?
         sut.fetch(country: country) { result in
             receivedResult = result
             exp.fulfill()
