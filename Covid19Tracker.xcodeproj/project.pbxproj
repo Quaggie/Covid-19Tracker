@@ -120,6 +120,7 @@
 		A98FC6F1244537A9004433A6 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F0244537A9004433A6 /* Notification+Extension.swift */; };
 		A98FC6F424455226004433A6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6F324455226004433A6 /* Keyboard.swift */; };
 		A9906DF32800E5CE00A1CD37 /* HistoricalInfoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9906DF22800E5CE00A1CD37 /* HistoricalInfoServiceTests.swift */; };
+		A9906DF62800EEE400A1CD37 /* ConnectionErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9906DF52800EEE400A1CD37 /* ConnectionErrorTests.swift */; };
 		A99B73F0244679CE00383D30 /* CareCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73EF244679CE00383D30 /* CareCardCell.swift */; };
 		A99B73F22446901300383D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99B73F12446901300383D30 /* GoogleService-Info.plist */; };
 		A99B73F5244690F600383D30 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B73F4244690F600383D30 /* Tracker.swift */; };
@@ -330,6 +331,7 @@
 		A98FC6F0244537A9004433A6 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		A98FC6F324455226004433A6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		A9906DF22800E5CE00A1CD37 /* HistoricalInfoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalInfoServiceTests.swift; sourceTree = "<group>"; };
+		A9906DF52800EEE400A1CD37 /* ConnectionErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionErrorTests.swift; sourceTree = "<group>"; };
 		A99B73EF244679CE00383D30 /* CareCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCardCell.swift; sourceTree = "<group>"; };
 		A99B73F12446901300383D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A99B73F4244690F600383D30 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 			children = (
 				A934E67727FCFF47002866AF /* Helpers */,
 				A95AEC8227F0D36D0092C93E /* Extensions */,
+				A9906DF42800EED200A1CD37 /* Models */,
 				A95AEC7F27F0D31D0092C93E /* Services */,
 			);
 			path = DataTests;
@@ -1006,6 +1009,14 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
+		A9906DF42800EED200A1CD37 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A9906DF52800EEE400A1CD37 /* ConnectionErrorTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A99B73F3244690EB00383D30 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1511,7 @@
 			files = (
 				A934E68027FD0221002866AF /* CountryServiceTests.swift in Sources */,
 				A934E67A27FCFF99002866AF /* XCTestCase+HelperObjects.swift in Sources */,
+				A9906DF62800EEE400A1CD37 /* ConnectionErrorTests.swift in Sources */,
 				A934E67627FCFF12002866AF /* WorldServiceTests.swift in Sources */,
 				A934E67527FCFF12002866AF /* NewsServiceTests.swift in Sources */,
 				A934E67927FCFF99002866AF /* XCTestCase+MemoryLeak.swift in Sources */,
