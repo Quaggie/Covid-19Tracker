@@ -17,8 +17,7 @@ final class CountryServiceTests: XCTestCase {
         let expectedParameter = "/countries/\(country)"
 
         expectFetch(for: sut, country: country, networkManager: networkManager, with: expectedParameter) {
-            let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-            let data = try! JSONEncoder().encode(countryModel)
+            let data = try! JSONEncoder().encode(anyCountryModel())
             networkManager.complete(with: .success(data))
         }
     }
@@ -29,8 +28,7 @@ final class CountryServiceTests: XCTestCase {
         let expectedParameter = "/countries/\(country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
 
         expectFetch(for: sut, country: country, networkManager: networkManager, with: expectedParameter) {
-            let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-            let data = try! JSONEncoder().encode(countryModel)
+            let data = try! JSONEncoder().encode(anyCountryModel())
             networkManager.complete(with: .success(data))
         }
     }
@@ -39,9 +37,8 @@ final class CountryServiceTests: XCTestCase {
         let (sut, networkManager) = makeSUT()
         let country = "Brazil"
 
-        let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-        expectFetch(for: sut, country: country, with: .success(countryModel)) {
-            let data = try! JSONEncoder().encode(countryModel)
+        expectFetch(for: sut, country: country, with: .success(anyCountryModel())) {
+            let data = try! JSONEncoder().encode(anyCountryModel())
             networkManager.complete(with: .success(data))
         }
     }
@@ -50,9 +47,8 @@ final class CountryServiceTests: XCTestCase {
         let (sut, networkManager) = makeSUT()
         let country = "New Zealand"
 
-        let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-        expectFetch(for: sut, country: country, with: .success(countryModel)) {
-            let data = try! JSONEncoder().encode(countryModel)
+        expectFetch(for: sut, country: country, with: .success(anyCountryModel())) {
+            let data = try! JSONEncoder().encode(anyCountryModel())
             networkManager.complete(with: .success(data))
         }
     }
@@ -62,8 +58,7 @@ final class CountryServiceTests: XCTestCase {
         let country = "AnyCountry"
 
         expectFetch(for: sut, country: country, with: .failure(.unparseable)) {
-            let wrongModel = NewsModel(status: "", totalResults: 0, articles: [])
-            let data = try! JSONEncoder().encode(wrongModel)
+            let data = try! JSONEncoder().encode(anyCodable())
             networkManager.complete(with: .success(data))
         }
     }
@@ -74,6 +69,26 @@ final class CountryServiceTests: XCTestCase {
 
         expectFetch(for: sut, country: country, with: .failure(.internalServerError)) {
             networkManager.complete(with: .failure(.internalServerError))
+        }
+    }
+
+    func test_fetchAll_transformsCorrectURLParamWhenSortingIsTrue() {
+        let (sut, networkManager) = makeSUT()
+        let sort = true
+
+        expectFetchAll(for: sut, sort: sort, networkManager: networkManager, with: "/countries?sort=cases") {
+            let data = try! JSONEncoder().encode([anyCountryModel()])
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchAll_transformsCorrectURLParamWhenSortingIsFalse() {
+        let (sut, networkManager) = makeSUT()
+        let sort = false
+
+        expectFetchAll(for: sut, sort: sort, networkManager: networkManager, with: "/countries") {
+            let data = try! JSONEncoder().encode([anyCountryModel()])
+            networkManager.complete(with: .success(data))
         }
     }
 }
@@ -90,6 +105,17 @@ extension CountryServiceTests {
     func expectFetch(for sut: CountryService, country: String, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
         sut.fetch(country: country) { _ in
+            exp.fulfill()
+        }
+        action()
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(networkManager.urlStrings, [expectedParameter])
+    }
+
+    func expectFetchAll(for sut: CountryService, sort: Bool, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: #function)
+        sut.fetchAll(sort: sort) { _ in
             exp.fulfill()
         }
         action()
@@ -116,5 +142,29 @@ extension CountryServiceTests {
         default:
             XCTFail("Should've completed with \(expectedResult) instead got \(String(describing: receivedResult))", file: file, line: line)
         }
+    }
+
+    func expectFetchAll(for sut: CountryService, sort: Bool, with expectedResult: Result<[CountryModel], ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: #function)
+        var receivedResult: Result<[CountryModel], ConnectionError>?
+        sut.fetchAll(sort: sort) { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        action()
+        wait(for: [exp], timeout: 1)
+
+        switch (receivedResult, expectedResult) {
+        case (.success(let receivedData), .success(let expectedData)):
+            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+        case (.failure(let receivedError), .failure(let expectedError)):
+            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        default:
+            XCTFail("Should've completed with \(expectedResult) instead got \(String(describing: receivedResult))", file: file, line: line)
+        }
+    }
+
+    private func anyCountryModel() -> CountryModel {
+        CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
     }
 }
