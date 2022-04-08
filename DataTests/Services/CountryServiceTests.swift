@@ -91,6 +91,64 @@ final class CountryServiceTests: XCTestCase {
             networkManager.complete(with: .success(data))
         }
     }
+
+    func test_fetchAll_returnsCorrectCountriesWhenSortingIsFalse() {
+        let (sut, networkManager) = makeSUT()
+        let sort = false
+
+        expectFetchAll(for: sut, sort: sort, with: .success([anyCountryModel()])) {
+            let data = try! JSONEncoder().encode([anyCountryModel()])
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchAll_returnsCorrectCountriesWhenSortingIsTrue() {
+        let (sut, networkManager) = makeSUT()
+        let sort = true
+
+        expectFetchAll(for: sut, sort: sort, with: .success([anyCountryModel()])) {
+            let data = try! JSONEncoder().encode([anyCountryModel()])
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchAll_failsToDecodeUnexpectedTypeWhenSortingIsFalse() {
+        let (sut, networkManager) = makeSUT()
+        let sort = false
+
+        expectFetchAll(for: sut, sort: sort, with: .failure(.unparseable)) {
+            let data = try! JSONEncoder().encode(anyCodable())
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchAll_failsToDecodeUnexpectedTypeWhenSortingIsTrue() {
+        let (sut, networkManager) = makeSUT()
+        let sort = true
+
+        expectFetchAll(for: sut, sort: sort, with: .failure(.unparseable)) {
+            let data = try! JSONEncoder().encode(anyCodable())
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchAll_returnsCorrectErrorWhenSortingIsFalseNetworkFails() {
+        let (sut, networkManager) = makeSUT()
+        let sort = false
+
+        expectFetchAll(for: sut, sort: sort, with: .failure(.internalServerError)) {
+            networkManager.complete(with: .failure(.internalServerError))
+        }
+    }
+
+    func test_fetchAll_returnsCorrectErrorWhenSortingIsTrueNetworkFails() {
+        let (sut, networkManager) = makeSUT()
+        let sort = true
+
+        expectFetchAll(for: sut, sort: sort, with: .failure(.internalServerError)) {
+            networkManager.complete(with: .failure(.internalServerError))
+        }
+    }
 }
 
 extension CountryServiceTests {
