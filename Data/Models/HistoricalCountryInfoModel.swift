@@ -6,8 +6,8 @@
 //  Copyright © 2020 DevsCarioca. All rights reserved.
 //
 
-public struct HistoricalCountryInfoModel: Codable {
-    public struct Timeline: Codable {
+public struct HistoricalCountryInfoModel: Codable, Equatable {
+    public struct Timeline: Codable, Equatable {
         public let cases: [String: Int]
         public let deaths: [String: Int]
         public let recovered: [String: Int]

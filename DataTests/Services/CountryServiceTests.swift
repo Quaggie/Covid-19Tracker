@@ -132,7 +132,7 @@ final class CountryServiceTests: XCTestCase {
         }
     }
 
-    func test_fetchAll_returnsCorrectErrorWhenSortingIsFalseNetworkFails() {
+    func test_fetchAll_returnsCorrectErrorWhenSortingIsFalseAndNetworkFails() {
         let (sut, networkManager) = makeSUT()
         let sort = false
 
@@ -141,7 +141,7 @@ final class CountryServiceTests: XCTestCase {
         }
     }
 
-    func test_fetchAll_returnsCorrectErrorWhenSortingIsTrueNetworkFails() {
+    func test_fetchAll_returnsCorrectErrorWhenSortingIsTrueAndNetworkFails() {
         let (sut, networkManager) = makeSUT()
         let sort = true
 
@@ -168,7 +168,7 @@ extension CountryServiceTests {
         action()
         wait(for: [exp], timeout: 1)
 
-        XCTAssertEqual(networkManager.urlStrings, [expectedParameter])
+        XCTAssertEqual(networkManager.urlStrings, [expectedParameter], file: file, line: line)
     }
 
     func expectFetchAll(for sut: CountryService, sort: Bool, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
@@ -179,7 +179,7 @@ extension CountryServiceTests {
         action()
         wait(for: [exp], timeout: 1)
 
-        XCTAssertEqual(networkManager.urlStrings, [expectedParameter])
+        XCTAssertEqual(networkManager.urlStrings, [expectedParameter], file: file, line: line)
     }
 
     func expectFetch(for sut: CountryService, country: String, with expectedResult: Result<CountryModel, ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
