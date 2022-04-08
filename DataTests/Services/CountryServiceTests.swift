@@ -16,7 +16,7 @@ final class CountryServiceTests: XCTestCase {
         let country = "Brazil"
         let expectedParameter = "/countries/\(country)"
 
-        expect(sut: sut, country: country, networkManager: networkManager, with: expectedParameter) {
+        expectFetch(for: sut, country: country, networkManager: networkManager, with: expectedParameter) {
             let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
             let data = try! JSONEncoder().encode(countryModel)
             networkManager.complete(with: .success(data))
@@ -28,7 +28,7 @@ final class CountryServiceTests: XCTestCase {
         let country = "New Zealand"
         let expectedParameter = "/countries/\(country.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
 
-        expect(sut: sut, country: country, networkManager: networkManager, with: expectedParameter) {
+        expectFetch(for: sut, country: country, networkManager: networkManager, with: expectedParameter) {
             let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
             let data = try! JSONEncoder().encode(countryModel)
             networkManager.complete(with: .success(data))
@@ -87,7 +87,7 @@ extension CountryServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: CountryService, country: String, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expectFetch(for sut: CountryService, country: String, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
         sut.fetch(country: country) { _ in
             exp.fulfill()
