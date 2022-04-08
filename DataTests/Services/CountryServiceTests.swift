@@ -56,6 +56,26 @@ final class CountryServiceTests: XCTestCase {
             networkManager.complete(with: .success(data))
         }
     }
+
+    func test_fetchCountry_failsToDecodeUnexpectedType() {
+        let (sut, networkManager) = makeSUT()
+        let country = "AnyCountry"
+
+        expect(sut: sut, country: country, with: .failure(.unparseable)) {
+            let wrongModel = NewsModel(status: "", totalResults: 0, articles: [])
+            let data = try! JSONEncoder().encode(wrongModel)
+            networkManager.complete(with: .success(data))
+        }
+    }
+
+    func test_fetchCountry_returnsCorrectErrorWhenNetworkFails() {
+        let (sut, networkManager) = makeSUT()
+        let country = "AnyCountry"
+
+        expect(sut: sut, country: country, with: .failure(.internalServerError)) {
+            networkManager.complete(with: .failure(.internalServerError))
+        }
+    }
 }
 
 extension CountryServiceTests {
