@@ -40,7 +40,7 @@ final class CountryServiceTests: XCTestCase {
         let country = "Brazil"
 
         let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-        expect(sut: sut, country: country, with: .success(countryModel)) {
+        expectFetch(for: sut, country: country, with: .success(countryModel)) {
             let data = try! JSONEncoder().encode(countryModel)
             networkManager.complete(with: .success(data))
         }
@@ -51,7 +51,7 @@ final class CountryServiceTests: XCTestCase {
         let country = "New Zealand"
 
         let countryModel = CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
-        expect(sut: sut, country: country, with: .success(countryModel)) {
+        expectFetch(for: sut, country: country, with: .success(countryModel)) {
             let data = try! JSONEncoder().encode(countryModel)
             networkManager.complete(with: .success(data))
         }
@@ -61,7 +61,7 @@ final class CountryServiceTests: XCTestCase {
         let (sut, networkManager) = makeSUT()
         let country = "AnyCountry"
 
-        expect(sut: sut, country: country, with: .failure(.unparseable)) {
+        expectFetch(for: sut, country: country, with: .failure(.unparseable)) {
             let wrongModel = NewsModel(status: "", totalResults: 0, articles: [])
             let data = try! JSONEncoder().encode(wrongModel)
             networkManager.complete(with: .success(data))
@@ -72,7 +72,7 @@ final class CountryServiceTests: XCTestCase {
         let (sut, networkManager) = makeSUT()
         let country = "AnyCountry"
 
-        expect(sut: sut, country: country, with: .failure(.internalServerError)) {
+        expectFetch(for: sut, country: country, with: .failure(.internalServerError)) {
             networkManager.complete(with: .failure(.internalServerError))
         }
     }
@@ -87,7 +87,18 @@ extension CountryServiceTests {
         return (service, networkManager)
     }
 
-    func expect(sut: CountryService, country: String, with expectedResult: Result<CountryModel, ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(sut: CountryService, country: String, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: #function)
+        sut.fetch(country: country) { _ in
+            exp.fulfill()
+        }
+        action()
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(networkManager.urlStrings, [expectedParameter])
+    }
+
+    func expectFetch(for sut: CountryService, country: String, with expectedResult: Result<CountryModel, ConnectionError>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: #function)
         var receivedResult: Result<CountryModel, ConnectionError>?
         sut.fetch(country: country) { result in
@@ -105,16 +116,5 @@ extension CountryServiceTests {
         default:
             XCTFail("Should've completed with \(expectedResult) instead got \(String(describing: receivedResult))", file: file, line: line)
         }
-    }
-
-    func expect(sut: CountryService, country: String, networkManager: NetworkManagerSpy, with expectedParameter: String, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: #function)
-        sut.fetch(country: country) { _ in
-            exp.fulfill()
-        }
-        action()
-        wait(for: [exp], timeout: 1)
-
-        XCTAssertEqual(networkManager.urlStrings, [expectedParameter])
     }
 }
