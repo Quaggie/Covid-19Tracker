@@ -6,7 +6,7 @@
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-import Data
+import CovidCharts
 
 struct HistoricalCountryTimeline {
     let cases: [String: Int]

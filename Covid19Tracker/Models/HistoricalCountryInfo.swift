@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Data
+import CovidCharts
 
 struct HistoricalCountryInfo {
     let country: String

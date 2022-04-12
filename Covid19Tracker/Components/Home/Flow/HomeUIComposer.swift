@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class HomeUIComposer: UIComposer {
     func compose() -> HomeViewController {

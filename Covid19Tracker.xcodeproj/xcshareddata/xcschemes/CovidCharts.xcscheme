@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A934E5F527FB4C7A002866AF"
-               BuildableName = "Data.framework"
-               BlueprintName = "Data"
+               BlueprintIdentifier = "A95931EA280215D700EB5D2A"
+               BuildableName = "CovidCharts.framework"
+               BlueprintName = "CovidCharts"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,16 +33,16 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A934E5F527FB4C7A002866AF"
-            BuildableName = "Data.framework"
-            BlueprintName = "Data"
+            BlueprintIdentifier = "A95931EA280215D700EB5D2A"
+            BuildableName = "CovidCharts.framework"
+            BlueprintName = "CovidCharts"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A934E5FC27FB4C7A002866AF"
-            BuildableName = "DataTests.xctest"
-            BlueprintName = "DataTests"
+            BlueprintIdentifier = "A95931F1280215D700EB5D2A"
+            BuildableName = "CovidChartsTests.xctest"
+            BlueprintName = "CovidChartsTests"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -52,9 +52,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A934E5FC27FB4C7A002866AF"
-               BuildableName = "DataTests.xctest"
-               BlueprintName = "DataTests"
+               BlueprintIdentifier = "A95931F1280215D700EB5D2A"
+               BuildableName = "CovidChartsTests.xctest"
+               BlueprintName = "CovidChartsTests"
                ReferencedContainer = "container:Covid19Tracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -80,9 +80,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A934E5F527FB4C7A002866AF"
-            BuildableName = "Data.framework"
-            BlueprintName = "Data"
+            BlueprintIdentifier = "A95931EA280215D700EB5D2A"
+            BuildableName = "CovidCharts.framework"
+            BlueprintName = "CovidCharts"
             ReferencedContainer = "container:Covid19Tracker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class CountryUIComposer: UIComposer {
     let countryName: String

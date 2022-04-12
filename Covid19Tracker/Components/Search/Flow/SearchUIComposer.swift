@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class SearchUIComposer: UIComposer {
     private let cameFromHome: Bool

@@ -8,7 +8,7 @@
 
 import UIKit
 import Charts
-import Data
+import CovidCharts
 
 final class SpreadOverTimeCell: UICollectionViewCell {
     // MARK: - Static

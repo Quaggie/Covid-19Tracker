@@ -8,7 +8,7 @@
 
 import XCTest
 import Networking
-@testable import Data
+@testable import CovidCharts
 
 final class HistoricalInfoServiceTests: XCTestCase {
     func test_fetchCountry_transformsCorrectURLParamsWhenPassingStringWithoutSpaces() {

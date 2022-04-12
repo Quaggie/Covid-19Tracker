@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 struct News: Equatable {
     let source: String

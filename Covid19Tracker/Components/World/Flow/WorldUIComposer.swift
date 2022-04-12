@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class WorldUIComposer: UIComposer {
     func compose() -> WorldViewController {

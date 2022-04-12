@@ -8,7 +8,7 @@
 
 import UIKit
 import SafariServices
-import Data
+import CovidCharts
 
 final class NewsViewController: BaseViewController {
     enum State {

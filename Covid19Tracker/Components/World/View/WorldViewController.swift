@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class WorldViewController: BaseViewController {
     enum State {

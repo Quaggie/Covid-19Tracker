@@ -8,7 +8,7 @@
 
 import XCTest
 import Networking
-@testable import Data
+@testable import CovidCharts
 
 class NewsServiceTests: XCTestCase {
     func test_fetch_callsServiceOncePerExecution() {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Data
+import CovidCharts
 
 final class NewsUIComposer: UIComposer {
     func compose() -> NewsViewController {

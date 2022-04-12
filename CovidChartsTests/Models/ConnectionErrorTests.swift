@@ -8,7 +8,7 @@
 
 import XCTest
 import Networking
-@testable import Data
+@testable import CovidCharts
 
 class ConnectionErrorTests: XCTestCase {
     func test_conversionFromNetworkError_returnsCorrectTypes() {

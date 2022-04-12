@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Data
+import CovidCharts
 
 final class MainQueueDispatchDecorator<T> {
     var instance: T
