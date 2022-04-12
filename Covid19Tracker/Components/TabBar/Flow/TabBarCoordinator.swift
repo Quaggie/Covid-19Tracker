@@ -16,9 +16,9 @@ final class TabBarCoordinator: Coordinator {
     private let window: UIWindow
 
     private lazy var coordinators: [Coordinator] = [
-        HomeCoordinator(viewController: WeakRefVirtualProxy(self)),
+        HomeCoordinator(parent: WeakRefVirtualProxy(self)),
         WorldCoordinator(viewController: WeakRefVirtualProxy(self)),
-        SearchCoordinator(viewController: WeakRefVirtualProxy(self), cameFromHome: false),
+        SearchCoordinator(parent: WeakRefVirtualProxy(self), cameFromHome: false),
         NewsCoordinator(viewController: WeakRefVirtualProxy(self)),
         CareCoordinator(viewController: WeakRefVirtualProxy(self))
     ]
@@ -46,7 +46,7 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: TabBarCoordinatorDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.tabBarItem.tag == 2 {
-            let coordinator = SearchCoordinator(viewController: tabBarController, cameFromHome: false)
+            let coordinator = SearchCoordinator(parent: tabBarController, cameFromHome: false)
             coordinator.start()
             return false
         }

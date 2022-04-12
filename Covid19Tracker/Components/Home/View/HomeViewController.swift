@@ -28,6 +28,7 @@ final class HomeViewController: BaseViewController {
     private let historicalInfoService: HistoricalInfoServiceProtocol
 
     // MARK: - Properties
+    private let coordinator: HomeCoordinatorDelegate
     private let tracker: TrackerProtocol
     private var selectedCountry: Country? {
         didSet {
@@ -59,7 +60,7 @@ final class HomeViewController: BaseViewController {
         btn.setImage(UIImage(named: "pencil_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.imageEdgeInsets = .init(top: 0, left: 19, bottom: 0, right: 0)
 
-        btn.addTarget(self, action: #selector(goToSearch), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(didTapSelectCountryButton), for: .touchUpInside)
 
         return btn
     }()
@@ -91,10 +92,12 @@ final class HomeViewController: BaseViewController {
 
     // MARK: - Init
     init(
+        coordinator: HomeCoordinatorDelegate,
         tracker: TrackerProtocol = Tracker(source: String(describing: HomeViewController.self)),
         countryService: CountryServiceProtocol,
         historicalInfoService: HistoricalInfoServiceProtocol
     ) {
+        self.coordinator = coordinator
         self.tracker = tracker
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService
@@ -191,9 +194,9 @@ final class HomeViewController: BaseViewController {
         }
     }
 
-    @objc private func goToSearch() {
-        let controller = SearchViewController(cameFromHome: true, countryService: MainQueueDispatchDecorator(instance: CountryService()))
-        present(controller, animated: true)
+    // MARK: - Actions
+    @objc private func didTapSelectCountryButton() {
+        coordinator.changeCountry()
     }
 }
 

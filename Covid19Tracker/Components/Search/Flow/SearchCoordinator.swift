@@ -6,19 +6,21 @@
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-final class SearchCoordinator: Coordinator {
-    private let viewController: ViewControllerPresenter
-    private let cameFromHome: Bool
+import UIKit
 
-    init(viewController: ViewControllerPresenter, cameFromHome: Bool) {
-        self.viewController = viewController
+final class SearchCoordinator: Coordinator {
+    private let parent: ViewControllerPresenter
+    private let cameFromHome: Bool
+    private lazy var rootViewController = SearchUIComposer(cameFromHome: cameFromHome).compose()
+
+    init(parent: ViewControllerPresenter, cameFromHome: Bool) {
+        self.parent = parent
         self.cameFromHome = cameFromHome
         print("[SearchCoordinator] initialized!")
     }
 
     func start() {
-        let vc = SearchUIComposer(cameFromHome: cameFromHome).compose()
-        viewController.show(vc, sender: self)
+        parent.show(rootViewController, sender: self)
     }
 
     deinit {
