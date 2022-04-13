@@ -7,5 +7,5 @@
 //
 
 public protocol WorldOverviewUseCase {
-    func fetch(completion: @escaping (Result<WorldOverview, ConnectionError>) -> Void)
+    func fetch(completion: @escaping (Result<WorldOverviewModel, ConnectionError>) -> Void)
 }

@@ -27,6 +27,7 @@ final class WorldViewController: BaseViewController {
     private let worldService: WorldServiceProtocol
     private let countryService: CountryServiceProtocol
     private let historicalInfoService: HistoricalInfoServiceProtocol
+    private let worldOverviewUseCase: WorldOverviewUseCase
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -77,6 +78,7 @@ final class WorldViewController: BaseViewController {
         self.worldService = worldService
         self.countryService = countryService
         self.historicalInfoService = historicalInfoService
+        self.worldOverviewUseCase = WorldOverviewService(worldService: worldService, historicalInfoService: historicalInfoService)
         super.init(nibName: nil, bundle: nil)
 
         pageSelectorView.delegate = self
@@ -114,30 +116,22 @@ final class WorldViewController: BaseViewController {
         var hasError = false
 
         dispatchGroup.enter()
-        worldService.fetchCases { [weak self] (result) in
+        worldOverviewUseCase.fetch { [weak self] result in
+            dispatchGroup.leave()
             guard let self = self else { return }
 
             switch result {
-            case .success(let timelineModel):
-                let timeline = Timeline.from(model: timelineModel)
-                self.historicalInfoService.fetchAll { [weak self] (result) in
-                    guard let self = self else { return }
-                    dispatchGroup.leave()
-
-                    switch result {
-                    case .success(let historicalCountryInfoModelTimeline):
-                        let historicalTimeline = HistoricalTimelineDayInfo.last7Days(from: historicalCountryInfoModelTimeline)
-                        self.overviewDatasource = [
-                            .totalCases(timeline),
-                            .spreadOverTime(historicalTimeline),
-                            .todayCases(timeline)
-                        ]
-                    case .failure:
-                        hasError = true
-                    }
+            case .success(let model):
+                let timeline = Timeline.from(model: model.timeline)
+                let timelineDayInfo = model.historicalTimelineWeekInfo.map {
+                    HistoricalTimelineDayInfo(day: $0.day, active: $0.active, recovered: $0.recovered, deaths: $0.deaths)
                 }
+                self.overviewDatasource = [
+                    .totalCases(timeline),
+                    .spreadOverTime(timelineDayInfo),
+                    .todayCases(timeline)
+                ]
             case .failure:
-                dispatchGroup.leave()
                 hasError = true
             }
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class WorldOverviewService: WorldOverviewUseCase {
+public final class WorldOverviewService: WorldOverviewUseCase {
     private let worldService: WorldServiceProtocol
     private let historicalInfoService: HistoricalInfoServiceProtocol
 
@@ -17,10 +17,10 @@ final class WorldOverviewService: WorldOverviewUseCase {
         self.historicalInfoService = historicalInfoService
     }
 
-    func fetch(completion: @escaping (Result<WorldOverview, ConnectionError>) -> Void) {
+    public func fetch(completion: @escaping (Result<WorldOverviewModel, ConnectionError>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var timelineModel: TimelineModel?
-        var historicalTimeline: [HistoricalTimelineDayInfo]?
+        var historicalTimeline: [HistoricalTimelineDayInfoModel]?
         var connectionError: ConnectionError?
 
         dispatchGroup.enter()
@@ -41,7 +41,7 @@ final class WorldOverviewService: WorldOverviewUseCase {
 
             switch result {
             case .success(let model):
-                historicalTimeline = HistoricalTimelineDayInfo.last7Days(from: model)
+                historicalTimeline = HistoricalTimelineDayInfoModel.last7Days(from: model)
             case .failure(let error):
                 connectionError = error
             }
@@ -57,11 +57,11 @@ final class WorldOverviewService: WorldOverviewUseCase {
 
     private func transformResult(
         timeline: TimelineModel?,
-        historicalTimeline: [HistoricalTimelineDayInfo]?,
+        historicalTimeline: [HistoricalTimelineDayInfoModel]?,
         error: ConnectionError?
-    ) -> Result<WorldOverview, ConnectionError> {
+    ) -> Result<WorldOverviewModel, ConnectionError> {
         if let timeline = timeline, let historicalTimeline = historicalTimeline {
-            let model = WorldOverview(timeline: timeline, historicalTimelineWeekInfo: historicalTimeline)
+            let model = WorldOverviewModel(timeline: timeline, historicalTimelineWeekInfo: historicalTimeline)
             return .success(model)
         }
         if let error = error {
