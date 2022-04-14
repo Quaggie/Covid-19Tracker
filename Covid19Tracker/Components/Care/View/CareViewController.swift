@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol CareViewControllerDelegate: AnyObject {
+protocol CareViewControllerDelegate {
     func viewDidAppear()
     func pageSelectorDidChange(index: Int)
 }
 
 final class CareViewController: BaseViewController {
     // MARK: - Properties
-    private let delegate: CareViewControllerDelegate
     private var selectedIndex: Int = 0
-    private weak var dataSource: DataSource?
-    private weak var delegateFlowLayout: UICollectionViewDelegateFlowLayout?
+    private let delegate: CareViewControllerDelegate
+    private let dataSource: DataSource?
+    private let delegateFlowLayout: UICollectionViewDelegateFlowLayout?
     private let collectionViewInset: UIEdgeInsets = .init(top: 8, left: 16, bottom: 16, right: 16)
 
     // MARK: - Views
@@ -79,6 +79,7 @@ final class CareViewController: BaseViewController {
     }
 }
 
+// MARK: - PageSelectorDelegate
 extension CareViewController: PageSelectorDelegate {
     func pageSelectorDidChange(index: Int) {
         if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
@@ -91,6 +92,7 @@ extension CareViewController: PageSelectorDelegate {
     }
 }
 
+// MARK: - CodeView
 extension CareViewController: CodeView {
     func buildViewHierarchy() {
         view.addSubview(titleLabel)
