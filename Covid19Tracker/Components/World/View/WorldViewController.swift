@@ -159,23 +159,19 @@ final class WorldViewController: BaseViewController {
     private func changeUIFor(state: State) {
         switch state {
         case .loading:
-            show(view: loadingView)
+            show(views: loadingView)
         case .success:
-            show(view: collectionView)
+            show(views: pageSelectorView, collectionView)
             collectionView.reloadData()
         case .error:
-            show(view: errorView)
+            show(views: errorView)
         }
     }
 
-    private func show(view: UIView) {
-        [collectionView, loadingView, errorView].forEach { (v) in
-            if view == v {
-                v.isHidden = false
-            } else {
-                v.isHidden = true
-            }
-        }
+    private func show(views: UIView...) {
+        let allViews = [pageSelectorView, collectionView, loadingView, errorView]
+        allViews.forEach { $0.isHidden = true }
+        views.forEach { $0.isHidden = false }
     }
 
     private func goToCountryDetail(country: Country) {

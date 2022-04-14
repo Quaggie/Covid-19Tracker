@@ -47,8 +47,7 @@ public final class WorldOverviewService: WorldOverviewUseCase {
             }
         }
 
-
-        dispatchGroup.notify(queue: .main) { [weak self] in
+        dispatchGroup.notify(queue: .global(qos: .default)) { [weak self] in
             guard let self = self else { return }
             let result = self.transformResult(timeline: timelineModel, historicalTimeline: historicalTimeline, error: connectionError)
             completion(result)
