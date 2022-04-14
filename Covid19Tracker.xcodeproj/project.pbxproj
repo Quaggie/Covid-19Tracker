@@ -145,6 +145,8 @@
 		A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */; };
 		A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B52BFF27F3D028008413E4 /* TrackerSpy.swift */; };
 		A9B88F8327F50389009BF798 /* PageSelectorDelegatesObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B88F8127F5036B009BF798 /* PageSelectorDelegatesObserverTests.swift */; };
+		A9BAC71A2808E1B300E77FF7 /* NewsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAC7192808E1B300E77FF7 /* NewsViewControllerTests.swift */; };
+		A9BAC71D2808E26300E77FF7 /* NewsTrackerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAC71C2808E26300E77FF7 /* NewsTrackerAdapter.swift */; };
 		A9E3BEAF27F371880071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */; };
 		A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecoratorTests.swift */; };
 		A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB627F3B41C0071AAD4 /* CareViewControllerTests.swift */; };
@@ -355,6 +357,8 @@
 		A9B2AE4427ED438100BA750B /* BaseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerTests.swift; sourceTree = "<group>"; };
 		A9B52BFF27F3D028008413E4 /* TrackerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerSpy.swift; sourceTree = "<group>"; };
 		A9B88F8127F5036B009BF798 /* PageSelectorDelegatesObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSelectorDelegatesObserverTests.swift; sourceTree = "<group>"; };
+		A9BAC7192808E1B300E77FF7 /* NewsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewControllerTests.swift; sourceTree = "<group>"; };
+		A9BAC71C2808E26300E77FF7 /* NewsTrackerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTrackerAdapter.swift; sourceTree = "<group>"; };
 		A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -973,6 +977,7 @@
 			isa = PBXGroup;
 			children = (
 				A934E64B27FC9C56002866AF /* Flow */,
+				A9BAC71B2808E25800E77FF7 /* Adapter */,
 				A934E64C27FC9C5A002866AF /* View */,
 			);
 			path = News;
@@ -1109,9 +1114,10 @@
 		A9B2AE4127ED1ADE00BA750B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A9E3BEB527F3B40C0071AAD4 /* Care */,
 				A9B2AE4327ED436C00BA750B /* Base */,
 				A9B2AE4227ED1AE900BA750B /* TabBar */,
+				A9BAC7182808E18E00E77FF7 /* News */,
+				A9E3BEB527F3B40C0071AAD4 /* Care */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1139,6 +1145,22 @@
 				A9B88F8127F5036B009BF798 /* PageSelectorDelegatesObserverTests.swift */,
 			);
 			path = PageSelector;
+			sourceTree = "<group>";
+		};
+		A9BAC7182808E18E00E77FF7 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				A9BAC7192808E1B300E77FF7 /* NewsViewControllerTests.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		A9BAC71B2808E25800E77FF7 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				A9BAC71C2808E26300E77FF7 /* NewsTrackerAdapter.swift */,
+			);
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 		A9E3BEAD27F3717A0071AAD4 /* Decorators */ = {
@@ -1584,6 +1606,7 @@
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
 				A934E66127FC9D5E002866AF /* HomeUIComposer.swift in Sources */,
+				A9BAC71D2808E26300E77FF7 /* NewsTrackerAdapter.swift in Sources */,
 				A906DE9E27F4AC8500F19932 /* DataSourceComposite.swift in Sources */,
 				A93B3F922432D2E100AFC97F /* TabBarViewController.swift in Sources */,
 				A934E63C27FBA379002866AF /* HistoricalCountryInfo.swift in Sources */,
@@ -1666,6 +1689,7 @@
 				A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */,
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
+				A9BAC71A2808E1B300E77FF7 /* NewsViewControllerTests.swift in Sources */,
 				A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,

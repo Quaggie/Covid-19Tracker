@@ -10,8 +10,13 @@ import UIKit
 import CovidCharts
 
 final class NewsUIComposer: UIComposer {
+    private lazy var trackerAdapter = NewsTrackerAdapter()
+
     func compose() -> NewsViewController {
-        let viewController = NewsViewController(newsService: MainQueueDispatchDecorator(instance: NewsService()))
+        let viewController = NewsViewController(
+            delegate: NewsTrackerAdapter(),
+            newsService: MainQueueDispatchDecorator(instance: NewsService())
+        )
         viewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "tabbar_news"), tag: 3)
         return viewController
     }
