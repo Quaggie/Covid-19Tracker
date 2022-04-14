@@ -1,5 +1,5 @@
 //
-//  NewsPresenterDelegate.swift
+//  NewsPresenter.swift
 //  Covid19Tracker
 //
 //  Created by Jonathan Bijos on 14/04/22.
