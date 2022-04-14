@@ -9,7 +9,6 @@
 import UIKit
 
 final class CareUIComposer: UIComposer {
-    private lazy var trackerAdapter = CareTrackerAdapter()
     private lazy var careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
     private lazy var sourceDataSource = SourceDataSource()
     private lazy var dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
@@ -23,7 +22,7 @@ final class CareUIComposer: UIComposer {
 
     func compose() -> CareViewController {
         let viewController = CareViewController(
-            delegate: trackerAdapter,
+            delegate: CareTrackerAdapter(),
             dataSource: dataSource,
             delegateFlowLayout: delegateFlowLayout,
             pageSelectorViewDelegate: pageSelectorDelegatesComposite
