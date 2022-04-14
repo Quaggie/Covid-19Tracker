@@ -22,7 +22,7 @@ final class NewsViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let newsService: NewsServiceProtocol
+    private let presenter: NewsPresenterDelegate
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -62,9 +62,9 @@ final class NewsViewController: BaseViewController {
     private lazy var errorView = ErrorView(delegate: self)
 
     // MARK: - Init
-    init(delegate: NewsViewControllerDelegate, newsService: NewsServiceProtocol) {
+    init(delegate: NewsViewControllerDelegate, presenter: NewsPresenterDelegate) {
         self.delegate = delegate
-        self.newsService = newsService
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -94,12 +94,11 @@ final class NewsViewController: BaseViewController {
     private func fetchData() {
         state = .loading
 
-        newsService.fetch { [weak self] (result) in
+        presenter.fetch { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
-            case .success(let articles):
-                let news = articles.map(News.from(model:))
+            case .success(let news):
                 self.datasource = news
                 self.state = .success
             case .failure:

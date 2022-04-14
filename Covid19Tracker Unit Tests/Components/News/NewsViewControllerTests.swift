@@ -6,4 +6,9 @@
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-import Foundation
+import XCTest
+@testable import Covid19_Tracker
+
+class NewsViewControllerTests: XCTestCase {
+    
+}
