@@ -31,7 +31,6 @@ final class NewsViewController: BaseViewController {
         }
     }
     private let delegate: NewsViewControllerDelegate
-    private var datasource: [News] = []
     private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
     private let lineSpacing: CGFloat = 16
     private let interItemSpacing: CGFloat = 16
@@ -98,8 +97,7 @@ final class NewsViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let news):
-                self.datasource = news
+            case .success:
                 self.state = .success
             case .failure:
                 self.state = .error
@@ -136,7 +134,7 @@ final class NewsViewController: BaseViewController {
 
 extension NewsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = datasource[indexPath.item]
+        let model = presenter.news[indexPath.item]
         let controller = SFSafariViewController(url: model.url)
         present(controller, animated: true)
     }
@@ -144,11 +142,11 @@ extension NewsViewController: UICollectionViewDelegate {
 
 extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datasource.count
+        return presenter.news.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = datasource[indexPath.item]
+        let model = presenter.news[indexPath.item]
 
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as NewsCell
         cell.setup(model: model, index: indexPath.item)
