@@ -13,7 +13,7 @@ final class CareUIComposer: UIComposer {
         let presenter = CarePresenter()
         let careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
         let sourceDataSource = SourceDataSource()
-        let dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
+        let dataSourceComposite = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
         let delegateFlowLayout = DelegateFlowLayoutComposite(
             delegateFlowLayouts: [
                 CareDelegateFlowLayout(),
@@ -24,7 +24,7 @@ final class CareUIComposer: UIComposer {
         let viewController = CareViewController(
             presenter: presenter,
             delegate: CareTrackerAdapter(),
-            dataSource: dataSource,
+            dataSource: dataSourceComposite,
             delegateFlowLayout: delegateFlowLayout,
             pageSelectorViewDelegate: pageSelectorDelegatesComposite
         )
