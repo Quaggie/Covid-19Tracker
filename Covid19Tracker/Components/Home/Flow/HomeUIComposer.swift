@@ -19,8 +19,8 @@ final class HomeUIComposer: UIComposer {
     func compose() -> HomeViewController {
         let viewController = HomeViewController(
             coordinator: coordinator,
-            countryService: MainQueueDispatchDecorator(instance: CountryService()),
-            historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+            countryFetcher: MainQueueDispatchDecorator(instance: CountryService()),
+            historicalInfoFetcher: MainQueueDispatchDecorator(instance: HistoricalInfoService())
         )
         viewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tabbar_home"), tag: 0)
         return viewController

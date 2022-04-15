@@ -24,8 +24,8 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService: CountryFetcher
-    private let historicalInfoService: HistoricalInfoFetcher
+    private let countryFetcher: CountryFetcher
+    private let historicalInfoFetcher: HistoricalInfoFetcher
 
     // MARK: - Properties
     private let tracker: TrackerProtocol
@@ -76,13 +76,13 @@ final class CountryViewController: BaseViewController {
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: CountryViewController.self)),
         countryName: String,
-        countryService: CountryFetcher,
-        historicalInfoService: HistoricalInfoFetcher
+        countryFetcher: CountryFetcher,
+        historicalInfoFetcher: HistoricalInfoFetcher
     ) {
         self.tracker = tracker
         self.countryName = countryName
-        self.countryService = countryService
-        self.historicalInfoService = historicalInfoService
+        self.countryFetcher = countryFetcher
+        self.historicalInfoFetcher = historicalInfoFetcher
         super.init(nibName: nil, bundle: nil)
 
         self.titleLabel.text = countryName
@@ -121,12 +121,12 @@ final class CountryViewController: BaseViewController {
     private func fetchData() {
         state = .loading
 
-        countryService.fetch(country: countryName) { [weak self] (result) in
+        countryFetcher.fetch(country: countryName) { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
             case .success(let countryModel):
-                self.historicalInfoService.fetch(country: countryModel.country) { [weak self] (result) in
+                self.historicalInfoFetcher.fetch(country: countryModel.country) { [weak self] (result) in
                     guard let self = self else { return }
 
                     switch result {

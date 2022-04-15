@@ -19,8 +19,8 @@ final class CountryUIComposer: UIComposer {
     func compose() -> CountryViewController {
         CountryViewController(
             countryName: countryName,
-            countryService: MainQueueDispatchDecorator(instance: CountryService()),
-            historicalInfoService: MainQueueDispatchDecorator(instance: HistoricalInfoService())
+            countryFetcher: MainQueueDispatchDecorator(instance: CountryService()),
+            historicalInfoFetcher: MainQueueDispatchDecorator(instance: HistoricalInfoService())
         )
     }
 }

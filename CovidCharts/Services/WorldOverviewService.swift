@@ -13,12 +13,12 @@ public protocol WorldOverviewFetcher {
 }
 
 public final class WorldOverviewService: WorldOverviewFetcher {
-    private let worldService: WorldFetcher
-    private let historicalInfoService: HistoricalInfoFetcher
+    private let worldFetcher: WorldFetcher
+    private let historicalInfoFetcher: HistoricalInfoFetcher
 
-    public init(worldService: WorldFetcher, historicalInfoService: HistoricalInfoFetcher) {
-        self.worldService = worldService
-        self.historicalInfoService = historicalInfoService
+    public init(worldFetcher: WorldFetcher, historicalInfoFetcher: HistoricalInfoFetcher) {
+        self.worldFetcher = worldFetcher
+        self.historicalInfoFetcher = historicalInfoFetcher
     }
 
     public func fetch(completion: @escaping (Result<WorldOverviewModel, ConnectionError>) -> Void) {
@@ -28,7 +28,7 @@ public final class WorldOverviewService: WorldOverviewFetcher {
         var connectionError: ConnectionError?
 
         dispatchGroup.enter()
-        worldService.fetchCases { result in
+        worldFetcher.fetchCases { result in
             dispatchGroup.leave()
 
             switch result {
@@ -40,7 +40,7 @@ public final class WorldOverviewService: WorldOverviewFetcher {
         }
 
         dispatchGroup.enter()
-        self.historicalInfoService.fetchAll { result in
+        self.historicalInfoFetcher.fetchAll { result in
             dispatchGroup.leave()
 
             switch result {

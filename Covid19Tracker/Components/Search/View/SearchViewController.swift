@@ -17,7 +17,7 @@ final class SearchViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService: CountryFetcher
+    private let countryFetcher: CountryFetcher
 
     // MARK: - Notifications
     private var keyboardWillShowNoticationToken: Notification.Token!
@@ -91,11 +91,11 @@ final class SearchViewController: BaseViewController {
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self)),
         cameFromHome: Bool,
-        countryService: CountryFetcher
+        countryFetcher: CountryFetcher
     ) {
         self.tracker = tracker
         self.cameFromHome = cameFromHome
-        self.countryService = countryService
+        self.countryFetcher = countryFetcher
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -146,7 +146,7 @@ final class SearchViewController: BaseViewController {
     private func fetchData() {
         state = .loading
 
-        countryService.fetchAll(sort: false) { [weak self] (result) in
+        countryFetcher.fetchAll(sort: false) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let countriesModel):

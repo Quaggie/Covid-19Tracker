@@ -24,9 +24,9 @@ final class WorldViewController: BaseViewController {
 
     // MARK: - Services
     private let tracker: TrackerProtocol
-    private let worldService: WorldFetcher
-    private let countryService: CountryFetcher
-    private let historicalInfoService: HistoricalInfoFetcher
+    private let worldFetcher: WorldFetcher
+    private let countryFetcher: CountryFetcher
+    private let historicalInfoFetcher: HistoricalInfoFetcher
     private let worldOverviewUseCase: WorldOverviewFetcher
 
     // MARK: - Properties
@@ -70,15 +70,15 @@ final class WorldViewController: BaseViewController {
     // MARK: - Init
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: WorldViewController.self)),
-        worldService: WorldFetcher = WorldService(),
-        countryService: CountryFetcher = CountryService(),
-        historicalInfoService: HistoricalInfoFetcher = HistoricalInfoService()
+        worldFetcher: WorldFetcher,
+        countryFetcher: CountryFetcher,
+        historicalInfoFetcher: HistoricalInfoFetcher
     ) {
         self.tracker = tracker
-        self.worldService = worldService
-        self.countryService = countryService
-        self.historicalInfoService = historicalInfoService
-        self.worldOverviewUseCase = WorldOverviewService(worldService: worldService, historicalInfoService: historicalInfoService)
+        self.worldFetcher = worldFetcher
+        self.countryFetcher = countryFetcher
+        self.historicalInfoFetcher = historicalInfoFetcher
+        self.worldOverviewUseCase = WorldOverviewService(worldFetcher: worldFetcher, historicalInfoFetcher: historicalInfoFetcher)
         super.init(nibName: nil, bundle: nil)
 
         pageSelectorView.delegate = self
@@ -137,7 +137,7 @@ final class WorldViewController: BaseViewController {
         }
 
         dispatchGroup.enter()
-        countryService.fetchAll(sort: true) { [weak self] (result) in
+        countryFetcher.fetchAll(sort: true) { [weak self] (result) in
             guard let self = self else { return }
             dispatchGroup.leave()
 

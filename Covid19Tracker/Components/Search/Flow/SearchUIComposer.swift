@@ -19,7 +19,7 @@ final class SearchUIComposer: UIComposer {
     func compose() -> SearchViewController {
         let viewController = SearchViewController(
             cameFromHome: cameFromHome,
-            countryService: MainQueueDispatchDecorator(instance: CountryService())
+            countryFetcher: MainQueueDispatchDecorator(instance: CountryService())
         )
         viewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "search_icon"), tag: 2)
         return viewController
