@@ -9,19 +9,18 @@
 import UIKit
 
 final class CareUIComposer: UIComposer {
-    private lazy var careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
-    private lazy var sourceDataSource = SourceDataSource()
-    private lazy var dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
-    private lazy var delegateFlowLayout = DelegateFlowLayoutComposite(
-        delegateFlowLayouts: [
-            CareDelegateFlowLayout(),
-            SourceDelegateFlowLayout()
-        ]
-    )
-    private let pageSelectorDelegatesComposite = PageSelectorDelegatesComposite()
-
     func compose() -> CareViewController {
         let presenter = CarePresenter()
+        let careDataSource = CareDataSource(preventionModels: setupPreventionData(), symptomModels: setupSymptomsData())
+        let sourceDataSource = SourceDataSource()
+        let dataSource = DataSourceComposite(dataSources: [careDataSource, sourceDataSource])
+        let delegateFlowLayout = DelegateFlowLayoutComposite(
+            delegateFlowLayouts: [
+                CareDelegateFlowLayout(),
+                SourceDelegateFlowLayout()
+            ]
+        )
+        let pageSelectorDelegatesComposite = PageSelectorDelegatesComposite()
         let viewController = CareViewController(
             presenter: presenter,
             delegate: CareTrackerAdapter(),
