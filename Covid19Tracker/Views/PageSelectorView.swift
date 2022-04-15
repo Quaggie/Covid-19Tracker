@@ -189,3 +189,9 @@ extension PageSelectorView: CodeView {
 
     func setupAdditionalConfiguration() {}
 }
+
+extension WeakRefVirtualProxy: PageSelectorViewDelegate where T: PageSelectorViewDelegate {
+    func pageSelectorViewDidChange(index: Int) {
+        object?.pageSelectorViewDidChange(index: index)
+    }
+}

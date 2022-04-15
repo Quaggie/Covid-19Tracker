@@ -11,3 +11,9 @@ import Foundation
 protocol PageSelectorDelegate: AnyObject {
     func pageSelectorDidChange(index: Int)
 }
+
+extension WeakRefVirtualProxy: PageSelectorDelegate where T: PageSelectorDelegate {
+    func pageSelectorDidChange(index: Int) {
+        object?.pageSelectorDidChange(index: index)
+    }
+}

@@ -11,3 +11,9 @@ import UIKit
 protocol ViewControllerPresenter: AnyObject {
     func show(_ vc: UIViewController, sender: Any?)
 }
+
+extension WeakRefVirtualProxy: ViewControllerPresenter where T: ViewControllerPresenter {
+    func show(_ vc: UIViewController, sender: Any?) {
+        object?.show(vc, sender: sender)
+    }
+}

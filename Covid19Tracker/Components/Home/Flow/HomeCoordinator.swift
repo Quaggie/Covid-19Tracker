@@ -38,3 +38,9 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
         coordinator.start()
     }
 }
+
+extension WeakRefVirtualProxy: HomeCoordinatorDelegate where T: HomeCoordinatorDelegate {
+    func changeCountry() {
+        object?.changeCountry()
+    }
+}

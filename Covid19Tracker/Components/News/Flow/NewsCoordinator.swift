@@ -6,20 +6,34 @@
 //  Copyright © 2022 DevsCarioca. All rights reserved.
 //
 
-final class NewsCoordinator: Coordinator {
-    private let viewController: ViewControllerPresenter
+import Foundation
+import SafariServices
 
-    init(viewController: ViewControllerPresenter) {
-        self.viewController = viewController
+protocol NewsCoordinatorDelegate: URLOpener {}
+
+final class NewsCoordinator: Coordinator {
+    private let parent: ViewControllerPresenter
+    private lazy var rootViewController = NewsUIComposer(coordinator: self).compose()
+
+    init(parent: ViewControllerPresenter) {
+        self.parent = parent
         print("[NewsCoordinator] initialized!")
     }
 
     func start() {
-        let vc = NewsUIComposer().compose()
-        viewController.show(vc, sender: self)
+        parent.show(rootViewController, sender: self)
     }
 
     deinit {
         print("[NewsCoordinator] deinitialized!")
     }
 }
+
+extension NewsCoordinator: NewsCoordinatorDelegate {
+    func open(url: URL) {
+        let controller = SFSafariViewController(url: url)
+        rootViewController.show(controller, sender: self)
+    }
+}
+
+extension WeakRefVirtualProxy: NewsCoordinatorDelegate where T: NewsCoordinatorDelegate {}

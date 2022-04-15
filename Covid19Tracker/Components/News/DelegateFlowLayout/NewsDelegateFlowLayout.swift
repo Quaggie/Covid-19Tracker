@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import SafariServices
 
 final class NewsDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout {
     private var news: [News] = []
-    var viewControllerPresenter: ViewControllerPresenter?
+    private let urlOpener: URLOpener
+
+    init(urlOpener: URLOpener) {
+        self.urlOpener = urlOpener
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = news[indexPath.item]
-        let controller = SFSafariViewController(url: model.url)
-        viewControllerPresenter?.show(controller, sender: self)
+        urlOpener.open(url: model.url)
     }
 
     func collectionView(

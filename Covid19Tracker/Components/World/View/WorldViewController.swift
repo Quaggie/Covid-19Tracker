@@ -27,7 +27,7 @@ final class WorldViewController: BaseViewController {
     private let worldFetcher: WorldFetcher
     private let countryFetcher: CountryFetcher
     private let historicalInfoFetcher: HistoricalInfoFetcher
-    private let worldOverviewUseCase: WorldOverviewFetcher
+    private lazy var worldOverviewFetcher = WorldOverviewService(worldFetcher: worldFetcher, historicalInfoFetcher: historicalInfoFetcher)
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -78,7 +78,6 @@ final class WorldViewController: BaseViewController {
         self.worldFetcher = worldFetcher
         self.countryFetcher = countryFetcher
         self.historicalInfoFetcher = historicalInfoFetcher
-        self.worldOverviewUseCase = WorldOverviewService(worldFetcher: worldFetcher, historicalInfoFetcher: historicalInfoFetcher)
         super.init(nibName: nil, bundle: nil)
 
         pageSelectorView.delegate = self
@@ -116,7 +115,7 @@ final class WorldViewController: BaseViewController {
         var hasError = false
 
         dispatchGroup.enter()
-        worldOverviewUseCase.fetch { [weak self] result in
+        worldOverviewFetcher.fetch { [weak self] result in
             dispatchGroup.leave()
             guard let self = self else { return }
 
@@ -175,8 +174,8 @@ final class WorldViewController: BaseViewController {
     }
 
     private func goToCountryDetail(country: Country) {
-        let controller = CountryUIComposer(countryName: country.country).compose()
-        present(controller, animated: true)
+        let coordinator = CountryCoordinator(viewController: self, countryName: country.country)
+        coordinator.start()
     }
 }
 
