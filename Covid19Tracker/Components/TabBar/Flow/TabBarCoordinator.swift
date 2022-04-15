@@ -29,7 +29,7 @@ final class TabBarCoordinator: Coordinator {
     }
 
     func start() {
-        window.rootViewController = TabBarUIComposer(coordinator: self).compose()
+        window.rootViewController = TabBarUIComposer(coordinator: WeakRefVirtualProxy(self)).compose()
         startCoordinators()
     }
 
@@ -64,5 +64,11 @@ extension TabBarCoordinator: ViewControllerPresenter {
         } else {
             tabBarViewController?.viewControllers = [vc]
         }
+    }
+}
+
+extension WeakRefVirtualProxy: TabBarCoordinatorDelegate where T: TabBarCoordinatorDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        return object?.tabBarController(tabBarController, shouldSelect: viewController) ?? true
     }
 }

@@ -13,7 +13,7 @@ protocol NewsCoordinatorDelegate: URLOpener {}
 
 final class NewsCoordinator: Coordinator {
     private let parent: ViewControllerPresenter
-    private lazy var rootViewController = NewsUIComposer(coordinator: self).compose()
+    private lazy var rootViewController = NewsUIComposer(coordinator: WeakRefVirtualProxy(self)).compose()
 
     init(parent: ViewControllerPresenter) {
         self.parent = parent

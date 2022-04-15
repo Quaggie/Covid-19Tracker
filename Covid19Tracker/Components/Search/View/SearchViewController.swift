@@ -131,7 +131,7 @@ final class SearchViewController: BaseViewController {
             NotificationCenter.default.post(name: .onSearchCountry, object: nil, userInfo: ["country": country])
             closeModal()
         } else {
-            let coordinator = CountryCoordinator(viewController: self, countryName: country.country)
+            let coordinator = CountryCoordinator(viewController: WeakRefVirtualProxy(self), countryName: country.country)
             coordinator.start()
         }
     }

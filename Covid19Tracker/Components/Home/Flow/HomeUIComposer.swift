@@ -10,15 +10,15 @@ import UIKit
 import CovidCharts
 
 final class HomeUIComposer: UIComposer {
-    private let coordinator: HomeCoordinator
+    private let coordinator: HomeCoordinatorDelegate
 
-    init(coordinator: HomeCoordinator) {
+    init(coordinator: HomeCoordinatorDelegate) {
         self.coordinator = coordinator
     }
 
     func compose() -> HomeViewController {
         let viewController = HomeViewController(
-            coordinator: WeakRefVirtualProxy(coordinator),
+            coordinator: coordinator,
             countryFetcher: MainQueueDispatchDecorator(instance: CountryService()),
             historicalInfoFetcher: MainQueueDispatchDecorator(instance: HistoricalInfoService())
         )

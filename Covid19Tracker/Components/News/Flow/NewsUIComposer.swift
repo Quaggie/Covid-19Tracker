@@ -10,16 +10,16 @@ import UIKit
 import CovidCharts
 
 final class NewsUIComposer: UIComposer {
-    private let coordinator: NewsCoordinator
+    private let coordinator: NewsCoordinatorDelegate
 
-    init(coordinator: NewsCoordinator) {
+    init(coordinator: NewsCoordinatorDelegate) {
         self.coordinator = coordinator
     }
 
     func compose() -> NewsViewController {
         let presenter = NewsPresenter(newsFetcher: MainQueueDispatchDecorator(instance: NewsService()))
         let dataSource = NewsDataSource()
-        let delegateFlowLayout = NewsDelegateFlowLayout(urlOpener: WeakRefVirtualProxy(coordinator))
+        let delegateFlowLayout = NewsDelegateFlowLayout(urlOpener: coordinator)
         let newsLoaderDelegatesComposite = NewsLoaderDelegatesComposite()
         newsLoaderDelegatesComposite.addDelegate(dataSource)
         newsLoaderDelegatesComposite.addDelegate(delegateFlowLayout)

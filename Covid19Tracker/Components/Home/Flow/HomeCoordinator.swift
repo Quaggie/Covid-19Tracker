@@ -15,7 +15,7 @@ protocol HomeCoordinatorDelegate {
 
 final class HomeCoordinator: Coordinator {
     private let parent: ViewControllerPresenter
-    private lazy var rootViewController = HomeUIComposer(coordinator: self).compose()
+    private lazy var rootViewController = HomeUIComposer(coordinator: WeakRefVirtualProxy(self)).compose()
 
     init(parent: ViewControllerPresenter) {
         self.parent = parent
