@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 import CovidCharts
 
 protocol NewsViewControllerDelegate {
@@ -21,9 +20,6 @@ final class NewsViewController: BaseViewController {
         case error
     }
 
-    // MARK: - Services
-    private let presenter: NewsPresenterDelegate
-
     // MARK: - Properties
     private var state: State = .loading {
         didSet {
@@ -31,9 +27,11 @@ final class NewsViewController: BaseViewController {
         }
     }
     private let delegate: NewsViewControllerDelegate
-    private let sectionInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
-    private let lineSpacing: CGFloat = 16
-    private let interItemSpacing: CGFloat = 16
+    private let presenter: NewsPresenterDelegate
+    private let dataSource: DataSource?
+    private let delegateFlowLayout: UICollectionViewDelegateFlowLayout?
+    private let collectionViewInset: UIEdgeInsets = .init(top: 24, left: 16, bottom: 16, right: 16)
+    private let newsLoader: NewsLoader
     
     // MARK: - Views
     private let titleLabel = UILabel(text: "News", font: Font.regular(size: 24), textColor: Color.white)
@@ -42,9 +40,10 @@ final class NewsViewController: BaseViewController {
         flowLayout.scrollDirection = .vertical
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.dataSource = self
-        cv.delegate = self
+        cv.dataSource = dataSource
+        cv.delegate = delegateFlowLayout
         cv.backgroundColor = .clear
+        cv.contentInset = collectionViewInset
 
         let bv = UIView()
         bv.backgroundColor = .clear
@@ -53,17 +52,26 @@ final class NewsViewController: BaseViewController {
         return cv
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     private let loadingView = LoadingView()
     private lazy var errorView = ErrorView(delegate: self)
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     // MARK: - Init
-    init(delegate: NewsViewControllerDelegate, presenter: NewsPresenterDelegate) {
+    init(
+        delegate: NewsViewControllerDelegate,
+        presenter: NewsPresenterDelegate,
+        dataSource: DataSource?,
+        delegateFlowLayout: UICollectionViewDelegateFlowLayout?,
+        newsLoader: NewsLoader
+    ) {
         self.delegate = delegate
         self.presenter = presenter
+        self.dataSource = dataSource
+        self.delegateFlowLayout = delegateFlowLayout
+        self.newsLoader = newsLoader
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -87,18 +95,19 @@ final class NewsViewController: BaseViewController {
 
     // MARK: - Private functions
     private func registerCells() {
-        collectionView.register(NewsCell.self)
+        dataSource?.registerCells(on: collectionView)
     }
 
     private func fetchData() {
         state = .loading
 
-        presenter.fetch { [weak self] (result) in
+        presenter.fetch { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success:
+            case .success(let news):
                 self.state = .success
+                self.newsLoader.load(news: news)
             case .failure:
                 self.state = .error
             }
@@ -132,55 +141,6 @@ final class NewsViewController: BaseViewController {
     }
 }
 
-extension NewsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = presenter.news[indexPath.item]
-        let controller = SFSafariViewController(url: model.url)
-        present(controller, animated: true)
-    }
-}
-
-extension NewsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.news.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = presenter.news[indexPath.item]
-
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as NewsCell
-        cell.setup(model: model, index: indexPath.item)
-        return cell
-    }
-}
-
-extension NewsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = view.frame.width - sectionInset.left - sectionInset.right
-        return NewsCell.size(width: width)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return lineSpacing
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return interItemSpacing
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInset
-    }
-}
-
 extension NewsViewController: ErrorViewDelegate {
     func errorViewDidTapTryAgain() {
         fetchData()
@@ -200,7 +160,7 @@ extension NewsViewController: CodeView {
         titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
-                          insets: .init(top: 36, left: sectionInset.left, bottom: 0, right: sectionInset.right))
+                          insets: .init(top: 36, left: collectionViewInset.left, bottom: 0, right: collectionViewInset.right))
 
         collectionView.anchor(top: titleLabel.bottomAnchor,
                               leading: view.leadingAnchor,
@@ -217,7 +177,5 @@ extension NewsViewController: CodeView {
                          trailing: view.trailingAnchor)
     }
 
-    func setupAdditionalConfiguration() {
-
-    }
+    func setupAdditionalConfiguration() {}
 }

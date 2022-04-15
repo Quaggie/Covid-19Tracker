@@ -182,6 +182,7 @@ extension CareViewControllerTests {
         let delegate = CareTrackerAdapter(tracker: tracker)
         let viewController = CareViewController(presenter: presenter, delegate: delegate, dataSource: dataSource, delegateFlowLayout: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesComposite())
         checkMemoryLeak(for: viewController, file: file, line: line)
+        checkMemoryLeak(for: presenter)
         checkMemoryLeak(for: delegate, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
         return (viewController, tracker)
