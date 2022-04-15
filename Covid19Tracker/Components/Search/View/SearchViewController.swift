@@ -17,7 +17,7 @@ final class SearchViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService: CountryServiceProtocol
+    private let countryService: CountryFetcher
 
     // MARK: - Notifications
     private var keyboardWillShowNoticationToken: Notification.Token!
@@ -91,7 +91,7 @@ final class SearchViewController: BaseViewController {
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: CareViewController.self)),
         cameFromHome: Bool,
-        countryService: CountryServiceProtocol
+        countryService: CountryFetcher
     ) {
         self.tracker = tracker
         self.cameFromHome = cameFromHome

@@ -24,8 +24,8 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService: CountryServiceProtocol
-    private let historicalInfoService: HistoricalInfoServiceProtocol
+    private let countryService: CountryFetcher
+    private let historicalInfoService: HistoricalInfoFetcher
 
     // MARK: - Properties
     private let tracker: TrackerProtocol
@@ -76,8 +76,8 @@ final class CountryViewController: BaseViewController {
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: CountryViewController.self)),
         countryName: String,
-        countryService: CountryServiceProtocol,
-        historicalInfoService: HistoricalInfoServiceProtocol
+        countryService: CountryFetcher,
+        historicalInfoService: HistoricalInfoFetcher
     ) {
         self.tracker = tracker
         self.countryName = countryName

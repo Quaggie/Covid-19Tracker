@@ -80,7 +80,6 @@
 		A95932082802165C00EB5D2A /* HistoricalInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6E724427CA8004433A6 /* HistoricalInfoService.swift */; };
 		A95932092802165C00EB5D2A /* WorldService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97100F324411A6D002EDF34 /* WorldService.swift */; };
 		A959320A2802165F00EB5D2A /* WorldOverviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95931E42802026500EB5D2A /* WorldOverviewService.swift */; };
-		A959320B2802165F00EB5D2A /* WorldOverviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95931DD2802010000EB5D2A /* WorldOverviewUseCase.swift */; };
 		A959320C2802166200EB5D2A /* HistoricalCountryInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FB224355EAE00AFC97F /* HistoricalCountryInfoModel.swift */; };
 		A959320D2802166200EB5D2A /* CountryInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6D524424608004433A6 /* CountryInfoModel.swift */; };
 		A959320E2802166200EB5D2A /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9232E87245797EE00CF1654 /* NewsModel.swift */; };
@@ -301,7 +300,6 @@
 		A93B3FD224355FCD00AFC97F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A950703C24531819007DC98F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A9573E1027FFAD8C00760EA0 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
-		A95931DD2802010000EB5D2A /* WorldOverviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOverviewUseCase.swift; sourceTree = "<group>"; };
 		A95931E42802026500EB5D2A /* WorldOverviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOverviewService.swift; sourceTree = "<group>"; };
 		A95931EB280215D700EB5D2A /* CovidCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CovidCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95931F2280215D700EB5D2A /* CovidChartsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovidChartsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -872,6 +870,7 @@
 				A98FC6CB24422C3D004433A6 /* CountryService.swift */,
 				A98FC6E724427CA8004433A6 /* HistoricalInfoService.swift */,
 				A9232E852457979F00CF1654 /* NewsService.swift */,
+				A95931E42802026500EB5D2A /* WorldOverviewService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -885,21 +884,11 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		A95931DF280201F800EB5D2A /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				A95931DD2802010000EB5D2A /* WorldOverviewUseCase.swift */,
-				A95931E42802026500EB5D2A /* WorldOverviewService.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		A95931EC280215D700EB5D2A /* CovidCharts */ = {
 			isa = PBXGroup;
 			children = (
 				A934E62A27FB8BD8002866AF /* Utils */,
 				A934E61327FB7B3C002866AF /* Models */,
-				A95931DF280201F800EB5D2A /* UseCases */,
 				A93B3FB124355E8900AFC97F /* Services */,
 			);
 			path = CovidCharts;
@@ -1651,7 +1640,6 @@
 				A95932092802165C00EB5D2A /* WorldService.swift in Sources */,
 				A95932062802165C00EB5D2A /* CountryService.swift in Sources */,
 				A959320A2802165F00EB5D2A /* WorldOverviewService.swift in Sources */,
-				A959320B2802165F00EB5D2A /* WorldOverviewUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

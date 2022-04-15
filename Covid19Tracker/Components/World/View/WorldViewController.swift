@@ -24,10 +24,10 @@ final class WorldViewController: BaseViewController {
 
     // MARK: - Services
     private let tracker: TrackerProtocol
-    private let worldService: WorldServiceProtocol
-    private let countryService: CountryServiceProtocol
-    private let historicalInfoService: HistoricalInfoServiceProtocol
-    private let worldOverviewUseCase: WorldOverviewUseCase
+    private let worldService: WorldFetcher
+    private let countryService: CountryFetcher
+    private let historicalInfoService: HistoricalInfoFetcher
+    private let worldOverviewUseCase: WorldOverviewFetcher
 
     // MARK: - Properties
     private var state: State = .loading {
@@ -70,9 +70,9 @@ final class WorldViewController: BaseViewController {
     // MARK: - Init
     init(
         tracker: TrackerProtocol = Tracker(source: String(describing: WorldViewController.self)),
-        worldService: WorldServiceProtocol = WorldService(),
-        countryService: CountryServiceProtocol = CountryService(),
-        historicalInfoService: HistoricalInfoServiceProtocol = HistoricalInfoService()
+        worldService: WorldFetcher = WorldService(),
+        countryService: CountryFetcher = CountryService(),
+        historicalInfoService: HistoricalInfoFetcher = HistoricalInfoService()
     ) {
         self.tracker = tracker
         self.worldService = worldService

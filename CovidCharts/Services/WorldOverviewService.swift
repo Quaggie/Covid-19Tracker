@@ -8,11 +8,15 @@
 
 import Foundation
 
-public final class WorldOverviewService: WorldOverviewUseCase {
-    private let worldService: WorldServiceProtocol
-    private let historicalInfoService: HistoricalInfoServiceProtocol
+public protocol WorldOverviewFetcher {
+    func fetch(completion: @escaping (Result<WorldOverviewModel, ConnectionError>) -> Void)
+}
 
-    public init(worldService: WorldServiceProtocol, historicalInfoService: HistoricalInfoServiceProtocol) {
+public final class WorldOverviewService: WorldOverviewFetcher {
+    private let worldService: WorldFetcher
+    private let historicalInfoService: HistoricalInfoFetcher
+
+    public init(worldService: WorldFetcher, historicalInfoService: HistoricalInfoFetcher) {
         self.worldService = worldService
         self.historicalInfoService = historicalInfoService
     }

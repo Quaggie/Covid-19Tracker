@@ -11,7 +11,7 @@ import CovidCharts
 
 final class NewsUIComposer: UIComposer {
     func compose() -> NewsViewController {
-        let presenter = NewsPresenter(newsService: MainQueueDispatchDecorator(instance: NewsService()))
+        let presenter = NewsPresenter(newsFetcher: MainQueueDispatchDecorator(instance: NewsService()))
         let viewController = NewsViewController(
             delegate: NewsTrackerAdapter(),
             presenter: presenter

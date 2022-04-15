@@ -22,7 +22,7 @@ final class MainQueueDispatchDecorator<T> {
     }
 }
 
-extension MainQueueDispatchDecorator: WorldServiceProtocol where T: WorldServiceProtocol {
+extension MainQueueDispatchDecorator: WorldFetcher where T: WorldFetcher {
     func fetchCases(completion: @escaping (Result<TimelineModel, ConnectionError>) -> Void) {
         instance.fetchCases { [weak self] result in
             guard let self = self else { return }
@@ -33,7 +33,7 @@ extension MainQueueDispatchDecorator: WorldServiceProtocol where T: WorldService
     }
 }
 
-extension MainQueueDispatchDecorator: CountryServiceProtocol where T: CountryServiceProtocol {
+extension MainQueueDispatchDecorator: CountryFetcher where T: CountryFetcher {
     func fetch(country: String, completion: @escaping (Result<CountryModel, ConnectionError>) -> Void) {
         instance.fetch(country: country) { [weak self] result in
             guard let self = self else { return }
@@ -53,7 +53,7 @@ extension MainQueueDispatchDecorator: CountryServiceProtocol where T: CountrySer
     }
 }
 
-extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: HistoricalInfoServiceProtocol {
+extension MainQueueDispatchDecorator: HistoricalInfoFetcher where T: HistoricalInfoFetcher {
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, ConnectionError>) -> Void) {
         instance.fetch(country: country) { [weak self] result in
             guard let self = self else { return }
@@ -73,7 +73,7 @@ extension MainQueueDispatchDecorator: HistoricalInfoServiceProtocol where T: His
     }
 }
 
-extension MainQueueDispatchDecorator: NewsServiceProtocol where T: NewsServiceProtocol {
+extension MainQueueDispatchDecorator: NewsFetcher where T: NewsFetcher {
     func fetch(completion: @escaping (Result<[NewsModel.Article], ConnectionError>) -> Void) {
         instance.fetch { [weak self] result in
             guard let self = self else { return }

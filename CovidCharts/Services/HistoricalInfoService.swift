@@ -9,12 +9,12 @@
 import Foundation
 import Networking
 
-public protocol HistoricalInfoServiceProtocol {
+public protocol HistoricalInfoFetcher {
     func fetch(country: String, completion: @escaping (Result<HistoricalCountryInfoModel, ConnectionError>) -> Void)
     func fetchAll(completion: @escaping (Result<HistoricalCountryInfoModel.Timeline, ConnectionError>) -> Void)
 }
 
-public final class HistoricalInfoService: HistoricalInfoServiceProtocol {
+public final class HistoricalInfoService: HistoricalInfoFetcher {
     private let networkManager: NetworkManagerProtocol
 
     public init(networkManager: NetworkManagerProtocol = NetworkManager()) {

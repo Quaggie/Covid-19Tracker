@@ -9,11 +9,11 @@
 import Foundation
 import Networking
 
-public protocol NewsServiceProtocol {
+public protocol NewsFetcher {
     func fetch(completion: @escaping (Result<[NewsModel.Article], ConnectionError>) -> Void)
 }
 
-public final class NewsService: NewsServiceProtocol {
+public final class NewsService: NewsFetcher {
     private let networkManager: NetworkManagerProtocol
 
     public init(networkManager: NetworkManagerProtocol = NetworkManager(source: .google)) {

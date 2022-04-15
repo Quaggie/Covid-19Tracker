@@ -9,12 +9,12 @@
 import Foundation
 import Networking
 
-public protocol CountryServiceProtocol {
+public protocol CountryFetcher {
     func fetch(country: String, completion: @escaping (Result<CountryModel, ConnectionError>) -> Void)
     func fetchAll(sort: Bool, completion: @escaping (Result<[CountryModel], ConnectionError>) -> Void)
 }
 
-public final class CountryService: CountryServiceProtocol {
+public final class CountryService: CountryFetcher {
     private let networkManager: NetworkManagerProtocol
 
     public init(networkManager: NetworkManagerProtocol = NetworkManager()) {

@@ -14,15 +14,15 @@ protocol NewsPresenterDelegate {
 }
 
 final class NewsPresenter: NewsPresenterDelegate {
-    private let newsService: NewsServiceProtocol
+    private let newsFetcher: NewsFetcher
     private(set) var news: [News] = []
 
-    init(newsService: NewsServiceProtocol) {
-        self.newsService = newsService
+    init(newsFetcher: NewsFetcher) {
+        self.newsFetcher = newsFetcher
     }
 
     func fetch(completion: @escaping (Result<[News], ConnectionError>) -> Void) {
-        newsService.fetch { [weak self] result in
+        newsFetcher.fetch { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let articles):

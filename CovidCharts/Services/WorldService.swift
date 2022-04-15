@@ -9,11 +9,11 @@
 import Foundation
 import Networking
 
-public protocol WorldServiceProtocol {
+public protocol WorldFetcher {
     func fetchCases(completion: @escaping (Result<TimelineModel, ConnectionError>) -> Void)
 }
 
-public final class WorldService: WorldServiceProtocol {
+public final class WorldService: WorldFetcher {
     private let networkManager: NetworkManagerProtocol
 
     public init(networkManager: NetworkManagerProtocol = NetworkManager()) {

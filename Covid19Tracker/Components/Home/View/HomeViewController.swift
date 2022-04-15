@@ -24,8 +24,8 @@ final class HomeViewController: BaseViewController {
     }
 
     // MARK: - Services
-    private let countryService: CountryServiceProtocol
-    private let historicalInfoService: HistoricalInfoServiceProtocol
+    private let countryService: CountryFetcher
+    private let historicalInfoService: HistoricalInfoFetcher
 
     // MARK: - Properties
     private let coordinator: HomeCoordinatorDelegate
@@ -94,8 +94,8 @@ final class HomeViewController: BaseViewController {
     init(
         coordinator: HomeCoordinatorDelegate,
         tracker: TrackerProtocol = Tracker(source: String(describing: HomeViewController.self)),
-        countryService: CountryServiceProtocol,
-        historicalInfoService: HistoricalInfoServiceProtocol
+        countryService: CountryFetcher,
+        historicalInfoService: HistoricalInfoFetcher
     ) {
         self.coordinator = coordinator
         self.tracker = tracker
