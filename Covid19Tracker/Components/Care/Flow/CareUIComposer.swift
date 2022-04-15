@@ -21,7 +21,9 @@ final class CareUIComposer: UIComposer {
     private let pageSelectorDelegatesComposite = PageSelectorDelegatesComposite()
 
     func compose() -> CareViewController {
+        let presenter = CarePresenter()
         let viewController = CareViewController(
+            presenter: presenter,
             delegate: CareTrackerAdapter(),
             dataSource: dataSource,
             delegateFlowLayout: delegateFlowLayout,
@@ -31,6 +33,7 @@ final class CareUIComposer: UIComposer {
 
         pageSelectorDelegatesComposite.addDelegate(viewController)
         pageSelectorDelegatesComposite.addDelegate(careDataSource)
+        pageSelectorDelegatesComposite.addDelegate(presenter)
         sourceDataSource.viewControllerPresenter = WeakRefVirtualProxy(viewController)
         return viewController
     }

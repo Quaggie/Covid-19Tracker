@@ -15,7 +15,7 @@ protocol CareViewControllerDelegate {
 
 final class CareViewController: BaseViewController {
     // MARK: - Properties
-    private var selectedIndex: Int = 0
+    private let presenter: CarePresenterDelegate
     private let delegate: CareViewControllerDelegate
     private let dataSource: DataSource?
     private let delegateFlowLayout: UICollectionViewDelegateFlowLayout?
@@ -42,16 +42,18 @@ final class CareViewController: BaseViewController {
     }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        .lightContent
     }
 
     // MARK: - Init
     init(
+        presenter: CarePresenterDelegate,
         delegate: CareViewControllerDelegate,
         dataSource: DataSource?,
         delegateFlowLayout: UICollectionViewDelegateFlowLayout?,
         pageSelectorViewDelegate: PageSelectorViewDelegate
     ) {
+        self.presenter = presenter
         self.delegate = delegate
         self.dataSource = dataSource
         self.delegateFlowLayout = delegateFlowLayout
@@ -82,11 +84,10 @@ final class CareViewController: BaseViewController {
 // MARK: - PageSelectorDelegate
 extension CareViewController: PageSelectorDelegate {
     func pageSelectorDidChange(index: Int) {
-        if selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
+        if presenter.selectedIndex == index, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0 {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         } else {
             delegate.pageSelectorDidChange(index: index)
-            selectedIndex = index
             collectionView.reloadData()
         }
     }

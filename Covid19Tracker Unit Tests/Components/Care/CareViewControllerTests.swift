@@ -177,12 +177,17 @@ extension CareViewControllerTests {
 
 extension CareViewControllerTests {
     func makeSUT(dataSource: DataSource? = nil, delegateFlowLayout: UICollectionViewDelegateFlowLayout? = nil, file: StaticString = #filePath, line: UInt = #line) -> (CareViewController, TrackerSpy) {
+        let presenter = CarePresenterSpy()
         let tracker = TrackerSpy()
         let delegate = CareTrackerAdapter(tracker: tracker)
-        let viewController = CareViewController(delegate: delegate, dataSource: dataSource, delegateFlowLayout: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesComposite())
+        let viewController = CareViewController(presenter: presenter, delegate: delegate, dataSource: dataSource, delegateFlowLayout: delegateFlowLayout, pageSelectorViewDelegate: PageSelectorDelegatesComposite())
         checkMemoryLeak(for: viewController, file: file, line: line)
         checkMemoryLeak(for: delegate, file: file, line: line)
         checkMemoryLeak(for: tracker, file: file, line: line)
         return (viewController, tracker)
     }
+}
+
+private class CarePresenterSpy: CarePresenterDelegate {
+    var selectedIndex: Int = 0
 }

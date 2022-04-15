@@ -98,6 +98,7 @@
 		A959321B2802168100EB5D2A /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEC8627F0F85F0092C93E /* NetworkManagerSpy.swift */; };
 		A959321C2802169400EB5D2A /* CovidCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95931EB280215D700EB5D2A /* CovidCharts.framework */; };
 		A959321D2802169400EB5D2A /* CovidCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95931EB280215D700EB5D2A /* CovidCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A982ED22280A030E00002C17 /* CarePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982ED21280A030E00002C17 /* CarePresenter.swift */; };
 		A98FC6AB24411E96004433A6 /* TotalCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */; };
 		A98FC6B124412164004433A6 /* UIView+BackgroundColorInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */; };
 		A98FC6B4244121B2004433A6 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98FC6B3244121B2004433A6 /* BallView.swift */; };
@@ -309,6 +310,7 @@
 		A95AEC8827F0F8D10092C93E /* XCTestCase+HelperObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+HelperObjects.swift"; sourceTree = "<group>"; };
 		A95AEC8A27F0FD6B0092C93E /* NewsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceTests.swift; sourceTree = "<group>"; };
 		A97100F324411A6D002EDF34 /* WorldService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldService.swift; sourceTree = "<group>"; };
+		A982ED21280A030E00002C17 /* CarePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarePresenter.swift; sourceTree = "<group>"; };
 		A98FC6AA24411E96004433A6 /* TotalCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCasesCell.swift; sourceTree = "<group>"; };
 		A98FC6AE24411F25004433A6 /* TimelineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineModel.swift; sourceTree = "<group>"; };
 		A98FC6B024412164004433A6 /* UIView+BackgroundColorInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundColorInit.swift"; sourceTree = "<group>"; };
@@ -933,6 +935,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		A982ED20280A02F400002C17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A982ED21280A030E00002C17 /* CarePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		A98FC6B2244121AA004433A6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1002,7 @@
 			children = (
 				A934E64227FC68EB002866AF /* Flow */,
 				A934E64627FC6EC7002866AF /* Adapter */,
+				A982ED20280A02F400002C17 /* Presenter */,
 				A934E64327FC68F5002866AF /* View */,
 				A906DEAC27F4AD5200F19932 /* DelegateFlowLayout */,
 				A906DE9B27F4AC6800F19932 /* DataSources */,
@@ -1605,6 +1616,7 @@
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
+				A982ED22280A030E00002C17 /* CarePresenter.swift in Sources */,
 				A9BAC7202808E76400E77FF7 /* NewsPresenter.swift in Sources */,
 				A934E66127FC9D5E002866AF /* HomeUIComposer.swift in Sources */,
 				A9BAC71D2808E26300E77FF7 /* NewsTrackerAdapter.swift in Sources */,
