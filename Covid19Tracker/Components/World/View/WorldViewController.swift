@@ -174,7 +174,7 @@ final class WorldViewController: BaseViewController {
     }
 
     private func goToCountryDetail(country: Country) {
-        let coordinator = CountryCoordinator(viewController: WeakRefVirtualProxy(self), countryName: country.country)
+        let coordinator = CountryCoordinator(parent: self, countryName: country.country)
         coordinator.start()
     }
 }

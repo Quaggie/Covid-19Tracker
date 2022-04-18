@@ -7,18 +7,18 @@
 //
 
 final class CountryCoordinator: Coordinator {
-    private let viewController: ViewControllerPresenter
+    private let parent: ViewControllerPresenter
     private let countryName: String
 
-    init(viewController: ViewControllerPresenter, countryName: String) {
-        self.viewController = viewController
+    init(parent: ViewControllerPresenter, countryName: String) {
+        self.parent = parent
         self.countryName = countryName
         print("[CountryCoordinator] initialized!")
     }
 
     func start() {
         let vc = CountryUIComposer(countryName: countryName).compose()
-        viewController.show(vc, sender: self)
+        parent.show(vc, sender: self)
     }
 
     deinit {

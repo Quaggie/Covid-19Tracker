@@ -34,7 +34,7 @@ final class HomeCoordinator: Coordinator {
 // MARK: - HomeCoordinatorDelegate
 extension HomeCoordinator: HomeCoordinatorDelegate {
     func changeCountry() {
-        let coordinator = SearchCoordinator(parent: WeakRefVirtualProxy(rootViewController), cameFromHome: true)
+        let coordinator = SearchCoordinator(parent: rootViewController, cameFromHome: true)
         coordinator.start()
     }
 }

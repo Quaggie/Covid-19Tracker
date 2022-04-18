@@ -42,7 +42,7 @@ final class TabBarCoordinator: Coordinator {
 extension TabBarCoordinator: TabBarCoordinatorDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.tabBarItem.tag == 2 {
-            let coordinator = SearchCoordinator(parent: WeakRefVirtualProxy(tabBarController), cameFromHome: false)
+            let coordinator = SearchCoordinator(parent: tabBarController, cameFromHome: false)
             coordinator.start()
             return false
         }
