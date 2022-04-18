@@ -558,14 +558,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		A934E62C27FB90A7002866AF /* Composer */ = {
-			isa = PBXGroup;
-			children = (
-				A934E62D27FB90B1002866AF /* UIComposer.swift */,
-			);
-			path = Composer;
-			sourceTree = "<group>";
-		};
 		A934E63F27FC68C3002866AF /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,6 +762,7 @@
 				A9B1169E27F72AB90070F427 /* AppDelegate */,
 				A934E63F27FC68C3002866AF /* Coordinator */,
 				A98FC6B2244121AA004433A6 /* Views */,
+				A99B73F3244690EB00383D30 /* Tracker */,
 				A93B3F932432D47C00AFC97F /* Utils */,
 				A93B3F8D2432D04200AFC97F /* Extensions */,
 				A93B3F862432CF3100AFC97F /* Constants */,
@@ -850,17 +843,12 @@
 		A93B3F932432D47C00AFC97F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9DAD83F280DE89500D4451A /* UI */,
+				A9DAD83D280DE87F00D4451A /* Composition */,
 				A982ED2F280A20B200002C17 /* URLOpener */,
-				A934E62C27FB90A7002866AF /* Composer */,
 				A906DEBB27F4F02200F19932 /* PageSelector */,
-				A906DEB427F4B05C00F19932 /* UIViewController */,
 				A906DEB127F4B02F00F19932 /* Proxies */,
-				A906DEA427F4ACE600F19932 /* UICollectionView */,
 				A9E3BEAD27F3717A0071AAD4 /* Decorators */,
-				A99B73F3244690EB00383D30 /* Tracker */,
-				A98FC6F22445521E004433A6 /* Keyboard */,
-				A93B3F942432D48400AFC97F /* CodeView.swift */,
-				A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1097,14 +1085,6 @@
 				A98FC6EA2442BA26004433A6 /* CovidBarChartView.swift */,
 			);
 			path = Charts;
-			sourceTree = "<group>";
-		};
-		A98FC6F22445521E004433A6 /* Keyboard */ = {
-			isa = PBXGroup;
-			children = (
-				A98FC6F324455226004433A6 /* Keyboard.swift */,
-			);
-			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		A9906DF42800EED200A1CD37 /* Models */ = {
@@ -1375,6 +1355,26 @@
 				A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */,
 			);
 			path = Flow;
+			sourceTree = "<group>";
+		};
+		A9DAD83D280DE87F00D4451A /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				A934E62D27FB90B1002866AF /* UIComposer.swift */,
+				A906DEC027F4F1EF00F19932 /* DelegatesComposite.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		A9DAD83F280DE89500D4451A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A93B3F942432D48400AFC97F /* CodeView.swift */,
+				A98FC6F324455226004433A6 /* Keyboard.swift */,
+				A906DEB427F4B05C00F19932 /* UIViewController */,
+				A906DEA427F4ACE600F19932 /* UICollectionView */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		A9E3BEAD27F3717A0071AAD4 /* Decorators */ = {

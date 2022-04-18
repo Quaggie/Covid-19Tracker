@@ -20,4 +20,3 @@ extension CodeView {
         setupAdditionalConfiguration()
     }
 }
-
