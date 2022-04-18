@@ -160,6 +160,7 @@
 		A9DAD836280DE2A800D4451A /* WorldCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD835280DE2A800D4451A /* WorldCoordinatorTests.swift */; };
 		A9DAD838280DE30500D4451A /* CountryCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD837280DE30500D4451A /* CountryCoordinatorTests.swift */; };
 		A9DAD83B280DE3B400D4451A /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */; };
+		A9DAD842280DEB2A00D4451A /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD841280DEB2A00D4451A /* MainCoordinatorTests.swift */; };
 		A9E3BEAF27F371880071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */; };
 		A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecoratorTests.swift */; };
 		A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB627F3B41C0071AAD4 /* CareViewControllerTests.swift */; };
@@ -385,6 +386,7 @@
 		A9DAD835280DE2A800D4451A /* WorldCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9DAD837280DE30500D4451A /* CountryCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
+		A9DAD841280DEB2A00D4451A /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -1159,6 +1161,7 @@
 				A934E67B27FD0019002866AF /* Extensions */,
 				A9E3BEB027F37E4B0071AAD4 /* Utils */,
 				A95AEC8527F0F8520092C93E /* Helpers */,
+				A9DAD840280DEB1600D4451A /* Coordinator */,
 				A9B2AE4127ED1ADE00BA750B /* Components */,
 			);
 			path = "Covid19Tracker Unit Tests";
@@ -1375,6 +1378,14 @@
 				A906DEA427F4ACE600F19932 /* UICollectionView */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		A9DAD840280DEB1600D4451A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A9DAD841280DEB2A00D4451A /* MainCoordinatorTests.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		A9E3BEAD27F3717A0071AAD4 /* Decorators */ = {
@@ -1918,6 +1929,7 @@
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,
 				A9DAD838280DE30500D4451A /* CountryCoordinatorTests.swift in Sources */,
+				A9DAD842280DEB2A00D4451A /* MainCoordinatorTests.swift in Sources */,
 				A934E67D27FD003D002866AF /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9B88F8327F50389009BF798 /* PageSelectorDelegatesObserverTests.swift in Sources */,
 				A9DAD836280DE2A800D4451A /* WorldCoordinatorTests.swift in Sources */,

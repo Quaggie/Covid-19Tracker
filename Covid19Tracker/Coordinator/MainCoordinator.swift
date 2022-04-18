@@ -12,9 +12,9 @@ final class MainCoordinator: Coordinator {
     private let window: UIWindow
     private let coordinator: Coordinator
 
-    init(window: UIWindow, coordinator: Coordinator? = nil) {
+    init(window: UIWindow) {
         self.window = window
-        self.coordinator = coordinator ?? TabBarCoordinator(window: window)
+        self.coordinator = TabBarCoordinator(window: window)
     }
 
     func start() {
