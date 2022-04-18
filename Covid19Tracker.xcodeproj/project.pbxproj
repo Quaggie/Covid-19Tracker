@@ -157,6 +157,9 @@
 		A9CD2777280D9A4D000A91A5 /* NewsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2776280D9A4D000A91A5 /* NewsCoordinatorTests.swift */; };
 		A9DAD822280DDDD000D4451A /* CareCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD820280DDDCE00D4451A /* CareCoordinatorTests.swift */; };
 		A9DAD834280DE1CF00D4451A /* SearchCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD833280DE1CF00D4451A /* SearchCoordinatorTests.swift */; };
+		A9DAD836280DE2A800D4451A /* WorldCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD835280DE2A800D4451A /* WorldCoordinatorTests.swift */; };
+		A9DAD838280DE30500D4451A /* CountryCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD837280DE30500D4451A /* CountryCoordinatorTests.swift */; };
+		A9DAD83B280DE3B400D4451A /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */; };
 		A9E3BEAF27F371880071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */; };
 		A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecoratorTests.swift */; };
 		A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB627F3B41C0071AAD4 /* CareViewControllerTests.swift */; };
@@ -379,6 +382,9 @@
 		A9CD2776280D9A4D000A91A5 /* NewsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9DAD820280DDDCE00D4451A /* CareCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9DAD833280DE1CF00D4451A /* SearchCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinatorTests.swift; sourceTree = "<group>"; };
+		A9DAD835280DE2A800D4451A /* WorldCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCoordinatorTests.swift; sourceTree = "<group>"; };
+		A9DAD837280DE30500D4451A /* CountryCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoordinatorTests.swift; sourceTree = "<group>"; };
+		A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -1336,6 +1342,7 @@
 		A9DAD82D280DE13200D4451A /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				A9DAD835280DE2A800D4451A /* WorldCoordinatorTests.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1350,6 +1357,7 @@
 		A9DAD82F280DE13A00D4451A /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				A9DAD837280DE30500D4451A /* CountryCoordinatorTests.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1364,6 +1372,7 @@
 		A9DAD831280DE14100D4451A /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				A9DAD83A280DE3B400D4451A /* HomeCoordinatorTests.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1903,12 +1912,15 @@
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
 				A9BAC71A2808E1B300E77FF7 /* NewsViewControllerTests.swift in Sources */,
+				A9DAD83B280DE3B400D4451A /* HomeCoordinatorTests.swift in Sources */,
 				A9DAD834280DE1CF00D4451A /* SearchCoordinatorTests.swift in Sources */,
 				A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,
+				A9DAD838280DE30500D4451A /* CountryCoordinatorTests.swift in Sources */,
 				A934E67D27FD003D002866AF /* XCTestCase+MemoryLeak.swift in Sources */,
 				A9B88F8327F50389009BF798 /* PageSelectorDelegatesObserverTests.swift in Sources */,
+				A9DAD836280DE2A800D4451A /* WorldCoordinatorTests.swift in Sources */,
 				A9CD2777280D9A4D000A91A5 /* NewsCoordinatorTests.swift in Sources */,
 				A9DAD822280DDDD000D4451A /* CareCoordinatorTests.swift in Sources */,
 			);
