@@ -52,6 +52,7 @@
 		A934E67227FCE5EA002866AF /* CountryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67127FCE5EA002866AF /* CountryCoordinator.swift */; };
 		A934E67427FCE669002866AF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67327FCE669002866AF /* HomeCoordinator.swift */; };
 		A934E67D27FD003D002866AF /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A934E67C27FD003D002866AF /* XCTestCase+MemoryLeak.swift */; };
+		A9363941280DA2C80066F2B4 /* ViewControllerPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9363940280DA2C80066F2B4 /* ViewControllerPresenterSpy.swift */; };
 		A93B3F562432CBB200AFC97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3F552432CBB200AFC97F /* AppDelegate.swift */; };
 		A93B3F5F2432CBB300AFC97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F5E2432CBB300AFC97F /* Assets.xcassets */; };
 		A93B3F622432CBB300AFC97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93B3F602432CBB300AFC97F /* LaunchScreen.storyboard */; };
@@ -277,6 +278,7 @@
 		A934E67327FCE669002866AF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		A934E67C27FD003D002866AF /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		A934E67F27FD0221002866AF /* CountryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryServiceTests.swift; sourceTree = "<group>"; };
+		A9363940280DA2C80066F2B4 /* ViewControllerPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenterSpy.swift; sourceTree = "<group>"; };
 		A93B3F522432CBB200AFC97F /* Covid19 Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19 Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93B3F552432CBB200AFC97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93B3F5E2432CBB300AFC97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -943,6 +945,7 @@
 			isa = PBXGroup;
 			children = (
 				A9B52BFF27F3D028008413E4 /* TrackerSpy.swift */,
+				A9363940280DA2C80066F2B4 /* ViewControllerPresenterSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1777,6 +1780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9363941280DA2C80066F2B4 /* ViewControllerPresenterSpy.swift in Sources */,
 				A9B2AE3B27ED152D00BA750B /* TabBarViewControllerTests.swift in Sources */,
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
