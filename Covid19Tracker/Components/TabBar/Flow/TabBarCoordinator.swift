@@ -15,14 +15,6 @@ protocol TabBarCoordinatorDelegate: AnyObject {
 final class TabBarCoordinator: Coordinator {
     private let window: UIWindow
 
-    private lazy var coordinators: [Coordinator] = [
-        HomeCoordinator(parent: WeakRefVirtualProxy(self)),
-        WorldCoordinator(viewController: WeakRefVirtualProxy(self)),
-        SearchCoordinator(parent: WeakRefVirtualProxy(self), cameFromHome: false),
-        NewsCoordinator(parent: WeakRefVirtualProxy(self)),
-        CareCoordinator(viewController: WeakRefVirtualProxy(self))
-    ]
-
     init(window: UIWindow) {
         self.window = window
         print("[TabBarCoordinator] initialized!")
@@ -34,7 +26,11 @@ final class TabBarCoordinator: Coordinator {
     }
 
     private func startCoordinators() {
-        coordinators.forEach { $0.start() }
+        HomeCoordinator(parent: self).start()
+        WorldCoordinator(viewController: self).start()
+        SearchCoordinator(parent: self, cameFromHome: false).start()
+        NewsCoordinator(parent: self).start()
+        CareCoordinator(viewController: self).start()
     }
 
     deinit {

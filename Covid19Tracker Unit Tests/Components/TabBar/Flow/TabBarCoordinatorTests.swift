@@ -11,15 +11,13 @@ import XCTest
 
 class TabBarCoordinatorTests: XCTestCase {
     func test_start_configureViewControllers() {
-        let (_, tabBarViewController, window) = makeSUT()
+        let (_, tabBarViewController) = makeSUT()
 
         XCTAssertEqual(tabBarViewController.viewControllers?.count, 5)
-
-        simulateAppContextChangeFrom(window: window)
     }
 
     func test_tabBarControllerShouldSelectViewController_shouldSelectAllButSearchViewController() {
-        let (sut, tabBarViewController, window) = makeSUT()
+        let (sut, tabBarViewController) = makeSUT()
 
         let shouldSelectViewController0 = sut.tabBarController(tabBarViewController, shouldSelect: tabBarViewController.viewControllers![0])
         XCTAssertTrue(shouldSelectViewController0)
@@ -35,23 +33,20 @@ class TabBarCoordinatorTests: XCTestCase {
 
         let shouldSelectViewController4 = sut.tabBarController(tabBarViewController, shouldSelect: tabBarViewController.viewControllers![4])
         XCTAssertTrue(shouldSelectViewController4)
-
-        simulateAppContextChangeFrom(window: window)
-    }
-
-    func simulateAppContextChangeFrom(window: UIWindow) {
-        window.rootViewController = nil
     }
 }
 
 extension TabBarCoordinatorTests {
-    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (TabBarCoordinator, TabBarViewController, UIWindow) {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (TabBarCoordinator, TabBarViewController) {
         let window = UIWindow(frame: UIScreen.main.bounds)
         let coordinator = TabBarCoordinator(window: window)
         coordinator.start()
         let tabBarViewController = window.rootViewController as! TabBarViewController
         checkMemoryLeak(for: coordinator, file: file, line: line)
         checkMemoryLeak(for: tabBarViewController, file: file, line: line)
-        return (coordinator, tabBarViewController, window)
+        defer {
+            window.rootViewController = nil
+        }
+        return (coordinator, tabBarViewController)
     }
 }
