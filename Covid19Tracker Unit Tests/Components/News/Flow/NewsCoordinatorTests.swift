@@ -10,5 +10,20 @@ import XCTest
 @testable import Covid19_Tracker
 
 class NewsCoordinatorTests: XCTestCase {
-    
+    func test_rootViewController_isNewsViewController() {
+        let viewControllerPresenter = ViewControllerPresenterSpy()
+        let sut = NewsCoordinator(parent: viewControllerPresenter)
+        sut.start()
+
+        XCTAssertEqual(viewControllerPresenter.viewControllers.count, 1)
+        XCTAssert(viewControllerPresenter.viewControllers[0] is NewsViewController)
+    }
+}
+
+final class ViewControllerPresenterSpy: ViewControllerPresenter {
+    var viewControllers: [UIViewController] = []
+
+    func show(_ vc: UIViewController, sender: Any?) {
+        viewControllers.append(vc)
+    }
 }
