@@ -1181,6 +1181,10 @@
 			children = (
 				A9B2AE4327ED436C00BA750B /* Base */,
 				A9B2AE4227ED1AE900BA750B /* TabBar */,
+				A9DAD829280DE10A00D4451A /* Home */,
+				A9DAD82A280DE10D00D4451A /* Country */,
+				A9DAD82B280DE11200D4451A /* World */,
+				A9DAD823280DE0C000D4451A /* Search */,
 				A9BAC7182808E18E00E77FF7 /* News */,
 				A9E3BEB527F3B40C0071AAD4 /* Care */,
 			);
@@ -1265,6 +1269,98 @@
 			isa = PBXGroup;
 			children = (
 				A9DAD820280DDDCE00D4451A /* CareCoordinatorTests.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A9DAD823280DE0C000D4451A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A9DAD825280DE0DF00D4451A /* Flow */,
+				A9DAD824280DE0DB00D4451A /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		A9DAD824280DE0DB00D4451A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9DAD825280DE0DF00D4451A /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A9DAD829280DE10A00D4451A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A9DAD831280DE14100D4451A /* Flow */,
+				A9DAD830280DE13D00D4451A /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A9DAD82A280DE10D00D4451A /* Country */ = {
+			isa = PBXGroup;
+			children = (
+				A9DAD82F280DE13A00D4451A /* Flow */,
+				A9DAD82E280DE13600D4451A /* View */,
+			);
+			path = Country;
+			sourceTree = "<group>";
+		};
+		A9DAD82B280DE11200D4451A /* World */ = {
+			isa = PBXGroup;
+			children = (
+				A9DAD82D280DE13200D4451A /* Flow */,
+				A9DAD82C280DE12D00D4451A /* View */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		A9DAD82C280DE12D00D4451A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9DAD82D280DE13200D4451A /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A9DAD82E280DE13600D4451A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9DAD82F280DE13A00D4451A /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A9DAD830280DE13D00D4451A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9DAD831280DE14100D4451A /* Flow */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Flow;
 			sourceTree = "<group>";
