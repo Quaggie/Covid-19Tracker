@@ -14,6 +14,8 @@ class NewsCoordinatorTests: XCTestCase {
     func test_rootViewController_isNewsViewController() {
         let viewControllerPresenter = ViewControllerPresenterSpy()
         let sut = NewsCoordinator(parent: viewControllerPresenter)
+        checkMemoryLeak(for: sut)
+        checkMemoryLeak(for: viewControllerPresenter)
         sut.start()
 
         XCTAssertEqual(viewControllerPresenter.viewControllers.count, 1)
