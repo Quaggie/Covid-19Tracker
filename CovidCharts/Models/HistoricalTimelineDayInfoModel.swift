@@ -41,9 +41,6 @@ public struct HistoricalTimelineDayInfoModel {
     }
 
     private static func from(model: HistoricalCountryInfoModel.Timeline, date: Date) -> HistoricalTimelineDayInfoModel? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M/d/yy"
-
         let active = timelineValueFor(date: date, in: model.cases)
         let recovered = timelineValueFor(date: date, in: model.recovered)
         let deaths = timelineValueFor(date: date, in: model.deaths)
