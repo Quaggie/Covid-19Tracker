@@ -156,6 +156,7 @@
 		A9BAC7202808E76400E77FF7 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAC71F2808E76400E77FF7 /* NewsPresenter.swift */; };
 		A9CD2777280D9A4D000A91A5 /* NewsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2776280D9A4D000A91A5 /* NewsCoordinatorTests.swift */; };
 		A9DAD822280DDDD000D4451A /* CareCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD820280DDDCE00D4451A /* CareCoordinatorTests.swift */; };
+		A9DAD834280DE1CF00D4451A /* SearchCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAD833280DE1CF00D4451A /* SearchCoordinatorTests.swift */; };
 		A9E3BEAF27F371880071AAD4 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEAE27F371880071AAD4 /* MainQueueDispatchDecorator.swift */; };
 		A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB227F37E610071AAD4 /* MainQueueDispatchDecoratorTests.swift */; };
 		A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E3BEB627F3B41C0071AAD4 /* CareViewControllerTests.swift */; };
@@ -377,6 +378,7 @@
 		A9BAC71F2808E76400E77FF7 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 		A9CD2776280D9A4D000A91A5 /* NewsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9DAD820280DDDCE00D4451A /* CareCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCoordinatorTests.swift; sourceTree = "<group>"; };
+		A9DAD833280DE1CF00D4451A /* SearchCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinatorTests.swift; sourceTree = "<group>"; };
 		A9E3BEA527F205580071AAD4 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A9E3BEA827F224A80071AAD4 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		A9E3BEAB27F233DA0071AAD4 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -1292,6 +1294,7 @@
 		A9DAD825280DE0DF00D4451A /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				A9DAD833280DE1CF00D4451A /* SearchCoordinatorTests.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1900,6 +1903,7 @@
 				A9E3BEB427F37E980071AAD4 /* MainQueueDispatchDecoratorTests.swift in Sources */,
 				A9B52C0027F3D028008413E4 /* TrackerSpy.swift in Sources */,
 				A9BAC71A2808E1B300E77FF7 /* NewsViewControllerTests.swift in Sources */,
+				A9DAD834280DE1CF00D4451A /* SearchCoordinatorTests.swift in Sources */,
 				A934E66A27FCC0C5002866AF /* TabBarCoordinatorTests.swift in Sources */,
 				A9B2AE4527ED438100BA750B /* BaseViewControllerTests.swift in Sources */,
 				A9E3BEB727F3B41C0071AAD4 /* CareViewControllerTests.swift in Sources */,
