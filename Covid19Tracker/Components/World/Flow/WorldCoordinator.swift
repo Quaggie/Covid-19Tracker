@@ -7,16 +7,16 @@
 //
 
 final class WorldCoordinator: Coordinator {
-    private let viewController: ViewControllerPresenter
+    private let parent: ViewControllerPresenter
 
-    init(viewController: ViewControllerPresenter) {
-        self.viewController = viewController
+    init(parent: ViewControllerPresenter) {
+        self.parent = parent
         print("[WorldCoordinator] initialized!")
     }
 
     func start() {
         let vc = WorldUIComposer().compose()
-        viewController.show(vc, sender: self)
+        parent.show(vc, sender: self)
     }
 
     deinit {

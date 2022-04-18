@@ -9,16 +9,16 @@
 import UIKit
 
 final class CareCoordinator: Coordinator {
-    private let viewController: ViewControllerPresenter
+    private let parent: ViewControllerPresenter
 
-    init(viewController: ViewControllerPresenter) {
-        self.viewController = viewController
+    init(parent: ViewControllerPresenter) {
+        self.parent = parent
         print("[CareCoordinator] initialized!")
     }
 
     func start() {
         let vc = CareUIComposer().compose()
-        viewController.show(vc, sender: self)
+        parent.show(vc, sender: self)
     }
 
     deinit {

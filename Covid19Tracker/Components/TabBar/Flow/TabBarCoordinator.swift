@@ -27,10 +27,10 @@ final class TabBarCoordinator: Coordinator {
 
     private func startCoordinators() {
         HomeCoordinator(parent: self).start()
-        WorldCoordinator(viewController: self).start()
+        WorldCoordinator(parent: self).start()
         SearchCoordinator(parent: self, cameFromHome: false).start()
         NewsCoordinator(parent: self).start()
-        CareCoordinator(viewController: self).start()
+        CareCoordinator(parent: self).start()
     }
 
     deinit {
