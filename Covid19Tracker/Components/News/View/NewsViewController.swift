@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CovidCharts
 
 protocol NewsViewControllerDelegate {
     func viewDidAppear()
