@@ -17,10 +17,11 @@ final class CountryUIComposer: UIComposer {
     }
 
     func compose() -> CountryViewController {
-        CountryViewController(
+        let presenter = CountryPresenter(
             countryName: countryName,
-            countryFetcher: MainQueueDispatchDecorator(instance: CountryService()),
+            countryFetcher: CountryService(),
             historicalInfoFetcher: MainQueueDispatchDecorator(instance: HistoricalInfoService())
         )
+        return CountryViewController(delegate: CountryTrackerAdapter(), presenter: presenter)
     }
 }

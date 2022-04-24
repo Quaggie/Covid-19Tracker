@@ -72,6 +72,9 @@
 		A93B3FA924355C5600AFC97F /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FA824355C5600AFC97F /* UIView+Shadow.swift */; };
 		A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAA24355C6B00AFC97F /* UICollectionView+Extension.swift */; };
 		A93B3FAD24355C7A00AFC97F /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B3FAC24355C7A00AFC97F /* UICollectionReusableView+Extension.swift */; };
+		A93BF1282815F341008A4D69 /* CountryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93BF1272815F341008A4D69 /* CountryPresenter.swift */; };
+		A93BF12B2815F5AA008A4D69 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93BF12A2815F5AA008A4D69 /* CountryViewModel.swift */; };
+		A93BF12E2815F69C008A4D69 /* CountryTrackerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93BF12D2815F69C008A4D69 /* CountryTrackerAdapter.swift */; };
 		A950703D24531819007DC98F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A950703C24531819007DC98F /* HomeViewController.swift */; };
 		A95931F3280215D700EB5D2A /* CovidCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95931EB280215D700EB5D2A /* CovidCharts.framework */; };
 		A95932012802161300EB5D2A /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B116A627F738780070F427 /* Networking.framework */; platformFilter = ios; };
@@ -313,6 +316,9 @@
 		A93B3FBE24355F5700AFC97F /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A93B3FC124355F5700AFC97F /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		A93B3FD224355FCD00AFC97F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A93BF1272815F341008A4D69 /* CountryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPresenter.swift; sourceTree = "<group>"; };
+		A93BF12A2815F5AA008A4D69 /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
+		A93BF12D2815F69C008A4D69 /* CountryTrackerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTrackerAdapter.swift; sourceTree = "<group>"; };
 		A950703C24531819007DC98F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A9573E1027FFAD8C00760EA0 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		A95931E42802026500EB5D2A /* WorldOverviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOverviewService.swift; sourceTree = "<group>"; };
@@ -891,6 +897,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A93BF1252815F320008A4D69 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A93BF1272815F341008A4D69 /* CountryPresenter.swift */,
+				A93BF12A2815F5AA008A4D69 /* CountryViewModel.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A93BF12C2815F690008A4D69 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				A93BF12D2815F69C008A4D69 /* CountryTrackerAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		A950703E24531820007DC98F /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1048,8 @@
 			isa = PBXGroup;
 			children = (
 				A934E65227FC9C7D002866AF /* Flow */,
+				A93BF12C2815F690008A4D69 /* Adapter */,
+				A93BF1252815F320008A4D69 /* Presenter */,
 				A934E65327FC9C81002866AF /* View */,
 			);
 			path = Country;
@@ -1768,6 +1793,7 @@
 				A934E67427FCE669002866AF /* HomeCoordinator.swift in Sources */,
 				A98FC6E4244266DD004433A6 /* Double+DecimalFormat.swift in Sources */,
 				A906DEA227F4ACC700F19932 /* CellRegistrationable.swift in Sources */,
+				A93BF12E2815F69C008A4D69 /* CountryTrackerAdapter.swift in Sources */,
 				A934E63A27FB93D0002866AF /* News.swift in Sources */,
 				A934E64527FC6906002866AF /* CareCoordinator.swift in Sources */,
 				A93B3FAB24355C6B00AFC97F /* UICollectionView+Extension.swift in Sources */,
@@ -1807,6 +1833,7 @@
 				A934E63027FB9357002866AF /* HistoricalCountryTimeline.swift in Sources */,
 				A982ED31280A20BC00002C17 /* URLOpener.swift in Sources */,
 				A99B73F9244696A700383D30 /* CareSourceCell.swift in Sources */,
+				A93BF1282815F341008A4D69 /* CountryPresenter.swift in Sources */,
 				A98FC6C3244221FF004433A6 /* CountryViewController.swift in Sources */,
 				A93B3FA724355BFF00AFC97F /* WorldViewController.swift in Sources */,
 				A934E63227FB9396002866AF /* Timeline.swift in Sources */,
@@ -1835,6 +1862,7 @@
 				A98FC6DD244252FD004433A6 /* SearchViewController.swift in Sources */,
 				A98FC6EB2442BA26004433A6 /* CovidBarChartView.swift in Sources */,
 				A93B3F882432CF3900AFC97F /* Font.swift in Sources */,
+				A93BF12B2815F5AA008A4D69 /* CountryViewModel.swift in Sources */,
 				A982ED22280A030E00002C17 /* CarePresenter.swift in Sources */,
 				A9BAC7202808E76400E77FF7 /* NewsPresenter.swift in Sources */,
 				A934E66127FC9D5E002866AF /* HomeUIComposer.swift in Sources */,

@@ -7,7 +7,10 @@
 //
 
 import UIKit
-import CovidCharts
+
+protocol CountryViewControllerDelegate {
+    func viewDidAppear()
+}
 
 final class CountryViewController: BaseViewController {
     enum State {
@@ -22,14 +25,11 @@ final class CountryViewController: BaseViewController {
         case spreadOverTime([HistoricalTimelineDayInfo])
         case todayCases(Country)
     }
-
-    // MARK: - Services
-    private let countryFetcher: CountryFetcher
-    private let historicalInfoFetcher: HistoricalInfoFetcher
+    
 
     // MARK: - Properties
-    private let tracker: TrackerProtocol
-    private let countryName: String
+    private let delegate: CountryViewControllerDelegate
+    private let presenter: CountryPresenterDelegate
     private var state: State = .loading {
         didSet {
             changeUIFor(state: state)
@@ -73,19 +73,12 @@ final class CountryViewController: BaseViewController {
     }
 
     // MARK: - Init
-    init(
-        tracker: TrackerProtocol = Tracker(source: String(describing: CountryViewController.self)),
-        countryName: String,
-        countryFetcher: CountryFetcher,
-        historicalInfoFetcher: HistoricalInfoFetcher
-    ) {
-        self.tracker = tracker
-        self.countryName = countryName
-        self.countryFetcher = countryFetcher
-        self.historicalInfoFetcher = historicalInfoFetcher
+    init(delegate: CountryViewControllerDelegate, presenter: CountryPresenterDelegate) {
+        self.delegate = delegate
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
 
-        self.titleLabel.text = countryName
+        self.titleLabel.text = presenter.countryName
     }
 
     @available(*, unavailable)
@@ -107,7 +100,7 @@ final class CountryViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tracker.screenView(name: "Country Details")
+        delegate.viewDidAppear()
     }
 
     // MARK: - Private functions
@@ -121,30 +114,19 @@ final class CountryViewController: BaseViewController {
     private func fetchData() {
         state = .loading
 
-        countryFetcher.fetch(country: countryName) { [weak self] (result) in
+        presenter.fetch { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success(let countryModel):
-                self.historicalInfoFetcher.fetch(country: countryModel.country) { [weak self] (result) in
-                    guard let self = self else { return }
-
-                    switch result {
-                    case .success(let historicalCountryInfoModel):
-                        let country = Country.from(model: countryModel)
-                        let historicalCountryInfo = HistoricalCountryInfo.from(model: historicalCountryInfoModel)
-                        self.datasource = [
-                            .totalCases(country),
-                            .percentRate(type: .recovery, percent: Double(country.recovered) / Double(country.cases)),
-                            .percentRate(type: .fatality, percent: Double(country.deaths) / Double(country.cases)),
-                            .spreadOverTime(historicalCountryInfo.timeline),
-                            .todayCases(country)
-                        ]
-                        self.state = .success
-                    case .failure:
-                        self.state = .error
-                    }
-                }
+            case .success(let viewModel):
+                self.datasource = [
+                    .totalCases(viewModel.country),
+                    .percentRate(type: .recovery, percent: Double(viewModel.country.recovered) / Double(viewModel.country.cases)),
+                    .percentRate(type: .fatality, percent: Double(viewModel.country.deaths) / Double(viewModel.country.cases)),
+                    .spreadOverTime(viewModel.historicalCountryInfo.timeline),
+                    .todayCases(viewModel.country)
+                ]
+                self.state = .success
             case .failure:
                 self.state = .error
             }
