@@ -40,7 +40,7 @@ public final class WorldOverviewService: WorldOverviewFetcher {
         }
 
         dispatchGroup.enter()
-        self.historicalInfoFetcher.fetchAll { result in
+        historicalInfoFetcher.fetchAll { result in
             dispatchGroup.leave()
 
             switch result {

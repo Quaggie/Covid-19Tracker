@@ -223,6 +223,6 @@ extension CountryServiceTests {
     }
 
     private func anyCountryModel() -> CountryModel {
-        CountryModel(country: "", countryInfo: .init(flag: ""), cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0)
+        CountryModel.mock()
     }
 }
